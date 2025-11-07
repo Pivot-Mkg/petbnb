@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PetBnB – Checkout</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+    body{background:#f7f8fa}
+    .card-soft{background:#fff;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+    .price-line{display:flex;justify-content:space-between;align-items:center;margin:.35rem 0}
+  </style>
+  <!-- Razorpay script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">PetBnB</a>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card-soft p-4">
+          <h4 class="mb-3">Checkout</h4>
+
+          <div id="summary" class="mb-3 small text-muted"></div>
+
+           <div class="mb-3">
+            <label class="form-label fw-semibold">Payment Method</label>
+            <div class="list-group">
+              <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="payMethod" value="razorpay" checked>
+                Online (Razorpay: Card / UPI / Wallet / Netbanking)
+              </label>
+              <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="payMethod" value="upi">
+                UPI Manual (show QR / UPI ID, confirm later)
+              </label>
+              <label class="list-group-item d-flex align-items-center">
+                <input class="form-check-input me-2" type="radio" name="payMethod" value="cash">
+                Pay at Walk (cash / UPI on arrival)
+              </label>
+            </div>
+          </div>
+
+          <div class="border-top pt-3">
+            <div class="price-line"><span>Subtotal</span><span>₹<span id="subtotal">—</span></span></div>
+            <div class="price-line"><span>Platform fee (5%)</span><span>₹<span id="fee">—</span></span></div>
+            <div class="price-line"><span>Tax (18% on fee)</span><span>₹<span id="tax">—</span></span></div>
+            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+              <strong>Total</strong>
+              <strong>₹<span id="total">—</span></strong>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button id="payNow" class="btn btn-success btn-lg">Pay Now</button>
+            <a href="walker-profile.html" class="btn btn-link">Back to profile</a>
+          </div>
+
+          <div id="paidNotice" class="alert alert-success d-none">
+            Payment already completed for this booking. You’re all set! 🎉
+          </div>
+
+
+          <div id="receipt" class="alert alert-success mt-3 d-none"></div>
+          <div id="errorBox" class="alert alert-danger mt-3 d-none"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <div class="modal fade" id="upiModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title">UPI Payment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Scan the QR or pay to UPI ID:</p>
+          <div class="text-center mb-3">
+            <!-- placeholder QR image; replace with your real QR -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi%3Apay%3Fpa%3Dpetbnb%40oksbi%26pn%3DPetBnB%26am%3D0" alt="UPI QR">
+          </div>
+          <div class="text-center fw-semibold">UPI ID: petbnb@oksbi</div>
+          <p class="small text-muted mt-2">After paying, the walker will verify and confirm the booking.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---- helpers for your existing localStorage model ----
+    function getBookings(){
+      try{ return JSON.parse(localStorage.getItem("bookings") || "[]"); }
+      catch{ return []; }
+    }
+    function setBookings(list){
+      localStorage.setItem("bookings", JSON.stringify(list));
+    }
+
+    function findBooking(id){ 
+      return getBookings().find(b=>b.id===id); 
+    }
+
+    // ---- Grab DOM els ----
+    const pending   = JSON.parse(localStorage.getItem("pendingCheckout") || "null");
+ const summaryEl = document.getElementById("summary");
+    const subtotalEl= document.getElementById("subtotal");
+    const feeEl     = document.getElementById("fee");
+    const taxEl     = document.getElementById("tax");
+    const totalEl   = document.getElementById("total");
+
+    const payBtn    = document.getElementById("payNow");
+    const paidNotice= document.getElementById("paidNotice");
+    const receiptEl = document.getElementById("receipt");
+    const errorBox  = document.getElementById("errorBox");
+
+
+    // ---- Render summary & guard cases ----
+    // let booking = null;
+    if(!pending){
+      summaryEl.textContent = "No checkout data found. Please start from the walker profile.";
+      payBtn.disabled = true;
+    } else {
+      // show summary from pending
+      summaryEl.innerHTML = `
+        <div><strong>Walker:</strong> ${pending.walkerName}</div>
+        <div><strong>When:</strong> ${pending.slot}</div>
+        <div><strong>Duration:</strong> ${pending.duration} min</div>
+      `;// compute breakdown
+      let subtotal = 0;
+  if (pending.amount != null) {
+    subtotal = Number(pending.amount);
+  } else if (pending.bookingId) {
+    const b = findBooking(pending.bookingId);
+    if (b && b.paymentAmount != null) subtotal = Number(b.paymentAmount);
+  }
+  if (isNaN(subtotal)) subtotal = 0;
+
+  const fee   = Math.round(subtotal * 0.05); // 5%
+  const tax   = Math.round(fee * 0.18);      // 18% of fee
+  const total = subtotal + fee + tax;
+
+  // Paint UI
+  subtotalEl.textContent = subtotal;
+  feeEl.textContent      = fee;
+  taxEl.textContent      = tax;
+  totalEl.textContent    = total;
+
+  // Persist computed total so Razorpay uses it
+  pending.amountComputed = total;
+  localStorage.setItem("pendingCheckout", JSON.stringify(pending));
+
+  // Block double payment if already paid
+  const booking = findBooking(pending.bookingId);
+  if (booking && booking.paymentStatus === "paid") {
+    paidNotice.classList.remove("d-none");
+    payBtn.disabled = true;
+  }
+}
+
+    // read selected payment method
+    function selectedMethod(){
+      const el = document.querySelector('input[name="payMethod"]:checked');
+      return el ? el.value : "razorpay";
+    }
+
+    // ---------- Pay Now click ----------
+    payBtn.addEventListener("click", () => {
+      if(!pending) return;
+      const method = selectedMethod();
+
+      // Already paid guard (double-purchase prevention)
+      const existing = findBooking(pending.bookingId);
+      if(existing && existing.paymentStatus === "paid"){
+        paidNotice.classList.remove("d-none");
+        return;
+      }
+
+      if(method === "cash"){
+        // mark as cash_pending; no gateway
+        const list = getBookings();
+        const idx  = list.findIndex(b=>b.id===pending.bookingId);
+        if(idx>=0){
+          list[idx].paymentStatus = "cash_pending";
+          list[idx].updatedAt = Date.now();
+          setBookings(list);
+        }
+        localStorage.removeItem("pendingCheckout");
+        receiptEl.classList.remove("d-none");
+        receiptEl.innerHTML = `
+          <div class="fw-semibold">Booking placed with Pay at Walk.</div>
+          <div class="small">Please pay the walker at the time of service.</div>
+        `;
+        errorBox.classList.add("d-none");
+        return;
+      }
+
+      if(method === "upi"){
+        // just show UPI instructions; walker confirms later
+        const upiModal = new bootstrap.Modal(document.getElementById("upiModal"));
+        upiModal.show();
+        return;
+      }
+
+      // method === 'razorpay' → open Razorpay checkout
+      const totalPaise = (pending.amountComputed || pending.amount) * 100;
+
+      const options = {
+        key: "rzp_test_xxxxxxxxxxxxx",               // TODO: replace with your Test Key ID
+        amount: totalPaise,
+        currency: "INR",
+        name: "PetBnB",
+        description: "Dog walk booking",
+        handler: function (resp){
+          // success → mark booking paid
+          const list = getBookings();
+          const idx  = list.findIndex(b=>b.id===pending.bookingId);
+          if(idx>=0){
+            list[idx].paymentStatus = "paid";
+            list[idx].paymentId     = resp.razorpay_payment_id;
+            list[idx].updatedAt     = Date.now();
+            setBookings(list);
+          }
+          localStorage.removeItem("pendingCheckout");
+          receiptEl.classList.remove("d-none");
+          receiptEl.innerHTML = `
+            <div class="fw-semibold">Payment successful! 🎉</div>
+            <div class="small mt-1">Payment ID: ${resp.razorpay_payment_id}</div>
+          `;
+          errorBox.classList.add("d-none");
+        },
+        notes: { booking_id: pending.bookingId },
+        theme: { color: "#10b981" }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.on("payment.failed", function (resp){
+        errorBox.classList.remove("d-none");
+        errorBox.textContent = resp.error && resp.error.description
+          ? resp.error.description
+          : "Payment failed. Please try again.";
+      });
+      rzp.open();
+    });
+  </script>
+  </body>
+</html>

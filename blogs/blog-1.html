@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      How Pet Hosts Are Building a New Kind of Community
+    </title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="../assets/css/style.css">
+     <link rel="stylesheet" href="../assets/blog.css">
+
+    <style>
+      :root {
+        --green: #10b981;
+        --mint: #eaf8f0;
+        --mint-border: #d7efdf;
+        --toc-link: #1b5e7a;
+
+        /* Footer palette */
+        --footer-bg: #f7f7f7;
+        --footer-text: #1f2937;
+        --muted: #6b7280;
+        --link: #2563eb;
+      }
+
+         .navbar-brand img {
+    /* min-height: 20%; */
+    width: 115px;
+    height: 70px;
+}
+
+      /* Hero */
+      .hero-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-top: 1rem;
+      }
+      .hero-meta {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Left: Popular posts list */
+      .popside {
+        counter-reset: item;
+      }
+      .popside li {
+        counter-increment: item;
+        margin: 0.65rem 0;
+      }
+      .popside li::before {
+        content: counter(item) ". ";
+        font-weight: 700;
+        color: #0f172a;
+        margin-right: 0.25rem;
+      }
+
+      /* Left: Ad */
+      .ad-box {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        background: #fff;
+        width: 100%;
+      }
+      .ad-box .ad-brand {
+        font-weight: 900;
+        color: #12a167;
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+      }
+      .ad-box .ad-headline {
+        font-weight: 800;
+        font-size: 1.35rem;
+        line-height: 1.25;
+        margin: 10px 0 14px;
+      }
+      .ad-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      /* TOC (right column) */
+      .toc-box {
+        background: var(--mint);
+        border: 1px solid var(--mint-border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+      }
+      .toc-topbar {
+        height: 8px;
+        background: var(--green);
+      }
+      .toc-inline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.1rem;
+      }
+      .toc-inline li {
+        position: relative;
+      }
+      .toc-inline li:not(:last-child)::after {
+        content: "•";
+        margin-left: 0.5rem;
+        margin-right: 0.25rem;
+        color: #2b6b74;
+        opacity: 0.9;
+      }
+      .toc-inline a {
+        color: var(--toc-link);
+        text-decoration: underline;
+        white-space: nowrap;
+      }
+      .toc-inline a:hover,
+      .toc-inline a.active {
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      /* Article body */
+      .article-body {
+        max-width: 980px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Back-to-top */
+      .back-top {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        display: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+      .back-top:hover {
+        background: #0f8a5b;
+        transform: translateY(-3px);
+      }
+
+   /* Footer (borrowed & polished from index.html) */
+      .site-footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        border-top: 1px solid #e5e7eb;
+      }
+      .site-footer a {
+        color: var(--footer-text);
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      .footer-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+      .footer-list li {
+        margin: 0.35rem 0;
+      }
+
+      /* Newsletter input group (pill) */
+      .newsletter-wrap .input-group {
+        --bs-border-radius: 999px;
+      }
+      .newsletter-wrap .form-control {
+        height: 52px;
+        border-radius: 999px 0 0 999px !important;
+        padding-left: 16px;
+      }
+      .newsletter-wrap .btn {
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 0 999px 999px 0 !important;
+        white-space: nowrap;
+      }
+      @media (max-width: 576px) {
+        .newsletter-wrap .input-group {
+          flex-wrap: wrap;
+        }
+        .newsletter-wrap .form-control {
+          border-radius: 999px !important;
+          margin-bottom: 10px;
+        }
+        .newsletter-wrap .btn {
+          width: 100%;
+          border-radius: 999px !important;
+        }
+      }
+
+      .privacy-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.9rem;
+        color: #374151;
+      }
+
+      .social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e5e7eb;
+        margin-right: 0.5rem;
+      }
+      .social a:hover {
+        background: #d1d5db;
+      }
+      .subtext {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .smallprint {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+       .btn:hover {
+        color: white !important;
+        background-color: #ea624e !important;
+        border-color: var(--bs-btn-hover-border-color);
+      }
+
+        .head-text {
+        color: #ea624e!important;;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">
+      <img src="../assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      <!-- <h1>PetBnB</h1> -->
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-search me-1"></i>
+          <a class="nav-link" href="../about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-heart me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="../blog.html">Blog</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-question-circle me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!-- ===== /Header ===== -->
+
+    <!-- Hero -->
+    <section class="container my-5">
+      <img
+        src="../assets/images/blogs/blog-1-banner.jpg"
+        alt="Dog and cat on suitcase"
+        class="hero-img shadow-sm"
+      />
+    </section>
+
+    <!-- Article wrap -->
+    <section class="article-wrap container my-4">
+      <div class="row g-4 d-flex-col align-items-center justify-content-center">
+        <!-- LEFT SIDEBAR -->
+        
+
+        <!-- RIGHT / MAIN CONTENT -->
+        <article class="col-12 col-lg-8 col-xl-9 order-1 order-lg-2">
+          <h1 class="display-5 fw-bold lh-tight mb-2 head-text">
+            From Guests to Guardians: How Pet Hosts Are Building a New Kind of Community
+          </h1>
+          <p class="hero-meta">By PetBnB Team • Updated November 2025</p>
+
+          <div class="mb-3 small">
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >PETS</a
+            >
+            <span class="mx-1"></span>
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >NEW PET</a
+            >
+          </div>
+
+          <div class="small d-flex flex-column gap-2 mb-3 text-secondary">
+            <div>
+              <i class="bi bi-link-45deg me-1"></i>This post contains affiliate
+              links. Read more
+              <a href="#" class="text-decoration-none">here</a>.
+            </div>
+            <div>
+              <i class="bi bi-hospital me-1"></i>Not a substitute for
+              professional veterinary help.
+            </div>
+          </div>
+
+          <p class="lead">
+            A generation ago, leaving your pet in someone else’s home while you travelled was unthinkable. Pets were family, and entrusting them to strangers seemed unimaginable. Yet today, a quiet revolution is reshaping what it means to care for animals and to belong. Pet hosting and peer‑to‑peer pet‑care networks are evolving beyond convenience, they are rewriting the idea of community.
+          </p>
+          <p class="lead">
+            Across cities and countries, pet hosts are transforming from temporary sitters into guardians of something much greater: a shared world built on empathy, trust and the unconditional affection animals inspire.
+          </p>
+
+          <!-- TOC -->
+          <div class="toc-box mt-3">
+            <div class="toc-topbar"></div>
+            <div class="p-3 p-md-4">
+              <h3 class="h2 fw-bold mb-3">Woof Woof!</h3>
+              <ul class="toc-list">
+  <li><a href="#q1">Pet Hosting from Convenience to Connection</a></li>
+  <li><a href="#q2">Lasting Pet Relationships</a></li>
+  <li><a href="#q3">Guardianship in Pet Hosting</a></li>
+  <li><a href="#q4">Compassion in the Concrete Jungle</a></li>
+  <li><a href="#q5">Healing Works Both Ways</a></li>
+  <li><a href="#q6">Digital Trust in Pet Hosting</a></li>
+  <li><a href="#q7">Pet Hosting and a Shift in Values</a></li>
+  <li><a href="#q8">Stories That Inspire</a></li>
+  <li><a href="#q9">From Homes to Heartbeats in Community</a></li>
+</ul>
+
+            </div>
+          </div>
+
+          <!-- Article Content -->
+          <div class="article-body">
+            <h2 id="q1" class="q-title head-text">The Rise of Pet Hosting: From Convenience to Connection</h2>
+            <p>
+              The growth of pet hosting mirrors the rise of the sharing economy. Just as we now share homes, lifts and even office spaces, pet owners are learning to share care. The idea began simply: when you’re away or busy, rather than leaving your beloved companion in a boarding kennel, you find a verified host who will treat your pet as one of their own.
+            </p>
+
+            <p>
+              For many, hosting isn’t about profit but purpose. A retired couple welcome visiting dogs at weekends because they miss the patter of paws after their own passed away. A design student boards cats during exam periods because their calm presence brings balance. In essence, pet hosts open not just their homes but their hearts, creating spaces of warmth, empathy and belonging.
+            </p>
+
+
+            <h2 id="q2" class="q-title head-text">More Than a Service: Relationships That Last</h2>
+            <p>
+              Traditional boarding kennels can often feel sterile and stressful for animals. Owners who rely on them frequently describe a sense of guilt and worry. By contrast, pet hosting restores the personal touch; pets live within homes, follow familiar routines and receive one‑to‑one attention.
+            </p>
+
+            <p>
+              Out of this arrangement, meaningful bonds naturally form. Many hosts and owners stay in contact long after the stay ends, sharing photos, advice or even family gatherings. Each experience becomes the seed of community, groups of people united less by geography and more by a shared love of animals.
+            </p>
+
+            <p>
+              In our fast‑paced cities, these circles of connection fill an emotional need that technology alone cannot. They remind us that genuine relationships grow from trust and shared care.
+            </p>
+
+            <h2 id="q3" class="q-title head-text">Guardianship: The Heart of Modern Pet Hosting</h2>
+            <p>
+              What sets a modern pet host apart from a conventional sitter is the spirit of guardianship. A guardian recognises that caring for someone’s pet, whether for a day or a month, comes with moral responsibility. It is not mere supervision; it is stewardship of wellbeing.
+            </p>
+
+            <p>
+              Truly devoted hosts commit to the following:
+            </p>
+
+            <ul>
+              <li>Empathy: Understanding every pet’s unique temperament, history and comfort triggers.</li>
+              <li>Consistency: Maintaining daily schedules to reduce stress and build familiarity.</li>
+              <li>Engagement: Spending quality time through play, walks and affection.</li>
+              <li>Communication: Keeping owners informed through photos, messages and calls.</li>
+            </ul>
+
+            <p>Such behaviour transcends transaction. It builds confidence and appreciation, ensuring both pet and owner feel genuinely cared for. Over time, this fosters a collective culture grounded in trust, compassion and accountability.</p>
+
+            <h2 id="q4" class="q-title head-text">Compassion in the Concrete Jungle</h2>
+
+            <p>
+              Modern city life can be paradoxical, crowded yet isolating. For many urban dwellers, pets are the bridge that reconnects them to emotional grounding. Pet hosts extend that bridge outward, linking neighbours, families and strangers through shared acts of care.
+            </p>
+
+            <p>
+              Networks of local hosts are forming informal communities, supporting each other with advice, vet recommendations and emergency assistance. These interactions humanise urban life. They transform anonymous neighbourhoods into compassionate micro‑villages where pets become communal treasures.
+            </p>
+
+            <p>Pet hosting also fosters empathy among younger generations. Children growing up in hosting households learn early lessons in responsibility and kindness; values that naturally extend beyond animal care into how they treat others. In a sense, pet hosting nurtures a gentler, more emotionally intelligent society.</p>
+
+            <h2 id="q5" class="q-title head-text">Healing Works Both Ways</h2>
+            <p>
+              One of the most beautiful aspects of pet hosting is its reciprocal healing effect.
+            </p>
+            <p>For animals, especially rescues or those with separation anxiety; a calm, loving host can do wonders. A gentle environment, predictable routine and steady affection help nervous pets rebuild trust and self‑assurance.</p>
+            <p>But hosts benefit too. Stroking a cat, walking a dog even sharing quiet moments, all of it reduces stress and fosters positivity. Many hosts describe the presence of guest animals as emotionally grounding, bringing structure and purpose to their daily lives.</p>
+            <p>Hosts often say they began hosting “for the animals” but stayed “for the joy”. There’s no clearer testament to the emotional exchange at the heart of this new pet‑care culture.</p>
+
+            <h2 id="q6" class="q-title head-text">
+              The Quiet Power of Technology
+            </h2>
+           
+            <p>Enabling this revolution is a web of digital trust. Pet hosting platforms have evolved from simple booking sites into integrated ecosystems that support accountability, safety and connection.</p>
+            <p>Modern apps manage verifications, reviews and insurance coverage, allowing owners to leave their pets with confidence. They also offer video updates, walking trackers and chat features; tools that bridge physical distance with reassurance.</p>
+            <p>But perhaps most importantly, these technologies amplify visibility. Digital storytelling, through posts, photos and community groups, builds a collective identity among hosts. They share stories, lessons and milestones, helping reshape global attitudes towards pet care.</p>
+
+             <h2 id="q7" class="q-title head-text">
+              More Than Pet Care: A Reflection of Values
+            </h2>
+             
+            <p>The popularity of pet hosting reflects a deeper cultural shift. Around the world, people are questioning traditional ownership models and embracing shared responsibility. This evolution parallels wider movements; ethical consumption, environmental care and minimalism, all built on stewardship rather than possession.</p>
+
+            <p>Pet hosts embody these values in action. They show that love for animals doesn’t require ownership and that kindness can be shared without condition. This mindset is gradually reshaping social norms, inspiring broader networks of community care; from childcare exchanges to elder companionship programmes.</p>
+
+            <p>On an economic level, pet hosting supports local ecosystems too. Hosts purchase pet food, toys and grooming supplies from nearby shops, while interacting with local vets and pet‑friendly cafés. The ripple effect strengthens neighbourhood economies and enriches urban culture.</p>
+
+            <div class="container-fluid">
+              <img
+                src="../assets/images/blogs/blog-1.jpg"
+                alt=""
+                style="height: 100%; width: 70%" class="blog-2-image"
+              />
+            </div>
+
+            <h2 id="q8" class="q-title head-text">Stories That Inspire</h2>
+            <p>
+              There’s Maria, a nurse, who began hosting cats while working night shifts, says the quiet company kept loneliness away. Or Mark, a widower, who now hosts dogs every fortnight to bring laughter back into his home. And Priya, a student, who united her friends through a shared online pet‑hosting group that doubles as a mental‑health support circle.
+            </p>
+
+            <p>
+              These are not isolated tales; they illustrate how acts of care multiply kindness. What starts as a single favour becomes something far more profound: belonging.
+            </p>
+
+            <h2 id="q9" class="q-title head-text">From Homes to Heartbeats: The New Community Ethos</h2>
+            <p>At its core, pet hosting redefines community. It’s no longer just about who lives next door but about who cares, who opens their home not out of obligation but out of love</p>
+
+        
+            <p>
+              When we call pet hosts “guardians”, we acknowledge that they are protecting more than animals. They safeguard empathy itself; a quality our modern world often overlooks. Through every wagging tail and soft purr, they remind us of the power of connection and the beauty of shared care.
+            </p>
+
+            <p>So the next time you pass a neighbour walking a dog you don’t recognise, know that you’re witnessing something special. That pet might be visiting but the bond being built is permanent.</p>
+
+            <p>From guests to guardians, from strangers to friends, pet hosts are quietly proving that the soul of community is alive and well, carried on four paws and a thousand acts of kindness.</p>
+
+          
+           
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Footer (from index) ===== -->
+       <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Newsletter -->
+          <div class="col-12 col-lg-5">
+            <div class="footer-title head-text">
+              Woof Woof! Join the PetBnB Pack
+            </div>
+            <p class="subtext"></p>
+            <p class="subtext">
+              Get heart-melting pet photos, smart care tips, training hacks, and
+              must-try product finds straight to your inbox.
+            </p>
+
+            <form class="newsletter-wrap mt-2" action="#" method="post">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email…"
+                  aria-label="Your email"
+                  required
+                />
+                <button
+                  class="btn btn-outline-dark btn-primary-color"
+                  type="submit"
+                >
+                  Sign up
+                </button>
+              </div>
+            </form>
+
+            <p class="smallprint mt-3 mb-0">
+              By sharing my email, I agree to receive updates from PetBnB.com
+              and its affiliates. I confirm I’m 18+ and know I can unsubscribe
+              anytime.
+              <a style="color: var(--link)" href="../privacy.html"
+                >Privacy Statement</a
+              >..
+            </p>
+          </div>
+
+          <!-- Learn More -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-title head-text">Learn More</div>
+            <ul class="footer-list">
+              <li><a href="../blog.html">Read Our Blog</a></li>
+            </ul>
+            <div class="mt-3">
+              <a class="privacy-pill" href="../privacy.html"
+                ><i class="fa-solid fa-check"></i> Your privacy choices</a
+              >
+            </div>
+          </div>
+
+          <!-- About PetBnB -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-title head-text">About Us</div>
+
+            <div class="row about-grid g-0">
+              <!-- Left column -->
+              <div class="col-6 pe-4">
+                <ul class="footer-list mb-0">
+                  <li><a href="../about-us.html">About Us</a></li>
+                  <li><a href="../contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+
+              <!-- Right column -->
+              <div class="col-6">
+                <ul class="footer-list mb-0">
+                  <li>
+                    <a href="../privacy.html">Privacy<br />Statement</a>
+                  </li>
+                  <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Need Help -->
+          <div class="col-12">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
+            >
+              <div class="d-flex align-items-center gap-4 my-2">
+                <div class="footer-title mb-0 services-selection-section-title">
+                  Need Help?
+                </div>
+                <ul class="footer-list mb-0">
+                  <li><a href="#">FAQ's</a></li>
+                </ul>
+              </div>
+
+              <div class="social my-2">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="linkedin"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#" aria-label="Pinterest"
+                  ><i class="fa-brands fa-pinterest-p"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="smallprint text-center text-md-end mt-3">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <!-- ===== /Footer ===== -->
+
+    <!-- Back to Top -->
+    <button id="backTop" class="back-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Back-to-top show/hide & click
+      const backTop = document.getElementById("backTop");
+      window.addEventListener("scroll", () => {
+        backTop.style.display = window.scrollY > 400 ? "flex" : "none";
+      });
+      backTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+
+      // Active TOC link on scroll
+      (function () {
+        const links = Array.from(document.querySelectorAll(".toc-inline a"));
+        if (!links.length) return;
+        const map = Object.fromEntries(
+          links.map((a) => [a.getAttribute("href").slice(1), a])
+        );
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                links.forEach((a) => a.classList.remove("active"));
+                const a = map[en.target.id];
+                if (a) a.classList.add("active");
+              }
+            });
+          },
+          { rootMargin: "-20% 0px -70% 0px", threshold: 0.01 }
+        );
+        Object.keys(map).forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

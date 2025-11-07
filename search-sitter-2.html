@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PetBnB – Search Sitters (Filters)</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <style>
+        :root {
+            --footer-bg: #F9F5EE;
+            --footer-text: #1f2937;
+            --ink: #0f172a;
+            --muted: #6b7280;
+            --brand: #16a34a;
+            --soft: #f8fafc;
+            --chip: #eef2ff;
+            --border: #e5e7eb;
+            --link: #0d6efd;
+        }
+
+        body {
+            background: #fff;
+            color: var(--ink);
+        }
+
+        .page-wrap {
+            max-width: 1400px;
+        }
+
+        .site-footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .site-footer a {
+            color: var(--footer-text);
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .footer-list li {
+            margin: 0.35rem 0;
+        }
+
+        .newsletter-wrap .input-group {
+            --bs-border-radius: 999px;
+        }
+
+        .newsletter-wrap .form-control {
+            height: 52px;
+            border-radius: 999px 0 0 999px !important;
+            padding-left: 16px;
+        }
+
+        .newsletter-wrap .btn {
+            height: 52px;
+            padding: 0 22px;
+            border-radius: 0 999px 999px 0 !important;
+            white-space: nowrap;
+        }
+
+        @media (max-width:576px) {
+            .newsletter-wrap .input-group {
+                flex-wrap: wrap;
+            }
+
+            .newsletter-wrap .form-control {
+                border-radius: 999px !important;
+                margin-bottom: 10px;
+            }
+
+            .newsletter-wrap .btn {
+                width: 100%;
+                border-radius: 999px !important;
+            }
+        }
+
+        .privacy-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #e5e7eb;
+            margin-right: 0.5rem;
+        }
+
+        .social a:hover {
+            background: #d1d5db;
+        }
+
+        .subtext {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .smallprint {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .navbar-brand img {
+            width: 115px;
+            height: 70px;
+        }
+
+        .filters {
+            position: sticky;
+            top: 16px;
+            align-self: flex-start;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            background: #fff;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .filters .section-title {
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 8px;
+        }
+
+        .filters .form-control,
+        .filters .form-select {
+            margin-top: 0.4rem;
+        }
+
+        .btn:hover {
+            color: #fff !important;
+            background-color: #EA624E !important;
+        }
+
+        .results-summary {
+            color: var(--muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge-chip {
+            background: var(--chip);
+            border: 1px solid #e2e8f0;
+            color: #3730a3;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8rem;
+        }
+
+        .results-col {
+            min-height: 50vh;
+            padding-right: 8px;
+        }
+
+        .result-card {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--soft);
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+
+        .result-card:hover {
+            box-shadow: 0 12px 28px rgba(2, 6, 23, 0.08);
+            transform: translateY(-1px);
+            background: #fff;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
+        }
+
+        .name-line {
+            font-weight: 900;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .name-line .star-badge {
+            background: #fef9c3;
+            border: 1px solid #fde68a;
+            color: #854d0e;
+            font-weight: 800;
+            border-radius: 6px;
+            padding: 0.1rem 0.35rem;
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .rating i {
+            color: #f59e0b;
+        }
+
+        .snippet {
+            color: #374151;
+        }
+
+        .price-wrap {
+            text-align: right;
+            min-width: 120px;
+        }
+
+        .price {
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+
+        .price-sub {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .heart {
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .heart:hover {
+            border-color: #ef4444;
+        }
+
+        .heart-icon {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .seg {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .seg .seg-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+            background: #fff;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .seg .seg-btn i {
+            margin-right: 0.45rem;
+        }
+
+        .seg .seg-btn.active {
+            border-color: #111827;
+            box-shadow: 0 0 0 0.5px #111827 inset;
+            background: #f8fafc;
+        }
+
+ .date-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Prevent the date inputs from overflowing their container */
+.date-row .form-control {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Make sure the arrow sits neatly centered */
+.date-row .arrow {
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Stack the date inputs earlier on smaller screens */
+@media (max-width: 992px) {
+  .page-wrap {
+    padding-inline: 12px !important;
+  }
+  .filters {
+    padding: 12px;
+  }
+  .date-row {
+    grid-template-columns: 1fr;
+  }
+  .date-row .arrow {
+    display: none;
+  }
+}
+
+/* As a last resort, clip any accidental horizontal overflow of the card */
+.filters {
+  overflow-x: clip; /* or overflow-x: hidden; if older browsers */
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="bi bi-search me-1"></i>
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="bi bi-heart me-1"></i>
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="bi bi-paw me-1"></i>
+                        <a class="nav-link" href="#">FAQ's</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="bi bi-paw me-1"></i>
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sign In</a></li>
+                    <li class="nav-item d-flex align-items-center">
+                        <i class="bi bi-question-circle me-1"></i>
+                        <a class="nav-link" href="contact-us.html">Help</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid page-wrap px-3 py-3">
+        <div class="row g-3">
+            <!-- LEFT: Filters (visual only without custom JS) -->
+            <aside class="col-12 col-lg-3">
+                <div class="filters" id="filtersForm">
+                    <!-- Service switcher -->
+                    <div class="mt-2 service-switch">
+                        <div class="dropdown">
+                            <button class="btn btn-light border dropdown-toggle w-100 text-start" type="button"
+                                id="serviceDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-geo-alt me-1"></i> Services
+                            </button>
+                            <ul class="dropdown-menu w-100" aria-labelledby="serviceDropdown">
+                                <li class="dropdown-header">Switch service</li>
+                                <li><a class="dropdown-item active" href="#">Boarding</a></li>
+                                <li><a class="dropdown-item" href="search-walkers-page.html">Dog Walking</a></li>
+                                <li><a class="dropdown-item" href="search-training.html">Training</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section-title mt-2">
+                        <i class="bi bi-geo-alt"></i> Address (Mumbai area)
+                    </div>
+                    <input class="form-control" placeholder="e.g. Bandra, Andheri, Powai..." list="mainAreas" />
+                    <datalist id="mainAreas">
+                        <option value="Bandra"></option>
+                        <option value="Andheri"></option>
+                        <option value="Juhu"></option>
+                        <option value="Powai"></option>
+                        <option value="Worli"></option>
+                        <option value="Dadar"></option>
+                        <option value="Colaba"></option>
+                        <option value="Goregaon"></option>
+                    </datalist>
+
+                    <!-- Dates -->
+                    <div class="mt-3">
+                        <div class="section-title"><i class="bi bi-calendar2-week"></i> Dates</div>
+                        <div class="date-row">
+                            <input type="date" class="form-control" />
+                            <span class="arrow">→</span>
+                            <input type="date" class="form-control" />
+                        </div>
+                    </div>
+
+                    <!-- Breed -->
+                    <div class="mb-3 mt-3">
+                        <div class="section-title"><i class="bi bi-paw"></i> Breed</div>
+                        <select class="form-select">
+                            <option>Any breed</option>
+                            <option>Labrador Retriever</option>
+                            <option>German Shepherd</option>
+                            <option>Golden Retriever</option>
+                            <option>Beagle</option>
+                            <option>Bulldog</option>
+                            <option>Dachshund</option>
+                            <option>Rottweiler</option>
+                            <option>Shih Tzu</option>
+                            <option>Siberian Husky</option>
+                            <option>Mixed / Other</option>
+                        </select>
+                    </div>
+
+                    <!-- How many pets? -->
+                    <div class="mb-3">
+                        <div class="section-title"><i class="bi bi-123"></i> How many pets?</div>
+                        <input type="number" class="form-control" min="1" max="6" placeholder="e.g. 1" />
+                        <div class="form-text">Number of pets for boarding together</div>
+                    </div>
+
+                    <!-- Dog age -->
+                    <div class="mb-3">
+                        <div class="section-title"><i class="bi bi-hourglass-split"></i> Dog age</div>
+                        <select class="form-select">
+                            <option>Any</option>
+                            <option>&lt; 1 year (puppy)</option>
+                            <option>1 – 7 years (adult)</option>
+                            <option>8+ years (senior)</option>
+                        </select>
+                    </div>
+
+                    <!-- Dog size -->
+                    <div class="mb-3">
+                        <div class="section-title"><i class="bi bi-arrows-angle-expand"></i> Dog size</div>
+                        <select class="form-select">
+                            <option>Any</option>
+                            <option>Small (&lt;10 kg)</option>
+                            <option>Medium (10–25 kg)</option>
+                            <option>Large (&gt;25 kg)</option>
+                        </select>
+                    </div>
+
+                    <!-- Amenities & safety -->
+                    <div class="adv-divider my-2" style="border-top:1px solid var(--border)"></div>
+                    <div class="adv-section">
+                        <div class="adv-title fw-bold mb-1">Amenities &amp; Safety</div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="amenityAC" /> <label
+                                class="form-check-label" for="amenityAC">Air conditioning</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="amenityCCTV" />
+                            <label class="form-check-label" for="amenityCCTV">CCTV / camera updates</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="amenityCrate" />
+                            <label class="form-check-label" for="amenityCrate">Crate provided (on request)</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox"
+                                id="amenitySeparateRoom" /> <label class="form-check-label"
+                                for="amenitySeparateRoom">Separate room available</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox"
+                                id="amenitySupervision" /> <label class="form-check-label" for="amenitySupervision">24×7
+                                human supervision</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="amenityMeds" />
+                            <label class="form-check-label" for="amenityMeds">Can administer medication</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox"
+                                id="requiresVaccination" /> <label class="form-check-label"
+                                for="requiresVaccination">Requires up-to-date vaccinations</label></div>
+                    </div>
+
+                    <!-- Pick-up -->
+                    <div class="adv-divider my-2" style="border-top:1px solid var(--border)"></div>
+                    <div class="adv-section">
+                        <div class="adv-title fw-bold mb-1">Pick-up / Drop-off</div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="offersPickup" />
+                            <label class="form-check-label" for="offersPickup">Offers pick-up / drop-off</label></div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mb-3">
+                        <div class="section-title"><i class="bi bi-cash-coin"></i> Rate per night</div>
+                        <input type="range" class="form-range" min="100" max="3000" step="50" value="1200" />
+                        <div class="d-flex justify-content-between">
+                            <span>₹100</span>
+                            <span class="slider-value">₹1200</span>
+                            <span>₹3000</span>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" checked />
+                        <label class="form-check-label">Only show star sitters</label>
+                    </div>
+
+                    <a href="#" class="small text-decoration-underline">Learn more about the program</a>
+
+                    <div class="adv-divider mt-3" style="border-top:1px solid var(--border)"></div>
+                    <div class="adv-head d-flex justify-content-between align-items-center">
+                        <div class="count">Filters (<span>0</span>)</div>
+                        <a class="adv-reset" href="#">Reset all</a>
+                    </div>
+
+                    <!-- Advanced sections (static) -->
+                    <div class="adv-section mt-2">
+                        <div class="adv-title fw-bold mb-1">Housing conditions</div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Has house (excludes apartments)</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Has fenced yard</label></div>
+                        <div class="small text-primary mt-1">More <i class="bi bi-chevron-down"></i></div>
+                    </div>
+
+                    <div class="adv-divider my-2" style="border-top:1px solid var(--border)"></div>
+
+                    <div class="adv-section">
+                        <div class="adv-title fw-bold mb-1">Pets in the home</div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Doesn’t own a dog</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Doesn’t own a cat</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Accepts only one client at a time</label></div>
+                        <div class="small text-primary mt-1">More <i class="bi bi-chevron-down"></i></div>
+                    </div>
+
+                    <div class="adv-divider my-2" style="border-top:1px solid var(--border)"></div>
+
+                    <div class="adv-section">
+                        <div class="adv-title fw-bold mb-1">Other</div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Puppy care</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Cat care</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Accepts unspayed female dogs</label></div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" /> <label
+                                class="form-check-label">Accepts non neutered male dogs</label></div>
+                        <div class="small text-primary mt-1">More <i class="bi bi-chevron-down"></i></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RESULTS -->
+            <section class="col-12 col-lg-9">
+                <!-- Static summary (matches full list below: 14 sitters) -->
+                <div class="results-summary">
+                    <span>14 sitters found</span>
+                    <span class="badge-chip">Area: All Mumbai</span>
+                    <span class="badge-chip">₹100–₹1200</span>
+                    <span class="badge-chip">Any dates</span>
+                    <span class="badge-chip">1 pet</span>
+                    <span class="badge-chip">Any age</span>
+                    <span class="badge-chip">Any size</span>
+                    <span class="badge-chip">Star sitters</span>
+                </div>
+
+                <div class="results-col" id="resultsCol">
+                    <!-- ===== SITTER 201 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=400&auto=format&fit=crop"
+                                alt="Amita C.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            1. Amita C.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Bandra West, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1200</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="meta"><strong>5.0</strong> • 64 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 18 repeat clients</div>
+                                </div>
+
+                                <div>Safe, clean home boarding with photo updates and playtime.</div>
+                                <div class="snippet mt-2">Good with: <em>Labrador Retriever, Beagle, Shih Tzu, Mixed /
+                                        Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=201" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 202 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1621986519522-24527b93ce20?q=80&w=800&auto=format&fit=crop"
+                                alt="Rohan M.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            2. Rohan M.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Powai, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1000</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.9</strong> • 52 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 12 repeat clients</div>
+                                </div>
+
+                                <div>Spacious home with a quiet room for sensitive pets.</div>
+                                <div class="snippet mt-2">Good with: <em>German Shepherd, Rottweiler, Siberian Husky,
+                                        Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=202" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 203 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1664293942575-1c37ac73f635?q=80&w=800&auto=format&fit=crop"
+                                alt="Meera A.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            3. Meera A.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Juhu, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹900</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.8</strong> • 41 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 9 repeat clients</div>
+                                </div>
+
+                                <div>Cosy apartment, frequent walks, and cuddle breaks.</div>
+                                <div class="snippet mt-2">Good with: <em>Beagle, Bulldog, Dachshund, Mixed / Other</em>.
+                                </div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=203" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 204 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop"
+                                alt="Kabir P.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            4. Kabir P.
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Worli, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹800</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.7</strong> • 31 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 5 repeat clients</div>
+                                </div>
+
+                                <div>Active host, outdoor time in a secure yard.</div>
+                                <div class="snippet mt-2">Good with: <em>German Shepherd, Rottweiler, Siberian Husky,
+                                        Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=204" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 205 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1590400947201-3a38ac943551?q=80&w=800&auto=format&fit=crop"
+                                alt="Isha D.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            5. Isha D.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Andheri West, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1400</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="meta"><strong>5.0</strong> • 78 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 21 repeat clients</div>
+                                </div>
+
+                                <div>Sunlit flat near parks; calm environment & daily updates.</div>
+                                <div class="snippet mt-2">Good with: <em>Golden Retriever, Beagle, Mixed / Other</em>.
+                                </div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=205" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 206 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=400&auto=format&fit=crop"
+                                alt="Omkar C.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            6. Omkar C.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Ghatkopar, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1100</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.8</strong> • 52 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 12 repeat clients</div>
+                                </div>
+
+                                <div>Quiet lanes, large hall, structured feeding & walks.</div>
+                                <div class="snippet mt-2">Good with: <em>German Shepherd, Rottweiler, Labrador
+                                        Retriever, Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=206" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 207 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=400&auto=format&fit=crop"
+                                alt="Priya R.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            7. Priya R.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Goregaon, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1000</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="meta"><strong>5.0</strong> • 64 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 20 repeat clients</div>
+                                </div>
+
+                                <div>Peaceful home; great for small breeds & seniors.</div>
+                                <div class="snippet mt-2">Good with: <em>Shih Tzu, Dachshund, Beagle, Mixed /
+                                        Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=207" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 208 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=400&auto=format&fit=crop"
+                                alt="Tara N.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            8. Tara N.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Lower Parel, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1500</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.9</strong> • 80 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 24 repeat clients</div>
+                                </div>
+
+                                <div>Premium care with structured play & frequent photo updates.</div>
+                                <div class="snippet mt-2">Good with: <em>Bulldog, Labrador Retriever, Golden Retriever,
+                                        Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=208" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 209 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop"
+                                alt="Zoya M.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            9. Zoya M.
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Dadar, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹850</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i
+                                            class="bi bi-star"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.6</strong> • 18 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 3 repeat clients</div>
+                                </div>
+
+                                <div>Flexible slots; gentle & attentive care.</div>
+                                <div class="snippet mt-2">Good with: <em>Shih Tzu, Dachshund, Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=209" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 210 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=400&auto=format&fit=crop"
+                                alt="Nikhil V.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            10. Nikhil V.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Bandra East, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1250</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.9</strong> • 41 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 10 repeat clients</div>
+                                </div>
+
+                                <div>Calm handler; positive reinforcement & tidy routines.</div>
+                                <div class="snippet mt-2">Good with: <em>Beagle, Bulldog, Dachshund, Mixed / Other</em>.
+                                </div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=210" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 211 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://plus.unsplash.com/premium_photo-1707410039048-40c16a4b7f83?q=80&w=800&auto=format&fit=crop"
+                                alt="Aisha T.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            11. Aisha T.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Kurla, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹950</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="meta"><strong>5.0</strong> • 22 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 6 repeat clients</div>
+                                </div>
+
+                                <div>Loving family home; photo updates & playtime.</div>
+                                <div class="snippet mt-2">Good with: <em>Labrador Retriever, Golden Retriever, Mixed /
+                                        Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=211" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 212 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=400&auto=format&fit=crop"
+                                alt="Himani G.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            12. Himani G.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Andheri East, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1550</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <div class="meta"><strong>5.0</strong> • 105 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 33 repeat clients</div>
+                                </div>
+
+                                <div>Adventure walks + restful naps; big-dog friendly.</div>
+                                <div class="snippet mt-2">Good with: <em>Siberian Husky, German Shepherd, Rottweiler,
+                                        Mixed / Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=212" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 213 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=400&auto=format&fit=crop"
+                                alt="Sameer K.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            13. Sameer K.
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Chembur, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹900</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i
+                                            class="bi bi-star"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.7</strong> • 29 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 7 repeat clients</div>
+                                </div>
+
+                                <div>Quiet building; perfect for easygoing small dogs.</div>
+                                <div class="snippet mt-2">Good with: <em>Mixed / Other, Beagle, Shih Tzu</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=213" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SITTER 214 ===== -->
+                    <div class="result-card">
+                        <div class="d-flex gap-3">
+                            <img class="avatar"
+                                src="https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=400&auto=format&fit=crop"
+                                alt="Pooja S.">
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <div class="name-line">
+                                            14. Pooja S.
+                                            <span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>
+                                            <button class="heart" title="Save" aria-label="save">
+                                                <img src="./assets/logo/paw-heart.png" alt="Save" class="heart-icon">
+                                            </button>
+                                        </div>
+                                        <div class="meta">Malad, India</div>
+                                    </div>
+                                    <div class="price-wrap">
+                                        <div class="price">₹1050</div>
+                                        <div class="price-sub">per night</div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2 mt-2">
+                                    <div class="rating">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-half"></i>
+                                    </div>
+                                    <div class="meta"><strong>4.8</strong> • 58 reviews</div>
+                                    <div class="meta"><i class="bi bi-repeat"></i> 16 repeat clients</div>
+                                </div>
+
+                                <div>Suburban home, fenced yard & structured routines.</div>
+                                <div class="snippet mt-2">Good with: <em>Labrador Retriever, Golden Retriever, Mixed /
+                                        Other</em>.</div>
+
+                                <div class="mt-2">
+                                    <a href="sitter-profile.html?id=214" class="link-primary">View profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /results-col -->
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer py-5">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Newsletter -->
+                <div class="col-12 col-lg-5">
+                    <div class="footer-title head-text">Woof Woof! Join the PetBnB Pack</div>
+                    <p class="subtext"></p>
+                    <p class="subtext">Get heart-melting pet photos, smart care tips, training hacks, and must-try
+                        product finds straight to your inbox.</p>
+                    <form class="newsletter-wrap mt-2" action="#" method="post">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email"
+                                required />
+                            <button class="btn btn-outline-dark btn-primary-color" type="submit">Sign up</button>
+                        </div>
+                    </form>
+                    <p class="smallprint mt-3 mb-0">
+                        By sharing my email, I agree to receive updates from PetBnB.com and its affiliates. I confirm
+                        I’m 18+ and know I can unsubscribe anytime.
+                        <a style="color: var(--link)" href="privacy.html">Privacy Statement</a>.
+                    </p>
+                </div>
+
+                <!-- Learn More -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="footer-title head-text">Learn More</div>
+                    <ul class="footer-list">
+                        <li><a href="blog.html">Read Our Blog</a></li>
+                    </ul>
+                    <div class="mt-3">
+                        <a class="privacy-pill" href="privacy.html"><i class="fa-solid fa-check"></i> Your privacy
+                            choices</a>
+                    </div>
+                </div>
+
+                <!-- About PetBnB -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="footer-title head-text">About Us</div>
+                    <div class="row about-grid g-0">
+                        <div class="col-6 pe-4">
+                            <ul class="footer-list mb-0">
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="footer-list mb-0">
+                                <li><a href="privacy.html">Privacy<br />Statement</a></li>
+                                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Need Help -->
+                <div class="col-12">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+                        <div class="d-flex align-items-center gap-4 my-2">
+                            <div class="footer-title mb-0 services-selection-section-title">Need Help?</div>
+                            <ul class="footer-list mb-0">
+                                <li><a href="#">FAQ's</a></li>
+                            </ul>
+                        </div>
+                        <div class="social my-2">
+                            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="smallprint text-center text-md-end mt-3">
+                © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Keep this if you want the dropdown to work. Remove it if you want ZERO JS on the page. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

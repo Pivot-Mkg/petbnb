@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dog Walker Profile</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <style>
+      body {
+        background: #f8f9fa;
+      }
+
+                .navbar-brand img {
+    /* min-height: 20%; */
+    width: 115px;
+    height: 70px;
+}
+      .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .card-soft {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid #e9ecef;
+        background: #f8f9fa;
+        margin: 0.25rem 0.35rem 0.25rem 0;
+        font-size: 0.92rem;
+      }
+      .chip i {
+        font-size: 1rem;
+      }
+      .photo-thumb {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+      .meta-label {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-bottom: 0.25rem;
+      }
+      .price-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0.35rem 0;
+      }
+      .sticky-lg-top {
+        top: 90px;
+      }
+
+      /* Footer (copied styling idea from search page) */
+      .site-footer {
+        background: #f7f7f7;
+        color: #1f2937;
+        border-top: 1px solid #e5e7eb;
+      }
+      .site-footer a {
+        color: #1f2937;
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      .footer-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+      .footer-list li {
+        margin: 0.35rem 0;
+      }
+      .newsletter-wrap .input-group {
+        --bs-border-radius: 999px;
+      }
+      .newsletter-wrap .form-control {
+        height: 52px;
+        border-radius: 999px 0 0 999px !important;
+        padding-left: 16px;
+      }
+      .newsletter-wrap .btn {
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 0 999px 999px 0 !important;
+        white-space: nowrap;
+      }
+
+      /* Availability calendar (compact card) */
+      .availability-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .avail-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .avail-legend {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        font-size: 0.95rem;
+      }
+      .avail-legend .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        display: inline-block;
+        border: 1px solid #d0d7de;
+      }
+      .dot-avail {
+        background: #c7f9d0;
+        border-color: #10b981;
+      }
+      .dot-busy {
+        background: repeating-linear-gradient(
+          45deg,
+          #eee,
+          #eee 4px,
+          #e5e7eb 4px,
+          #e5e7eb 8px
+        );
+        border-color: #cbd5e1;
+      }
+      .avail-nav button {
+        border: none;
+        background: transparent;
+        font-size: 1.15rem;
+        padding: 0.25rem 0.4rem;
+        cursor: pointer;
+      }
+      .avail-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      .avail-dayname {
+        font-weight: 600;
+        color: #6b7280;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .avail-cell {
+        aspect-ratio: 1/1;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .avail-cell.avail {
+        background: #b7efc5;
+        border: 1px solid #10b981;
+        color: #065f46;
+      }
+      .avail-cell.busy {
+        background: repeating-linear-gradient(
+          45deg,
+          #f1f5f9,
+          #f1f5f9 6px,
+          #e5e7eb 6px,
+          #e5e7eb 12px
+        );
+        border: 1px solid #cbd5e1;
+        color: #6b7280;
+      }
+      .avail-cell.empty {
+        background: transparent;
+        border: 1px dashed transparent;
+      }
+      .avail-foot {
+        font-size: 0.95rem;
+        color: #6b7280;
+      }
+
+      .btn:hover {
+    color: white!important;
+    background-color: #EA624E!important;
+    border-color: var(--bs-btn-hover-border-color);
+}
+      @media (max-width: 576px) {
+        .newsletter-wrap .input-group {
+          flex-wrap: wrap;
+        }
+        .newsletter-wrap .form-control {
+          border-radius: 999px !important;
+          margin-bottom: 10px;
+        }
+        .newsletter-wrap .btn {
+          width: 100%;
+          border-radius: 999px !important;
+        }
+      }
+
+      /* Compact calendar */
+.cal-card { max-width: 420px; }
+.legend-dot{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #d0d7de;vertical-align:-2px;margin-right:6px}
+.legend-dot.avail{background:#d1fae5;border-color:#10b981}
+.legend-dot.busy{background:repeating-linear-gradient(45deg,#eee,#eee 4px,#e5e7eb 4px,#e5e7eb 8px);border-color:#cbd5e1}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
+.cal-grid .wk{font-weight:700;font-size:.85rem}
+.cal-day{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:10px;font-weight:600}
+.cal-day.avail{background:#c7f9d0;border:1px solid #10b981;color:#065f46}
+.cal-day.busy{background:repeating-linear-gradient(45deg,#f1f5f9,#f1f5f9 6px,#e5e7eb 6px,#e5e7eb 12px);border:1px solid #cbd5e1;color:#6b7280}
+.cal-day.empty{background:transparent;border:1px dashed transparent}
+
+@media (max-width:576px){
+  .cal-card{max-width:100%}
+  .cal-grid{gap:.4rem}
+  .cal-day{border-radius:8px}
+}
+
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header (same pattern as index/search) ===== -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      <!-- <h1>PetBnB</h1> -->
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-search me-1"></i>
+          <a class="nav-link" href="about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-heart me-1"></i>
+          <a class="nav-link" href="contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-question-circle me-1"></i>
+          <a class="nav-link" href="contact-us.html">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container py-5">
+      <a
+        href="search-walkers-page.html"
+        class="mb-3 d-inline-block text-primary"
+        >&larr; Back to search</a
+      >
+
+      <!-- Header Info -->
+      <div class="d-flex align-items-center mb-4">
+        <img id="profileImage" src="" alt="Walker" class="profile-img me-3" />
+        <div>
+          <h3 id="walkerName" class="mb-1"></h3>
+          <p id="walkerLocation" class="mb-1 text-muted"></p>
+          <p class="mb-2">
+            <span
+              style="cursor: pointer"
+              data-bs-toggle="modal"
+              data-bs-target="#ratingModal"
+            >
+              <span id="walkerRating"></span>
+            </span>
+          </p>
+          <button class="btn btn-success" id="openBookingModal">
+            Confirm Walk
+          </button>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div class="row g-3 mb-4" id="photoGallery"></div>
+
+      <!-- Services + Map -->
+      <div class="row g-4">
+        <!-- Services -->
+        <div class="col-lg-8">
+          <div class="card-soft p-4 h-100">
+            <h5 class="mb-3">Services Offered</h5>
+            <div id="walkerServices" class="mb-3"></div>
+
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="meta-label">Walking Radius</div>
+                <div id="walkerRadius" class="fw-semibold">—</div>
+              </div>
+              <div class="col-md-6">
+                <div class="meta-label">Group / Solo</div>
+                <div id="walkerGroupType" class="fw-semibold">—</div>
+              </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <h6 class="mb-3">What’s included every walk</h6>
+            <div id="includedChips">
+              <span class="chip"
+                ><i class="bi bi-geo-alt"></i> Live GPS updates</span
+              >
+              <span class="chip"
+                ><i class="bi bi-droplet"></i> Fresh water refill</span
+              >
+              <span class="chip"
+                ><i class="bi bi-bag-check"></i> Poop pick-up</span
+              >
+              <span class="chip"
+                ><i class="bi bi-camera"></i> Photo after walk</span
+              >
+              <span class="chip"
+                ><i class="bi bi-shield-check"></i> Harness check</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col-lg-4">
+          <div class="card-soft h-100">
+            <div class="ratio ratio-4x3">
+              <iframe
+                id="walkerMap"
+                style="border: 0"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="p-3">
+              <strong>Service area</strong>
+              <div id="mapAddress" class="text-muted small"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!-- Availability + Pet care experience -->
+<section class="row g-4 align-items-start my-4">
+  <!-- LEFT: Compact availability calendar -->
+  <div class="col-lg-5">
+    <div class="cal-card p-3 card-soft">
+      <div class="d-flex justify-content-between align-items-start mb-2">
+        <div>
+          <h6 class="mb-1" id="cal2MonthLabel">—</h6>
+          <div class="small">
+            <span class="me-3"><span class="legend-dot avail"></span> Available</span>
+            <span><span class="legend-dot busy"></span> Not available</span>
+          </div>
+        </div>
+        <div class="btn-group btn-group-sm">
+          <button class="btn btn-outline-secondary" id="cal2Prev" aria-label="Previous">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="btn btn-outline-secondary" id="cal2Next" aria-label="Next">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="cal-grid small text-center text-muted mb-2" id="cal2Week"></div>
+      <div class="cal-grid" id="cal2Grid"></div>
+
+      <div class="mt-3 small text-muted">
+        <i class="bi bi-check2-circle me-1"></i>
+        <span id="cal2Updated">Calendar last updated just now</span>
+        <div class="mt-1">Dog Walking Cancellation Policy:
+  <a href="#" data-bs-toggle="modal" data-bs-target="#cancelPolicyModal" class="text-decoration-underline">same day</a>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Pet care experience blurb -->
+  <div class="col-lg-7">
+    <div>
+      <!-- <h2 class="mb-3" style="letter-spacing:.02em;">FUR BABIES WELCOME</h2> -->
+      <h5 class="mb-3">Pet care experience</h5>
+<p id="experienceText">
+  Hello!! My name is <span id="walkerExpName"></span>, I am available for drop ins full time during the week, weekends, and holidays. 
+  As well as extended stays. I offer different exercise options depending on the energy level of your pup, as well as medication 
+  administration and light grooming. I have 15+ years of experience and am familiar with several breeds. I also am very familiar with 
+  giant breed health issues requirements as well as high energy breeds.
+</p>
+<a href="#" id="readMoreLink" data-bs-toggle="modal" data-bs-target="#experienceModal">Read more</a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Read more modal -->
+<div class="modal fade" id="experienceModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Pet care experience</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Hello!! My name is <span id="walkerExpNameModal"></span>, I am available for drop ins full time during the week, weekends, and holidays.
+          As well as extended stays. I offer different exercise options depending on the energy level of your pup,
+          as well as medication administration and light grooming. I have 15+ years of experience and am familiar with
+          several breeds. I also am very familiar with giant breed heath issues requirements as well as high energy
+          breeds as that is what I personally have owned the last 15 years.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light w-100" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- Testimonials -->
+      <section class="py-4">
+        <h4 class="mb-3">What Pet Parents Are Saying</h4>
+        <div class="row g-4" id="testimonialSection"></div>
+      </section>
+    </div>
+
+    <!-- ===== Footer (same as index/search) ===== -->
+    <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row gy-5">
+          <div class="col-12 col-lg-5">
+            <div class="footer-title">
+              All the pet care tips you need—right to your inbox
+            </div>
+            <p class="text-muted">
+              Receive the latest adorable pet photos, care tips, training
+              advice, product recommendations, and more.
+            </p>
+            <form class="newsletter-wrap mt-2" action="#" method="post">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email…"
+                  aria-label="Your email"
+                  required
+                />
+                <button class="btn btn-dark" type="submit">Sign up</button>
+              </div>
+            </form>
+            <p class="mt-3 mb-0 text-muted small">
+              By providing my email address, I consent to receive marketing
+              communications from Rover.com and its affiliates and confirm that
+              I am 18 years of age or older. I can unsubscribe at any time.
+              <a href="#" style="color: #0d6efd">Privacy Statement</a>.
+            </p>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-title">Learn More</div>
+            <ul class="footer-list">
+              <li><a href="blog.html">Read Our Blog</a></li>
+              <li><a href="#">Rover Q&amp;A Community</a></li>
+              <li><a href="#">RoverProtect</a></li>
+              <li><a href="#">Safety</a></li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-title">About Rover</div>
+            <div class="row g-0">
+              <div class="col-6 pe-4">
+                <ul class="footer-list mb-0">
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="contact-us.html">Contact Us</a></li>
+                  <li><a href="#">Get the App</a></li>
+                  <li><a href="#">Press</a></li>
+                  <li><a href="#">Careers</a></li>
+                  <li><a href="#">Investor Relations</a></li>
+                </ul>
+              </div>
+              <div class="col-6">
+                <ul class="footer-list mb-0">
+                  <li>
+                    <a href="privacy.html">Privacy<br />Statement</a>
+                  </li>
+                  <li><a href="terms-of-service.html">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
+            >
+              <div class="d-flex align-items-center gap-4 my-2">
+                <div class="footer-title mb-0">Need Help?</div>
+                <ul class="footer-list mb-0">
+                  <li><a href="contact-us.html">Help Center</a></li>
+                </ul>
+              </div>
+              <div class="my-2">
+                <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="me-2"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 text-center text-md-end text-muted small">
+            © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===== Modals (Ratings + Booking + Status) ===== -->
+    <div class="modal fade" id="ratingModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h5 class="modal-title">Why this walker is highly rated</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p id="ratingDetails" class="mb-4"></p>
+            <h6>Customer Reviews</h6>
+            <p>
+              <span id="starRatingDisplay"></span>
+              <strong id="avgRating"></strong> out of 5
+            </p>
+            <p id="totalRatings"></p>
+            <div id="ratingBars"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="bookingModal"
+      tabindex="-1"
+      aria-labelledby="bookingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalLabel">Book a Walk</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="card-soft p-3 mb-3">
+              <h6 class="mb-2">Walk Pricing</h6>
+              <div class="price-line">
+                <span>15 min</span><span>₹<span id="price15">—</span></span>
+              </div>
+              <div class="price-line">
+                <span>30 min</span><span>₹<span id="price30">—</span></span>
+              </div>
+              <div class="price-line">
+                <span>60 min</span><span>₹<span id="price60">—</span></span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="durationSelect" class="form-label"
+                >Select Duration</label
+              >
+              <select id="durationSelect" class="form-select">
+                <option value="15">15 minutes</option>
+                <option value="30" selected>30 minutes</option>
+                <option value="60">60 minutes</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="slotSelect" class="form-label">Available Slots</label>
+              <select class="form-select" id="slotSelect"></select>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <strong>Total</strong>
+              <strong>₹<span id="totalPrice">—</span></strong>
+            </div>
+
+            <form id="bookingForm" action="javascript:void(0)">
+              <div class="mb-3">
+                <label for="nameInput" class="form-label">Your Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nameInput"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="phoneInput" class="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneInput"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-success w-100">
+                Confirm Walk
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="bookingStatusModal"
+      tabindex="-1"
+      aria-labelledby="bookingStatusLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingStatusLabel">
+              Awaiting Walker Confirmation
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="statusBody">
+            <div class="d-flex align-items-center">
+              <div
+                class="spinner-border me-3"
+                role="status"
+                aria-hidden="true"
+              ></div>
+              <div>
+                <div id="statusLine" class="fw-semibold">Pending…</div>
+                <small class="text-muted"
+                  >We’ve sent your request to the walker. You’ll be notified
+                  here once they respond.</small
+                >
+              </div>
+            </div>
+            <hr />
+            <div id="statusDetails" class="small"></div>
+          </div>
+          <div class="modal-footer" id="statusFooter">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancellation Policy Modal -->
+<div class="modal fade" id="cancelPolicyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Cancellation Policy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <h6>Dog Walking: Same Day</h6>
+        <ul>
+          <li>Full refund if booking is cancelled before the service is delivered.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light w-100" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script>
+      /* ---------- helpers ---------- */
+      function renderStars(rating) {
+        const full = Math.floor(rating),
+          half = rating % 1 >= 0.5,
+          empty = 5 - full - (half ? 1 : 0);
+        return (
+          '<i class="bi bi-star-fill text-warning"></i>'.repeat(full) +
+          (half ? '<i class="bi bi-star-half text-warning"></i>' : "") +
+          '<i class="bi bi-star text-warning"></i>'.repeat(empty)
+        );
+      }
+      function getBookings() {
+        try {
+          return JSON.parse(localStorage.getItem("bookings") || "[]");
+        } catch {
+          return [];
+        }
+      }
+      function setBookings(list) {
+        localStorage.setItem("bookings", JSON.stringify(list));
+      }
+      function findBooking(id) {
+        return getBookings().find((b) => b.id === id);
+      }
+
+      /* ---------- page init ---------- */
+      document.addEventListener("DOMContentLoaded", () => {
+        const walker =
+          JSON.parse(localStorage.getItem("selectedWalker") || "{}") || {};
+        document.getElementById("walkerName").textContent = walker.name || "";
+        document.getElementById("walkerLocation").textContent =
+          walker.location || "";
+        document.getElementById("walkerRating").innerHTML =
+          renderStars(walker.rating || 4.8) + " " + (walker.rating || 4.8);
+        document.getElementById("profileImage").src = walker.photo || "";
+
+        // ✨ Fill dynamic name into experience section + modal
+        const expNameEl = document.getElementById("walkerExpName");
+        const expNameModalEl = document.getElementById("walkerExpNameModal");
+        if (expNameEl) expNameEl.textContent = walker.name || "Walker";
+        if (expNameModalEl) expNameModalEl.textContent = walker.name || "Walker";
+
+        // Map
+        const mapQ = encodeURIComponent(walker.location || "");
+        document.getElementById(
+          "walkerMap"
+        ).src = `https://www.google.com/maps?q=${mapQ}&output=embed`;
+        document.getElementById("mapAddress").textContent =
+          walker.location || "";
+
+        // Services
+        const services =
+          walker.services && walker.services.length
+            ? walker.services
+            : [
+                "Solo walk (on request)",
+                "Small group walk (max 2 dogs)",
+                "Basic leash manners",
+              ];
+        const wrap = document.getElementById("walkerServices");
+        wrap.innerHTML = "";
+        services.forEach((s) => {
+          const chip = document.createElement("span");
+          chip.className = "chip";
+          chip.innerHTML = `<i class="bi bi-check2-circle"></i>${s}`;
+          wrap.appendChild(chip);
+        });
+        document.getElementById("walkerRadius").textContent = walker.radius
+          ? `${walker.radius} km`
+          : "Up to 3–5 km from pickup";
+        document.getElementById("walkerGroupType").textContent =
+          walker.groupType || "Solo & small-group options";
+
+        // Gallery
+        (
+          walker.photos || [
+            "./assets/dog-walking-hoster/img1.jpg",
+            "./assets/dog-walking-hoster/img2.jpg",
+            "./assets/dog-walking-hoster/img3.jpg",
+          ]
+        ).forEach((src) => {
+          const col = document.createElement("div");
+          col.className = "col-md-4";
+          col.innerHTML = `<img src="${src}" class="photo-thumb" alt="">`;
+          document.getElementById("photoGallery").appendChild(col);
+        });
+
+        // Testimonials (https avatars only to avoid mixed content)
+        const testimonials = walker.testimonials || [
+          {
+            name: "Priya",
+            location: "Mumbai",
+            comment: "Amazing with my dog!",
+            rating: 5,
+            photo: "https://i.pravatar.cc/80?img=5",
+          },
+          {
+            name: "Ravi",
+            location: "Thane",
+            comment: "On time and caring.",
+            rating: 4.5,
+            photo: "https://i.pravatar.cc/80?img=12",
+          },
+          {
+            name: "Darshan",
+            location: "Borivali",
+            comment: "Very familiar with dogs.",
+            rating: 4,
+            photo: "https://i.pravatar.cc/80?u=darshan-borivali",
+          },
+        ];
+        const tWrap = document.getElementById("testimonialSection");
+        testimonials.forEach((t) => {
+          const avatar =
+            t.photo ||
+            `https://i.pravatar.cc/80?u=${encodeURIComponent(
+              t.name + "_" + t.location
+            )}`;
+          const div = document.createElement("div");
+          div.className = "col-md-4";
+          div.innerHTML = `
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+              <img src="${avatar}" alt="${t.name}" width="56" height="56" class="rounded-circle me-3" loading="lazy">
+              <div>
+                <h6 class="mb-0">${t.name}</h6>
+                <small class="text-muted">${t.location}</small>
+              </div>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              ${renderStars(t.rating)}
+              <small class="text-muted ms-2">${
+                t.rating && t.rating.toFixed ? t.rating.toFixed(1) : t.rating
+              }</small>
+            </div>
+            <p class="mb-0">“${t.comment}”</p>
+          </div>
+        </div>`;
+          tWrap.appendChild(div);
+        });
+
+        // Rating modal
+        document.getElementById("ratingDetails").textContent =
+          "This walker is known for punctuality, care, and great communication.";
+        document.getElementById("avgRating").textContent =
+          walker.rating || "4.8";
+        document.getElementById("totalRatings").textContent =
+          "200 global ratings";
+        const ratingBars = document.getElementById("ratingBars"),
+          dist = { 5: 80, 4: 15, 3: 4, 2: 1, 1: 0 };
+        Object.entries(dist).forEach(([k, p]) => {
+          const bar = document.createElement("div");
+          bar.className = "mb-2 d-flex align-items-center";
+          bar.innerHTML = `
+        <span style="width:50px;">${k} star</span>
+        <div class="flex-grow-1 bg-light mx-2" style="height:10px;border-radius:5px;">
+          <div style="width:${p}%;height:100%;background-color:#ff9900;border-radius:5px;"></div>
+        </div>
+        <span style="width:30px;">${p}%</span>`;
+          ratingBars.appendChild(bar);
+        });
+
+        // Pricing (modal)
+        const per30 = Number(walker.price) || 0;
+        const per15 = Math.max(60, Math.round(per30 * 0.6));
+        const per60 = Math.max(per30 * 2 - 50, per30 + 50);
+        const priceByDuration = { 15: per15, 30: per30, 60: per60 };
+        document.getElementById("price15").textContent = per15;
+        document.getElementById("price30").textContent = per30;
+        document.getElementById("price60").textContent = per60;
+        const durationSelect = document.getElementById("durationSelect");
+        const totalPrice = document.getElementById("totalPrice");
+        function updateTotal() {
+          totalPrice.textContent =
+            priceByDuration[durationSelect.value] || per30;
+        }
+        updateTotal();
+        durationSelect.addEventListener("change", updateTotal);
+
+        // Slots
+        const slots = walker.timeslots || ["Today 5:00 PM", "Tomorrow 8:00 AM"];
+        const slotSelect = document.getElementById("slotSelect");
+        slots.forEach((s) => {
+          const o = document.createElement("option");
+          o.value = s;
+          o.textContent = s;
+          slotSelect.appendChild(o);
+        });
+
+        // Booking modals
+        const openBtn = document.getElementById("openBookingModal");
+        openBtn.type = "button";
+        openBtn.setAttribute("data-bs-toggle", "modal");
+        openBtn.setAttribute("data-bs-target", "#bookingModal");
+
+        const statusModal = new bootstrap.Modal(
+          document.getElementById("bookingStatusModal")
+        );
+        let activeBookingId = null,
+          pollTimer = null;
+
+          /* -------- New Availability calendar (standalone card) -------- */
+/* -------- New Availability calendar (standalone card) -------- */
+(function () {
+  const dayNames = ["S","M","T","W","T","F","S"];
+  const weekEl = document.getElementById("availWeek");
+  const gridEl = document.getElementById("availGrid");
+  if (!weekEl || !gridEl) return; // section not on this page (safe exit)
+
+  // show weekday headers
+  weekEl.innerHTML = dayNames.map(d => `<div class="avail-dayname">${d}</div>`).join("");
+
+  // ===== CONFIGURE UNAVAILABILITY (older card) =====
+  // Single-day blocks (YYYY-MM-DD)
+  const UNAVAILABLE_OLD = [
+    // "2025-09-12", "2025-10-02"
+  ];
+  // Ranges (inclusive): ["YYYY-MM-DD","YYYY-MM-DD"]
+  const UNAVAILABLE_RANGES_OLD = [
+    // ["2025-09-22","2025-09-24"],
+  ];
+  // Weekly offs (0=Sun ... 6=Sat) — example: Sundays off
+  const WEEKLY_OFFS_OLD = [0];
+
+  // build Set of busy days from singles + ranges
+  const busy = new Set(UNAVAILABLE_OLD);
+  function addRange(startStr, endStr) {
+    const start = new Date(startStr), end = new Date(endStr);
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      busy.add(ymd(d));
+    }
+  }
+  UNAVAILABLE_RANGES_OLD.forEach(([s, e]) => addRange(s, e));
+
+  let cur = new Date();
+  cur.setDate(1);
+
+  const ymd = d => {
+    const y = d.getFullYear(),
+          m = String(d.getMonth() + 1).padStart(2, "0"),
+          da = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${da}`;
+  };
+  const label = d => d.toLocaleString("en-US", { month: "long", year: "numeric" });
+
+  function render() {
+    const monthLabel = document.getElementById("availMonthLabel");
+    if (monthLabel) monthLabel.textContent = label(cur);
+
+    gridEl.innerHTML = "";
+
+    const first = new Date(cur.getFullYear(), cur.getMonth(), 1);
+    const startCol = first.getDay();
+    const daysInMonth = new Date(cur.getFullYear(), cur.getMonth() + 1, 0).getDate();
+
+    // leading blanks
+    for (let i = 0; i < startCol; i++) {
+      const e = document.createElement("div");
+      e.className = "avail-cell empty";
+      gridEl.appendChild(e);
+    }
+
+    // days
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement("div");
+      const date = new Date(cur.getFullYear(), cur.getMonth(), d);
+      const key = ymd(date);
+      const weekdayOff = WEEKLY_OFFS_OLD.includes(date.getDay());
+      const isBusy = weekdayOff || busy.has(key);
+
+      cell.className = "avail-cell " + (isBusy ? "busy" : "avail");
+      cell.textContent = d;
+
+      // OPTIONAL: click to toggle busy/avail (not persisted here)
+      // cell.addEventListener("click", () => {
+      //   if (busy.has(key)) busy.delete(key); else busy.add(key);
+      //   render();
+      // });
+
+      gridEl.appendChild(cell);
+    }
+
+    // updated line
+    const walker = JSON.parse(localStorage.getItem("selectedWalker") || "{}") || {};
+    const keyUpd = "walker_calendar_updated_" + (walker.name || "");
+    const updatedAt = Number(localStorage.getItem(keyUpd) || Date.now());
+    const diffDays = Math.max(0, Math.floor((Date.now() - updatedAt) / (1000 * 60 * 60 * 24)));
+    const updatedEl = document.getElementById("availUpdated");
+    if (updatedEl) {
+      updatedEl.innerHTML = `<i class="bi bi-check2-circle me-1"></i>Calendar last updated ${
+        diffDays === 0 ? "just now" : diffDays + " day" + (diffDays > 1 ? "s" : "") + " ago"
+      }`;
+    }
+    if (!localStorage.getItem(keyUpd)) localStorage.setItem(keyUpd, Date.now());
+  }
+
+  const prevBtn = document.getElementById("availPrev");
+  const nextBtn = document.getElementById("availNext");
+  prevBtn?.addEventListener("click", () => { cur.setMonth(cur.getMonth() - 1); render(); });
+  nextBtn?.addEventListener("click", () => { cur.setMonth(cur.getMonth() + 1); render(); });
+
+  render();
+})();
+
+
+        function renderStatus(booking) {
+          const body = document.getElementById("statusBody");
+          const spinner = body.querySelector(".spinner-border");
+          document.getElementById("statusDetails").innerHTML = `
+        <div><strong>Walker:</strong> ${booking.walkerName}</div>
+        <div><strong>When:</strong> ${booking.slot}</div>
+        <div><strong>Duration:</strong> ${booking.duration} min</div>
+        <div><strong>Your name:</strong> ${booking.ownerName}</div>
+        <div><strong>Your phone:</strong> ${booking.phone}</div>
+
+        
+      `;
+          const title = document.getElementById("bookingStatusLabel");
+          const line = document.getElementById("statusLine");
+          if (booking.status === "pending") {
+            title.textContent = "Awaiting Walker Confirmation";
+            line.textContent = "Pending…";
+            spinner.classList.remove("d-none");
+          }
+          if (booking.status === "confirmed") {
+            title.textContent = "Walk Confirmed 🎉";
+            line.textContent = "The walker accepted your booking!";
+            spinner.classList.add("d-none");
+            const footer = document.getElementById("statusFooter");
+            if (!footer.querySelector("#toPaymentBtn")) {
+              const btn = document.createElement("button");
+              btn.id = "toPaymentBtn";
+              btn.className = "btn btn-success ms-auto";
+              btn.textContent = "Proceed to Payment";
+              btn.addEventListener("click", () => {
+                putPendingCheckout(booking);
+                window.location.href = "checkout.html";
+              });
+              footer.appendChild(btn);
+            }
+          }
+          if (booking.status === "rejected") {
+            title.textContent = "Booking Rejected";
+            line.textContent = "The walker can’t take this slot.";
+            spinner.classList.add("d-none");
+          }
+        }
+        function startPolling(id) {
+          if (pollTimer) clearInterval(pollTimer);
+          pollTimer = setInterval(() => {
+            const b = findBooking(id);
+            if (!b) return;
+            renderStatus(b);
+            if (b.status !== "pending") {
+              clearInterval(pollTimer);
+              pollTimer = null;
+            }
+          }, 1500);
+        }
+        window.addEventListener("storage", (e) => {
+          if (!activeBookingId) return;
+          if (e.key === "booking_status_" + activeBookingId) {
+            const b = findBooking(activeBookingId);
+            if (b) renderStatus(b);
+          }
+        });
+
+        // Submit booking
+        document
+          .getElementById("bookingForm")
+          .addEventListener("submit", (e) => {
+            e.preventDefault();
+            const name = (
+              document.getElementById("nameInput").value || ""
+            ).trim();
+            const phone = (
+              document.getElementById("phoneInput").value || ""
+            ).trim();
+            const slot = slotSelect.value || "";
+            const dur = Number(durationSelect.value || 30);
+            if (!name || !phone || !slot)
+              return alert("Please fill all fields.");
+            const booking = {
+              id: "bk_" + Date.now(),
+              walkerId: walker.id || walker.name,
+              walkerName: walker.name,
+              slot,
+              duration: dur,
+              ownerName: name,
+              phone,
+              status: "pending",
+              createdAt: Date.now(),
+              pricePer30: per30,
+              paymentAmount: priceByDuration[dur] || per30,
+            };
+            const list = getBookings();
+            list.push(booking);
+            setBookings(list);
+            activeBookingId = booking.id;
+            (
+              bootstrap.Modal.getInstance(
+                document.getElementById("bookingModal")
+              ) || new bootstrap.Modal(document.getElementById("bookingModal"))
+            ).hide();
+            renderStatus(booking);
+            statusModal.show();
+            startPolling(booking.id);
+          });
+      }); // DOMContentLoaded
+
+      // Build a payload for checkout
+      function putPendingCheckout(booking) {
+        localStorage.setItem(
+          "pendingCheckout",
+          JSON.stringify({
+            bookingId: booking.id,
+            walkerName: booking.walkerName,
+            slot: booking.slot,
+            duration: booking.duration,
+            amount: booking.paymentAmount,
+          })
+        );
+      }
+
+      // --- Compact calendar (left column) ---
+// --- Compact calendar (left column) ---
+document.addEventListener("DOMContentLoaded", () => {
+  const week = ["S","M","T","W","T","F","S"];
+  const weekWrap = document.getElementById("cal2Week");
+  const grid = document.getElementById("cal2Grid");
+  const lbl = document.getElementById("cal2MonthLabel");
+  const prevBtn = document.getElementById("cal2Prev");
+  const nextBtn = document.getElementById("cal2Next");
+  const updated = document.getElementById("cal2Updated");
+  if (!weekWrap || !grid) return;
+
+  weekWrap.innerHTML = week.map(w => `<div class="wk">${w}</div>`).join("");
+
+  // ===== CONFIGURE UNAVAILABILITY (compact card) =====
+  // Single-day blocks (YYYY-MM-DD)
+  const UNAVAILABLE = [
+    "2025-09-05", "2025-09-12", "2025-10-02"
+  ];
+  // Ranges (inclusive)
+  const UNAVAILABLE_RANGES = [
+    // ["2025-09-22","2025-09-24"],
+  ];
+  // Weekly offs (0=Sun ... 6=Sat): example Sundays off
+  const WEEKLY_OFFS = [0];
+
+  // Persist per-walker (optional)
+  const walker = JSON.parse(localStorage.getItem("selectedWalker") || "{}") || {};
+  const storageKey = `walker_unavailable_${walker.id || walker.name || "default"}`;
+
+  // Start with configured dates, then merge any saved toggles
+  const busySet = new Set(UNAVAILABLE);
+  function addRange(startStr, endStr) {
+    const start = new Date(startStr), end = new Date(endStr);
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      busySet.add(ymd(d));
+    }
+  }
+  UNAVAILABLE_RANGES.forEach(([s, e]) => addRange(s, e));
+
+  // load saved user toggles (if any)
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    for (const k of saved) busySet.add(k);
+  } catch {}
+
+  let view = new Date();
+  view.setDate(1);
+
+  function ymd(d) {
+    const y = d.getFullYear(),
+          m = String(d.getMonth() + 1).padStart(2, "0"),
+          da = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${da}`;
+  }
+  function label(d) {
+    return d.toLocaleString("en-US", { month: "long", year: "numeric" });
+  }
+  function isBusy(dateObj) {
+    return busySet.has(ymd(dateObj)) || WEEKLY_OFFS.includes(dateObj.getDay());
+  }
+  function saveBusy() {
+    localStorage.setItem(storageKey, JSON.stringify([...busySet]));
+  }
+
+  function render() {
+    lbl.textContent = label(view);
+    grid.innerHTML = "";
+
+    const firstDow = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
+    const dim = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+
+    // leading empties
+    for (let i = 0; i < firstDow; i++) {
+      const e = document.createElement("div");
+      e.className = "cal-day empty";
+      grid.appendChild(e);
+    }
+
+    // days
+    for (let d = 1; d <= dim; d++) {
+      const cell = document.createElement("div");
+      const dateObj = new Date(view.getFullYear(), view.getMonth(), d);
+      const key = ymd(dateObj);
+      const busy = isBusy(dateObj);
+
+      cell.className = "cal-day " + (busy ? "busy" : "avail");
+      cell.textContent = d;
+
+      // Click to toggle availability (persists per walker)
+      // cell.style.cursor = "pointer";
+      // cell.title = busy ? "Click to mark available" : "Click to mark unavailable";
+      // cell.addEventListener("click", () => {
+      //   if (busySet.has(key)) busySet.delete(key); else busySet.add(key);
+      //   saveBusy();
+      //   render();
+      // });
+
+      grid.appendChild(cell);
+    }
+
+    // Show a friendly updated label
+    if (updated) updated.textContent = "Calendar last updated just now";
+  }
+
+  prevBtn?.addEventListener("click", () => { view.setMonth(view.getMonth() - 1); render(); });
+  nextBtn?.addEventListener("click", () => { view.setMonth(view.getMonth() + 1); render(); });
+  render();
+});
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

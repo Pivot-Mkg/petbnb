@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    Key Features of a Reliable and Trusted Pet Sitter Profile
+    </title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="../assets/css/style.css">
+
+      <link rel="stylesheet" href="../assets/blog.css">
+    <style>
+      :root {
+        --green: #10b981;
+        --mint: #eaf8f0;
+        --mint-border: #d7efdf;
+        --toc-link: #1b5e7a;
+
+        /* Footer palette */
+        --footer-bg: #f7f7f7;
+        --footer-text: #1f2937;
+        --muted: #6b7280;
+        --link: #2563eb;
+      }
+
+         .navbar-brand img {
+    /* min-height: 20%; */
+    width: 115px;
+    height: 70px;
+}
+
+      /* Hero */
+      .hero-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-top: 1rem;
+      }
+      .hero-meta {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Left: Popular posts list */
+      .popside {
+        counter-reset: item;
+      }
+      .popside li {
+        counter-increment: item;
+        margin: 0.65rem 0;
+      }
+      .popside li::before {
+        content: counter(item) ". ";
+        font-weight: 700;
+        color: #0f172a;
+        margin-right: 0.25rem;
+      }
+
+      /* Left: Ad */
+      .ad-box {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        background: #fff;
+        width: 100%;
+      }
+      .ad-box .ad-brand {
+        font-weight: 900;
+        color: #12a167;
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+      }
+      .ad-box .ad-headline {
+        font-weight: 800;
+        font-size: 1.35rem;
+        line-height: 1.25;
+        margin: 10px 0 14px;
+      }
+      .ad-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      /* TOC (right column) */
+      .toc-box {
+        background: var(--mint);
+        border: 1px solid var(--mint-border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+      }
+      .toc-topbar {
+        height: 8px;
+        background: var(--green);
+      }
+      .toc-inline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+      }
+      .toc-inline li {
+        position: relative;
+      }
+      .toc-inline li:not(:last-child)::after {
+        content: "•";
+        margin-left: 0.5rem;
+        margin-right: 0.25rem;
+        color: #2b6b74;
+        opacity: 0.9;
+      }
+      .toc-inline a {
+        color: var(--toc-link);
+        text-decoration: underline;
+        white-space: nowrap;
+      }
+      .toc-inline a:hover,
+      .toc-inline a.active {
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      /* Article body */
+      .article-body {
+        max-width: 980px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Back-to-top */
+      .back-top {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        display: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+      .back-top:hover {
+        background: #0f8a5b;
+        transform: translateY(-3px);
+      }
+
+   /* Footer (borrowed & polished from index.html) */
+      .site-footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        border-top: 1px solid #e5e7eb;
+      }
+      .site-footer a {
+        color: var(--footer-text);
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      .footer-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+      .footer-list li {
+        margin: 0.35rem 0;
+      }
+
+      /* Newsletter input group (pill) */
+      .newsletter-wrap .input-group {
+        --bs-border-radius: 999px;
+      }
+      .newsletter-wrap .form-control {
+        height: 52px;
+        border-radius: 999px 0 0 999px !important;
+        padding-left: 16px;
+      }
+      .newsletter-wrap .btn {
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 0 999px 999px 0 !important;
+        white-space: nowrap;
+      }
+      @media (max-width: 576px) {
+        .newsletter-wrap .input-group {
+          flex-wrap: wrap;
+        }
+        .newsletter-wrap .form-control {
+          border-radius: 999px !important;
+          margin-bottom: 10px;
+        }
+        .newsletter-wrap .btn {
+          width: 100%;
+          border-radius: 999px !important;
+        }
+      }
+
+      .privacy-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.9rem;
+        color: #374151;
+      }
+
+      .social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e5e7eb;
+        margin-right: 0.5rem;
+      }
+      .social a:hover {
+        background: #d1d5db;
+      }
+      .subtext {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .smallprint {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+       .btn:hover {
+        color: white !important;
+        background-color: #ea624e !important;
+        border-color: var(--bs-btn-hover-border-color);
+      }
+
+        .head-text {
+        color: #ea624e!important;;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      <!-- <h1>PetBnB</h1> -->
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-search me-1"></i>
+          <a class="nav-link" href="../about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-heart me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="../blog.html">Blog</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-question-circle me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!-- ===== /Header ===== -->
+
+    <!-- Hero -->
+    <section class="container my-5">
+      <img
+        src="../assets/images/blogs/blog-2-pge-img.jpg"
+        alt="Dog and cat on suitcase"
+        class="hero-img shadow-sm"
+      />
+    </section>
+
+    <!-- Article wrap -->
+    <section class="article-wrap container my-4">
+      <div class="row g-4 d-flex-col align-items-center justify-content-center">
+        <!-- LEFT SIDEBAR -->
+        
+
+        <!-- RIGHT / MAIN CONTENT -->
+        <article class="col-12 col-lg-8 col-xl-9 order-1 order-lg-2">
+          <h1 class="display-5 fw-bold lh-tight mb-2 head-text">
+            Safety First: Key Features of a Reliable and Trusted Pet Sitter Profile
+          </h1>
+          <p class="hero-meta">By PetBnB Team • Updated November 2025</p>
+
+          <div class="mb-3 small">
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >PETS</a
+            >
+            <span class="mx-1"></span>
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >NEW PET</a
+            >
+          </div>
+
+          <div class="small d-flex flex-column gap-2 mb-3 text-secondary">
+            <div>
+              <i class="bi bi-link-45deg me-1"></i>This post contains affiliate
+              links. Read more
+              <a href="#" class="text-decoration-none">here</a>.
+            </div>
+            <div>
+              <i class="bi bi-hospital me-1"></i>Not a substitute for
+              professional veterinary help.
+            </div>
+          </div>
+
+          <p class="lead">
+          When it comes to entrusting someone with the care of a beloved pet, safety is the foremost concern. Pets aren’t just animals; they’re family, companions who weave themselves into the fabric of our lives. Whether you’re heading away for a few days or a longer adventure, knowing your furry friend is in capable, compassionate hands is non-negotiable. The rise of pet sitting services has given pet parents wider access to care but it has also introduced a critical question: how do you identify a trusted pet sitter?
+          </p>
+          <p class="lead">
+            The answer lies in what makes a pet sitter’s profile genuinely reliable; a carefully curated combination of background checks, verified credentials, transparent communication and above all, a heartfelt commitment to animal welfare. This guide explores the essential features that signal a pet sitter you can have absolute confidence in, ensuring your pet’s safety and happiness while you’re away.
+          </p>
+
+          <!-- TOC -->
+          <div class="toc-box mt-3">
+            <div class="toc-topbar"></div>
+            <div class="p-3 p-md-4">
+              <h3 class="h2 fw-bold mb-3">Woof Woof!</h3>
+              <ul class="toc-list">
+                <li><a href="#q1">Foundations of Pet Care</a></li>
+                <li><a href="#q2">Finding Trusted Care</a></li>
+                <li><a href="#q3">Beyond the Profile</a></li>
+                
+              </ul>
+            </div>
+          </div>
+
+          <!-- Article Content -->
+          <div class="article-body">
+            <h2 id="q1" class="q-title head-text">The Pillars of Trust in Pet Sitting</h2>
+            <p>
+              Building trust starts long before the first booking. Reputable digital platforms and agencies that connect pet owners with sitters follow meticulous vetting procedures. Yet beyond formalities, trust emerges from a holistic view of a sitter’s qualifications, behaviour and integrity.
+            </p>
+
+            <p>
+              Here are the foundational pillars that define a trusted pet sitter:
+            </p>
+
+            <ol>
+                <li>Comprehensive Verification Process</li>
+                <p>A reliable pet sitter undergoes a rigorous verification process that confirms identity, background and pet care experience. This often includes:</p>
+                <ul>
+                    <li>Government-issued ID verification: Confirms the sitter’s identity is legitimate and current.</li>
+                    <li>Background checks: Review of criminal records or any red flags to ensure safety and security.</li>
+                    <li>Reference checks: Testimonials from past clients or employers verifying reliability and care quality.</li>
+                    <li>Pet care certification: Valid credentials, such as pet first aid training or completion of pet care courses, signal professionalism and preparedness.</li>
+                </ul>
+                <p>Platforms that prioritise safety use technology to validate this information through secure channels, providing peace of mind for owners when selecting a sitter.</p>
+
+                <li>Detailed and Transparent Profiles</li>
+                <p>Trustworthy sitters present profiles that go beyond superficial introductions. A comprehensive profile includes:</p>
+                <ul>
+                    <li>Clear, recent photographs: Allow owners to form a personal connection before meeting.</li>
+                    <li>Bio sharing pet experience and philosophy: Insight into the sitter’s background, how they relate to animals, and their approach to pet care.</li>
+                    <li>Service offerings and specialisations: Information on the types of pets cared for, the duration and nature of services and any special skills (e.g., caring for senior pets or administering medication).</li>
+                    <li>Availability and location: Clearly stated to avoid miscommunication during booking.</li>
+                    <li>User reviews and ratings: Real, unbiased feedback from other pet owners provides invaluable social proof of reliability and quality.</li>
+                </ul>
+                <p>By providing transparency in every aspect, sitters allow pet owners to assess compatibility and comfort before commitment.</p>
+                <li>Commitment to Communication</li>
+                <p>Exceptional pet sitters understand that communication is more than just scheduling, it’s a continuous connection that reassures owners and benefits their pets. Trusted sitters:</p>
+                <ul>
+                    <li>Provide regular updates: Through photos, videos, or messages, keeping owners informed about their pet’s mood, activities and wellbeing.</li>
+                    <li>Are responsive: Quickly replying to queries and concerns, demonstrating professionalism and respect for the owner’s trust.</li>
+                    <li>Facilitate pre-stay meetings: Offering video or in-person meetups where owners can observe sitter-pet interaction and discuss detailed care instructions.</li>
+                </ul>
+                <p>This flow of communication transforms the pet sitting arrangement from a transactional service to a collaborative care partnership.</p>
+                <li>Genuine Compassion and Experience</li>
+                <p>True trust radiates from a sitter’s deep love for animals and sound experience in handling diverse pet needs. Factors contributing to this include:</p>
+                <ul>
+                    <li>Previous pet care roles: Evidence of long-term involvement in pet care, whether as a professional, volunteer or foster carer.</li>
+                    <li>Knowledge of pet behaviour: Ability to recognise signs of stress, illness or emotional needs, adapting care accordingly.</li>
+                    <li>Preparedness for emergencies: Having protocols ready and access to veterinary contacts means pets are protected even when the unexpected happens.</li>
+                    <li>Personalised care approach: Tailoring routines, food preferences and playtime to each pet’s unique personality fosters wellbeing and comfort.</li>
+                </ul>
+                <p>Compassionate sitters don’t just “watch” pets, they actively nurture their happiness and health.</p>
+                <li>Safety-Conscious Practices</li>
+                <p>The safety of pets is paramount. Reliable sitters employ consistent safety measures such as:</p>
+                <ul>
+                    <li>Secure home environment: Ensuring no hazards like toxic plants, open balconies or unsecured exits.</li>
+                    <li>Leash and containment discipline: Adequate control during walks or outdoor time, appropriate to the pet’s training and tendencies.</li>
+                    <li>Hygiene standards: Maintaining cleanliness in feeding areas, sleeping spaces and play zones helps prevent illness.</li>
+                    <li>Adherence to owner instructions: Following dietary guidelines, medication schedules and exercise routines scrupulously.</li>
+                </ul>
+                <p>A sitter’s dedication to these protocols reassures owners that their pets’ physical safety is never compromised.</p>
+                <li>Clear and Fair Pricing Policies</li>
+                <p>Transparency extends to financial terms. Trusted pet sitters and platforms:</p>
+                <ul>
+                    <li>Offer clear pricing without hidden charges.</li>
+                    <li>Provide detailed breakdowns for additional services (e.g., overnight stays, special care).</li>
+                    <li>Allow easy booking modifications and cancellations with reasonable notice.</li>
+                    <li>Ensure secure payment methods protecting both owner and sitter interests.</li>
+                </ul>
+
+                <p>Fair and upfront pricing is a marker of professional integrity and reduces post-booking disputes.</p>
+                <li>Ethical and Respectful Attitude</li>
+                <p>Behind every great pet sitter is a respectful, ethical mindset that honours the pet as an individual and the owner’s trust as sacred. This includes:</p>
+                <ul>
+                    <li>Respect for routines: Avoiding unnecessary changes in feeding or walking to minimise pet stress.</li>
+                    <li>Privacy awareness: Protecting owner’s personal information and household rules.</li>
+                    <li>Honesty: Prompt disclosure of any incidents or difficulties, fostering openness.</li>
+                    <li>Commitment: Showing up on time, prepared and with full attention to the pet’s needs.</li>
+                </ul>
+
+                <p>Such virtues elevate sitting into a relationship rather than just a service.</p>
+            </ol>
+
+             <div class="container-fluid">
+              <img
+                src="../assets/images/blogs/blog-2.jpg"
+                alt=""
+                style="height: 100%; width: 70%" class="blog-2-image"
+              />
+            </div>
+
+            <h2 id="q2" class="q-title head-text">How Owners Can Ensure They Choose Right</h2>
+            <p>
+              While platforms and sitters bear responsibility, pet parents also play a vital role in selecting a sitter who meets their standards. Here are practical steps owners can take:
+            </p>
+            <ul>
+                <li>Read reviews critically: Look for patterns of consistent care and responsiveness.</li>
+                <li>Interview potential sitters: Prepare questions about experience, emergency handling and daily routines.</li>
+                <li>Request references: Speak with previous clients to get deeper insights</li>
+                <li>Start with a trial run: Short stays or day visits help establish compatibility with minimal risk.</li>
+                <li>Trust instincts: If something feels off, it’s okay to continue searching, the bond’s importance outweighs convenience.</li>
+            </ul>
+            <p>Informed and cautious owners will find the right sitter more readily and enjoy a worry-free experience.</p>
+
+           
+
+            <h2 id="q3" class="q-title head-text">More Than Just a Profile</h2>
+            <p>
+              A trusted pet sitter profile is a window into a world of care, responsibility and genuine affection. It communicates much more than contact information; it conveys dedication, trustworthiness and readiness to become a temporary guardian of a cherished companion.
+            </p>
+
+            <p>TFor every pet parent, choosing a sitter is both a practical decision and an emotional one. By understanding the essential characteristics of reliable sitter profiles- verification, transparency, communication, compassion, safety and ethics; owner knowing their pets will be cherished as they deserve.</p>
+            <p>In the evolving landscape of pet care, trust is earned one sit at a time, one heartfelt update at a time and one happy tail wag at a time.</p>
+          
+           
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Footer (from index) ===== -->
+       <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Newsletter -->
+          <div class="col-12 col-lg-5">
+            <div class="footer-title head-text">
+              Woof Woof! Join the PetBnB Pack
+            </div>
+            <p class="subtext"></p>
+            <p class="subtext">
+              Get heart-melting pet photos, smart care tips, training hacks, and
+              must-try product finds straight to your inbox.
+            </p>
+
+            <form class="newsletter-wrap mt-2" action="#" method="post">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email…"
+                  aria-label="Your email"
+                  required
+                />
+                <button
+                  class="btn btn-outline-dark btn-primary-color"
+                  type="submit"
+                >
+                  Sign up
+                </button>
+              </div>
+            </form>
+
+            <p class="smallprint mt-3 mb-0">
+              By sharing my email, I agree to receive updates from PetBnB.com
+              and its affiliates. I confirm I’m 18+ and know I can unsubscribe
+              anytime.
+              <a style="color: var(--link)" href="../privacy.html"
+                >Privacy Statement</a
+              >..
+            </p>
+          </div>
+
+          <!-- Learn More -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-title head-text">Learn More</div>
+            <ul class="footer-list">
+              <li><a href="../blog.html">Read Our Blog</a></li>
+            </ul>
+            <div class="mt-3">
+              <a class="privacy-pill" href="../privacy.html"
+                ><i class="fa-solid fa-check"></i> Your privacy choices</a
+              >
+            </div>
+          </div>
+
+          <!-- About PetBnB -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-title head-text">About Us</div>
+
+            <div class="row about-grid g-0">
+              <!-- Left column -->
+              <div class="col-6 pe-4">
+                <ul class="footer-list mb-0">
+                  <li><a href="../about-us.html">About Us</a></li>
+                  <li><a href="../contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+
+              <!-- Right column -->
+              <div class="col-6">
+                <ul class="footer-list mb-0">
+                  <li>
+                    <a href="../privacy.html">Privacy<br />Statement</a>
+                  </li>
+                  <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Need Help -->
+          <div class="col-12">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
+            >
+              <div class="d-flex align-items-center gap-4 my-2">
+                <div class="footer-title mb-0 services-selection-section-title">
+                  Need Help?
+                </div>
+                <ul class="footer-list mb-0">
+                  <li><a href="#">FAQ's</a></li>
+                </ul>
+              </div>
+
+              <div class="social my-2">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="linkedin"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#" aria-label="Pinterest"
+                  ><i class="fa-brands fa-pinterest-p"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="smallprint text-center text-md-end mt-3">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <!-- ===== /Footer ===== -->
+
+    <!-- Back to Top -->
+    <button id="backTop" class="back-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Back-to-top show/hide & click
+      const backTop = document.getElementById("backTop");
+      window.addEventListener("scroll", () => {
+        backTop.style.display = window.scrollY > 400 ? "flex" : "none";
+      });
+      backTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+
+      // Active TOC link on scroll
+      (function () {
+        const links = Array.from(document.querySelectorAll(".toc-inline a"));
+        if (!links.length) return;
+        const map = Object.fromEntries(
+          links.map((a) => [a.getAttribute("href").slice(1), a])
+        );
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                links.forEach((a) => a.classList.remove("active"));
+                const a = map[en.target.id];
+                if (a) a.classList.add("active");
+              }
+            });
+          },
+          { rootMargin: "-20% 0px -70% 0px", threshold: 0.01 }
+        );
+        Object.keys(map).forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

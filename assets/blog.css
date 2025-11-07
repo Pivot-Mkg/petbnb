@@ -1,0 +1,53 @@
+@media (max-width:768px) {
+   .blog-2-image{
+    width: 100% !important;
+} 
+}
+
+.toc-list {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+  color: var(--toc-link);
+}
+
+.toc-list li {
+  margin-bottom: 0.4rem;
+}
+
+.toc-list a {
+  color: var(--toc-link);
+  text-decoration: underline;
+  font-size: 0.95rem;
+}
+
+.toc-list a:hover,
+.toc-list a.active {
+  font-weight: 700;
+  text-decoration: none;
+  color: #0b4f64;
+}
+
+/* 🔹 Make horizontal layout on desktop */
+@media (min-width: 992px) {
+  .toc-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none; /* remove default bullets */
+    gap: 0.75rem 1rem;
+    padding-left: 0;
+  }
+
+  .toc-list li {
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  /* separator dots between items */
+  .toc-list li:not(:last-child)::after {
+    content: "•";
+    color: #2b6b74;
+    opacity: 0.9;
+    margin-left: 0.75rem;
+  }
+}

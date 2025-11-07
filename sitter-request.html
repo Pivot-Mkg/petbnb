@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sitter Requests — Accept / Reject</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+<style>
+  body{background:#f8f9fa}
+  .card-soft{background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+  .pill{display:inline-block;border:1px solid #e5e7eb;border-radius:999px;padding:.25rem .6rem;font-size:.85rem}
+  .status-badge{font-size:.85rem}
+  .table thead th{white-space:nowrap}
+  .empty{color:#6b7280}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-white border-bottom">
+  <div class="container d-flex justify-content-between">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB" style="height:46px">
+      <span class="fw-semibold">Sitter Requests</span>
+    </a>
+    <div class="small text-muted" id="sitterNameSlot">—</div>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <!-- Filters / summary -->
+  <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="pill bg-light"><i class="bi bi-inboxes me-1"></i> Pending: <span id="countPending">0</span></span>
+      <span class="pill bg-light"><i class="bi bi-check2-circle me-1"></i> Accepted: <span id="countAccepted">0</span></span>
+      <span class="pill bg-light"><i class="bi bi-x-circle me-1"></i> Rejected: <span id="countRejected">0</span></span>
+    </div>
+    <div>
+      <input type="search" id="searchBox" class="form-control form-control-sm" placeholder="Search owner / phone / dates" style="min-width:260px">
+    </div>
+  </div>
+
+  <!-- List View -->
+  <div id="listView" class="card-soft p-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h5 class="mb-0">All Requests</h5>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Filter">
+        <button class="btn btn-outline-secondary active" data-filter="all">All</button>
+        <button class="btn btn-outline-secondary" data-filter="pending">Pending</button>
+        <button class="btn btn-outline-secondary" data-filter="accepted">Accepted</button>
+        <button class="btn btn-outline-secondary" data-filter="rejected">Rejected</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Type</th>
+            <th>Dates / Slot</th>
+            <th>Nights / Duration</th>
+            <th>Pets</th>
+            <th>Owner</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div id="emptyState" class="text-center py-4 d-none">
+      <div class="empty"><i class="bi bi-inboxes me-1"></i>No bookings found for this sitter.</div>
+    </div>
+  </div>
+
+  <!-- Detail View (when ?bookingId=...) -->
+  <div id="detailView" class="card-soft p-3 d-none">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Booking Details</h5>
+      <a href="sitter-requests.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back to list
+      </a>
+    </div>
+    <hr>
+    <div id="detailBody"></div>
+    <div class="d-flex justify-content-end gap-2 mt-3">
+      <button class="btn btn-outline-danger" id="detailReject"><i class="bi bi-x-circle"></i> Reject</button>
+      <button class="btn btn-success" id="detailAccept"><i class="bi bi-check2-circle"></i> Accept</button>
+    </div>
+  </div>
+</main>
+
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+  <div id="appToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg">Done</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+/* ===== Helpers ===== */
+function getBookings(){ try{ return JSON.parse(localStorage.getItem("bookings") || "[]"); } catch{ return []; } }
+function setBookings(list){ localStorage.setItem("bookings", JSON.stringify(list)); }
+function ping(id){ localStorage.setItem("booking_status_" + id, Date.now()); }
+function byId(id){ return document.getElementById(id); }
+function currency(n){ return "₹" + (Number(n)||0).toLocaleString("en-IN"); }
+function fmtN(n){ return (n ?? "—"); }
+function toast(msg){ byId("toastMsg").textContent = msg; new bootstrap.Toast(byId("appToast")).show(); }
+function getSitter(){ try{ return JSON.parse(localStorage.getItem("selectedSitter") || "{}") || {}; } catch{ return {}; } }
+
+const params = new URLSearchParams(location.search);
+const sitter = getSitter();
+byId("sitterNameSlot").textContent = sitter.name ? ("Signed in as: " + sitter.name) : "Sitter Requests";
+
+/* ===== Render List ===== */
+const rows = byId("rows");
+const emptyState = byId("emptyState");
+const countPending = byId("countPending");
+const countAccepted = byId("countAccepted");
+const countRejected = byId("countRejected");
+
+let filterState = "all";
+let searchQuery = "";
+
+function matchesFilter(b){
+  if (filterState === "all") return true;
+  return b.status && b.status.toLowerCase().includes(filterState);
+}
+function matchesSearch(b){
+  const hay = [
+    b.id, b.ownerName, b.phone, b.checkIn, b.checkOut, b.slot, b.sitterName
+  ].join(" ").toLowerCase();
+  return hay.includes(searchQuery.toLowerCase());
+}
+function isForThisSitter(b){
+  // supports both walker/sitter; we show only sitter bookings here (type boarding) for selected sitter
+  if (sitter.name) {
+    return (b.sitterName === sitter.name);
+  }
+  return true; // fallback
+}
+function computeCounts(list){
+  countPending.textContent = list.filter(b => b.status==="pending").length;
+  countAccepted.textContent = list.filter(b => b.status==="confirmed").length;
+  countRejected.textContent = list.filter(b => b.status==="rejected").length;
+}
+
+function rowHTML(b){
+  const type = (b.type || "").toUpperCase();
+  const dateStr = b.type === "boarding"
+    ? `${b.checkIn} → ${b.checkOut}`
+    : (b.slot || "—");
+  const nd = b.type === "boarding" ? `${fmtN(b.nights)} night(s)` : `${fmtN(b.duration)} min`;
+  const pets = fmtN(b.pets || b.petsCount || "—");
+  const total = currency(b.paymentAmount || b.amount_total || 0);
+  let badge = `<span class="badge text-bg-secondary status-badge">${b.status}</span>`;
+  if (b.status === "pending")   badge = `<span class="badge text-bg-warning status-badge">pending</span>`;
+  if (b.status === "confirmed") badge = `<span class="badge text-bg-success status-badge">confirmed</span>`;
+  if (b.status === "rejected")  badge = `<span class="badge text-bg-danger status-badge">rejected</span>`;
+
+  const viewLink = `sitter-requests.html?bookingId=${encodeURIComponent(b.id)}`;
+
+  return `
+    <tr>
+      <td class="small">${b.id}</td>
+      <td>${type}</td>
+      <td>${dateStr}</td>
+      <td>${nd}</td>
+      <td>${pets}</td>
+      <td>
+        <div class="fw-semibold">${b.ownerName || "—"}</div>
+        <div class="text-muted small">${b.phone || ""}</div>
+      </td>
+      <td>${total}</td>
+      <td>${badge}</td>
+      <td class="text-end">
+        ${b.status==="pending"
+          ? `<button class="btn btn-sm btn-success me-1" data-action="accept" data-id="${b.id}"><i class="bi bi-check2-circle"></i></button>
+             <button class="btn btn-sm btn-outline-danger me-2" data-action="reject" data-id="${b.id}"><i class="bi bi-x-circle"></i></button>`
+          : ``}
+        <a class="btn btn-sm btn-outline-secondary" href="${viewLink}"><i class="bi bi-eye"></i></a>
+      </td>
+    </tr>
+  `;
+}
+
+function refreshList(){
+  const all = getBookings()
+    .filter(isForThisSitter)
+    .sort((a,b)=>b.createdAt-a.createdAt);
+
+  computeCounts(all);
+
+  const filtered = all.filter(b => matchesFilter(b) && matchesSearch(b));
+  rows.innerHTML = filtered.map(rowHTML).join("");
+  emptyState.classList.toggle("d-none", filtered.length>0);
+}
+
+/* ===== Actions (list view) ===== */
+rows.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-action]");
+  if (!btn) return;
+  const id = btn.getAttribute("data-id");
+  const action = btn.getAttribute("data-action");
+  const list = getBookings();
+  const i = list.findIndex(x => x.id === id);
+  if (i === -1) return;
+
+  if (action === "accept") {
+    list[i].status = "confirmed";
+    setBookings(list); ping(id); toast("Booking accepted.");
+  } else if (action === "reject") {
+    list[i].status = "rejected";
+    setBookings(list); ping(id); toast("Booking rejected.");
+  }
+  refreshList();
+});
+
+/* ===== Filter & search ===== */
+document.querySelectorAll('[data-filter]').forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    filterState = btn.getAttribute("data-filter");
+    refreshList();
+  });
+});
+byId("searchBox").addEventListener("input", (e)=>{ searchQuery = e.target.value || ""; refreshList(); });
+
+/* ===== Detail mode (optional deep link) ===== */
+const detailView = byId("detailView");
+const listView = byId("listView");
+const detailBody = byId("detailBody");
+const detailAccept = byId("detailAccept");
+const detailReject = byId("detailReject");
+
+function renderDetail(b){
+  const total = currency(b.paymentAmount || b.amount_total || 0);
+  const badge = b.status==="pending" ? "warning" : (b.status==="confirmed" ? "success" : "danger");
+  detailBody.innerHTML = `
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="small text-muted">Booking ID</div>
+        <div class="fw-semibold">${b.id}</div>
+      </div>
+      <div class="col-md-6">
+        <div class="small text-muted">Status</div>
+        <span class="badge text-bg-${badge}">${b.status}</span>
+      </div>
+
+      <div class="col-md-6">
+        <div class="small text-muted">Type</div>
+        <div>${(b.type||"").toUpperCase()}</div>
+      </div>
+      <div class="col-md-6">
+        <div class="small text-muted">Dates / Slot</div>
+        <div>${b.type==="boarding" ? `${b.checkIn} → ${b.checkOut}` : (b.slot || "—")}</div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="small text-muted">Nights / Duration</div>
+        <div>${b.type==="boarding" ? `${b.nights} night(s)` : `${b.duration} min`}</div>
+      </div>
+      <div class="col-md-6">
+        <div class="small text-muted">Pets</div>
+        <div>${b.pets || b.petsCount || "—"}</div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="small text-muted">Owner</div>
+        <div class="fw-semibold">${b.ownerName || "—"}</div>
+        <div class="text-muted">${b.phone || "—"}</div>
+      </div>
+      <div class="col-md-6">
+        <div class="small text-muted">Total</div>
+        <div class="fw-semibold">${total}</div>
+      </div>
+    </div>
+  `;
+  // toggle buttons based on status
+  const pending = (b.status === "pending");
+  detailAccept.classList.toggle("d-none", !pending);
+  detailReject.classList.toggle("d-none", !pending);
+
+  detailAccept.onclick = () => {
+    const list = getBookings();
+    const i = list.findIndex(x => x.id === b.id);
+    if (i>-1){ list[i].status="confirmed"; setBookings(list); ping(b.id); toast("Booking accepted."); loadDetail(b.id); }
+  };
+  detailReject.onclick = () => {
+    const list = getBookings();
+    const i = list.findIndex(x => x.id === b.id);
+    if (i>-1){ list[i].status="rejected"; setBookings(list); ping(b.id); toast("Booking rejected."); loadDetail(b.id); }
+  };
+}
+
+function loadDetail(id){
+  const all = getBookings().filter(isForThisSitter);
+  const b = all.find(x => x.id === id);
+  if (!b){
+    detailBody.innerHTML = `<div class="empty">Booking not found.</div>`;
+    detailAccept.classList.add("d-none");
+    detailReject.classList.add("d-none");
+    return;
+  }
+  renderDetail(b);
+}
+
+function init(){
+  const bookingId = params.get("bookingId");
+  if (bookingId){
+    // detail mode
+    listView.classList.add("d-none");
+    detailView.classList.remove("d-none");
+    loadDetail(bookingId);
+  } else {
+    // list mode
+    detailView.classList.add("d-none");
+    listView.classList.remove("d-none");
+    refreshList();
+  }
+}
+
+// live updates if another tab changes bookings
+window.addEventListener("storage", (e)=>{
+  if (e.key === "bookings") {
+    const bookingId = params.get("bookingId");
+    if (bookingId) loadDetail(bookingId);
+    else refreshList();
+  }
+});
+
+init();
+</script>
+</body>
+</html>

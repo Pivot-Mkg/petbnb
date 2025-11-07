@@ -1,0 +1,966 @@
+this is search
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PetBnB – Search Sitters (Filters)</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <style>
+      :root {
+        --footer-bg: #f7f7f7;
+        --footer-text: #1f2937;
+        --ink: #0f172a;
+        --muted: #6b7280;
+        --brand: #16a34a;
+        --soft: #f8fafc;
+        --chip: #eef2ff;
+        --border: #e5e7eb;
+        --link: #0d6efd;
+      }
+      body {
+        background: #fff;
+        color: var(--ink);
+      }
+      .page-wrap {
+        max-width: 1400px;
+      }
+
+      .filters {
+        position: sticky;
+        top: 16px;
+        align-self: flex-start;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        background: #fff;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+      }
+      .filters .section-title {
+        font-weight: bold;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .results-summary {
+        color: var(--muted);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .badge-chip {
+        background: var(--chip);
+        border: 1px solid #e2e8f0;
+        color: #3730a3;
+        font-weight: 700;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.8rem;
+      }
+
+      .results-col {
+        min-height: 50vh;
+        padding-right: 8px;
+      }
+      .result-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--soft);
+        padding: 16px;
+        margin-bottom: 12px;
+        transition: box-shadow 0.2s, transform 0.1s;
+      }
+      .result-card:hover {
+        box-shadow: 0 12px 28px rgba(2, 6, 23, 0.08);
+        transform: translateY(-1px);
+        background: #fff;
+      }
+
+      .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e5e7eb;
+      }
+
+      .name-line {
+        font-weight: 900;
+        font-size: 1.15rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .name-line .star-badge {
+        background: #fef9c3;
+        border: 1px solid #fde68a;
+        color: #854d0e;
+        font-weight: 800;
+        border-radius: 6px;
+        padding: 0.1rem 0.35rem;
+        font-size: 0.7rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .rating i {
+        color: #f59e0b;
+      }
+      .snippet {
+        color: #374151;
+      }
+
+      .price-wrap {
+        text-align: right;
+        min-width: 120px;
+      }
+      .price {
+        font-weight: 900;
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+      .price-sub {
+        color: #6b7280;
+        font-size: 0.85rem;
+      }
+
+      .heart {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #6b7280;
+        background: #fff;
+      }
+      .heart:hover {
+        color: #ef4444;
+        border-color: #ef4444;
+      }
+
+      .seg {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .seg .seg-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.6rem 0.8rem;
+        background: #fff;
+        cursor: pointer;
+        font-weight: 700;
+      }
+      .seg .seg-btn i {
+        margin-right: 0.45rem;
+      }
+      .seg .seg-btn.active {
+        border-color: #111827;
+        box-shadow: 0 0 0 0.5px #111827 inset;
+        background: #f8fafc;
+      }
+
+      .date-row {
+        display: grid;
+        grid-template-columns: 1fr 20px 1fr;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .date-row .arrow {
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 992px) {
+        .page-wrap {
+          padding-inline: 12px !important;
+        }
+        .filters {
+          padding: 12px;
+        }
+      }
+      @media (max-width: 576px) {
+        .date-row {
+          grid-template-columns: 1fr;
+        }
+        .date-row .arrow {
+          display: none;
+        }
+      }
+
+      .btn:hover {
+        color: white !important;
+        background-color: #ea624e !important;
+        border-color: var(--bs-btn-hover-border-color);
+      }
+
+      /* relax the filter card spacing */
+      .filters {
+        padding: 18px;
+      }
+      .filters .section-title {
+        margin-bottom: 8px;
+      }
+      .filters .form-control,
+      .filters .form-select {
+        margin-top: 0.4rem;
+      }
+
+      /* date row: keep it neat on all widths */
+      .date-row {
+        gap: 0.6rem;
+      }
+      .date-row .form-control {
+        min-width: 0;
+      }
+
+      /* on medium/smaller screens, stack dates to prevent crowding */
+      @media (max-width: 768px) {
+        .date-row {
+          grid-template-columns: 1fr;
+        }
+        .date-row .arrow {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"
+          ><h1 class="m-0" style="font-size: 1.35rem">PetBnB</h1></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMain"
+          aria-controls="navbarMain"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="about-us.html">About Us</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="contact-us.html">Contact</a>
+            </li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="#">FAQ's</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Sign In</a></li>
+            <li class="nav-item d-flex align-items-center">
+              <a class="nav-link" href="#">Help</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container-fluid page-wrap px-3 py-3">
+      <div class="row g-3">
+        <!-- LEFT: Filters -->
+        <aside class="col-12 col-lg-3">
+          <div class="filters" id="filtersForm">
+
+            <!-- Service switcher -->
+            <div class="mt-2">
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm btn-light border dropdown-toggle w-100 text-start"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-geo-alt me-1"></i> Boarding near
+                </button>
+                <ul class="dropdown-menu w-100">
+                  <li class="dropdown-header">Switch service</li>
+                  <li><a class="dropdown-item active" href="#">Boarding</a></li>
+                  <li><a class="dropdown-item" href="search-walkers-page.html">Dog Walking</a></li>
+                  <li><a class="dropdown-item" href="search-training.html">Training</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="section-title mt-2">
+              <i class="bi bi-geo-alt"></i> Address (Mumbai area)
+            </div>
+
+            <!-- address input with suggestions -->
+            <input
+              class="form-control"
+              id="addressInput"
+              placeholder="e.g. Bandra, Andheri, Powai..."
+              list="mainAreas"
+            />
+            <datalist id="mainAreas">
+              <option value="Bandra"></option>
+              <option value="Andheri"></option>
+              <option value="Juhu"></option>
+              <option value="Powai"></option>
+              <option value="Worli"></option>
+              <option value="Dadar"></option>
+              <option value="Colaba"></option>
+              <option value="Goregaon"></option>
+            </datalist>
+
+            <!-- Dates -->
+            <div class="mt-3">
+              <div class="section-title">
+                <i class="bi bi-calendar2-week"></i> Dates
+              </div>
+              <div class="date-row">
+                <input type="date" class="form-control" id="dateFrom" />
+                <span class="arrow">→</span>
+                <input type="date" class="form-control" id="dateTo" />
+              </div>
+            </div>
+
+            <!-- Pet type / Breed -->
+            <div class="mb-3 mt-3">
+              <div class="section-title"><i class="bi bi-paw"></i> Breed</div>
+              <select class="form-select" id="breedSel">
+                <option value="any">Any breed</option>
+                <option>Labrador Retriever</option>
+                <option>German Shepherd</option>
+                <option>Golden Retriever</option>
+                <option>Beagle</option>
+                <option>Bulldog</option>
+                <option>Dachshund</option>
+                <option>Rottweiler</option>
+                <option>Shih Tzu</option>
+                <option>Siberian Husky</option>
+                <option>Mixed / Other</option>
+              </select>
+            </div>
+
+            <!-- How many pets? (prefilled from query) -->
+<div class="mb-3">
+  <div class="section-title"><i class="bi bi-123"></i> How many pets?</div>
+  <input type="number" class="form-control" id="petsCount" min="1" max="6" placeholder="e.g. 1" />
+  <div class="form-text">Number of pets for boarding together</div>
+</div>
+
+<!-- Dog age (prefilled from query) -->
+<div class="mb-3">
+  <div class="section-title"><i class="bi bi-hourglass-split"></i> Dog age</div>
+  <select class="form-select" id="dogAge">
+    <option value="any">Any</option>
+    <option value="puppy">&lt; 1 year (puppy)</option>
+    <option value="adult">1 – 7 years (adult)</option>
+    <option value="senior">8+ years (senior)</option>
+  </select>
+</div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <div class="section-title">
+                <i class="bi bi-cash-coin"></i> Rate per night
+              </div>
+              <input
+                type="range"
+                class="form-range"
+                min="100"
+                max="3000"
+                step="50"
+                id="rateRange"
+                value="1200"
+              />
+              <div class="d-flex justify-content-between">
+                <span>₹100</span>
+                <span class="slider-value">₹<span id="rateVal">1200</span></span>
+                <span>₹3000</span>
+              </div>
+            </div>
+
+            <div class="form-check mb-2">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="starSitters"
+                checked
+              />
+              <label class="form-check-label" for="starSitters"
+                >Only show star sitters</label
+              >
+            </div>
+
+            <a href="#" class="small text-decoration-underline"
+              >Learn more about the program</a
+            >
+
+            <div
+              class="adv-divider mt-3"
+              style="border-top: 1px solid var(--border)"
+            ></div>
+            <div class="adv-head d-flex justify-content-between align-items-center">
+              <div class="count">Filters (<span id="advCount">0</span>)</div>
+              <a class="adv-reset" id="advReset" href="javascript:void(0)">Reset all</a>
+            </div>
+
+            <!-- Advanced sections (kept parallel to walkers for now) -->
+            <div class="adv-section mt-2">
+              <div class="adv-title fw-bold mb-1">Housing conditions</div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="hasHouse" />
+                <label class="form-check-label" for="hasHouse">Has house (excludes apartments)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="fencedYard" />
+                <label class="form-check-label" for="fencedYard">Has fenced yard</label>
+              </div>
+              <div class="adv-more mt-1 small text-primary" data-target="#advMoreHousing" role="button">
+                More <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="adv-more-body" id="advMoreHousing" style="display:none">
+                <div class="form-check mt-2">
+                  <input class="form-check-input adv-input" type="checkbox" id="groundFloor" />
+                  <label class="form-check-label" for="groundFloor">Ground-floor access</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="adv-divider my-2" style="border-top: 1px solid var(--border)"></div>
+
+            <div class="adv-section">
+              <div class="adv-title fw-bold mb-1">Pets in the home</div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="noDogAtHome" />
+                <label class="form-check-label" for="noDogAtHome">Doesn’t own a dog</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="noCatAtHome" />
+                <label class="form-check-label" for="noCatAtHome">Doesn’t own a cat</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="singleClient" />
+                <label class="form-check-label" for="singleClient">Accepts only one client at a time</label>
+              </div>
+              <div class="adv-more mt-1 small text-primary" data-target="#advMorePetsHome" role="button">
+                More <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="adv-more-body" id="advMorePetsHome" style="display:none">
+                <div class="form-check mt-2">
+                  <input class="form-check-input adv-input" type="checkbox" id="noResidentPets" />
+                  <label class="form-check-label" for="noResidentPets">No resident pets</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="adv-divider my-2" style="border-top: 1px solid var(--border)"></div>
+
+            <div class="adv-section">
+              <div class="adv-title fw-bold mb-1">Other</div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="puppyCare" />
+                <label class="form-check-label" for="puppyCare">Puppy care</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="catCare" />
+                <label class="form-check-label" for="catCare">Cat care</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="unsprayedFemale" />
+                <label class="form-check-label" for="unsprayedFemale">Accepts unspayed female dogs</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input adv-input" type="checkbox" id="unNeuteredMale" />
+                <label class="form-check-label" for="unNeuteredMale">Accepts non neutered male dogs</label>
+              </div>
+              <div class="adv-more mt-1 small text-primary" data-target="#advMoreOther" role="button">
+                More <i class="bi bi-chevron-down"></i>
+              </div>
+              <div class="adv-more-body" id="advMoreOther" style="display:none"></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- RESULTS -->
+        <section class="col-12 col-lg-9">
+          <div class="results-summary" id="resultsSummary"></div>
+          <div class="results-col" id="resultsCol"></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer py-5">
+      <div class="container">
+        <div class="smallprint text-center text-md-end mt-3">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* -------------------- SAMPLE DATA (Mumbai sitters) -------------------- */
+      const allSitters = [
+        {
+          id: 201,
+          name: "Amita C.",
+          city: "Bandra West",
+          country: "India",
+          rating: 5.0,
+          reviews: 64,
+          repeats: 18,
+          price: 1200, // per night
+          star: true,
+          breedsAccepted: ["Labrador Retriever","Beagle","Shih Tzu","Mixed / Other"],
+          hasHouse: true,
+          fencedYard: true,
+          groundFloor: true,
+          hasResidentDog: false,
+          hasResidentCat: false,
+          singleClient: true,
+          puppyCare: true,
+          catCare: true,
+          acceptsUnspayedFemale: true,
+          acceptsUnneuteredMale: false,
+          caption: "Safe, clean home boarding with photo updates and playtime.",
+          img: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=400&auto=format&fit=crop",
+          availableFrom: "2025-01-01",
+          availableTo: "2025-12-31",
+           maxPets: 2  
+        },
+        {
+          id: 202,
+          name: "Rohan M.",
+          city: "Powai",
+          country: "India",
+          rating: 4.9,
+          reviews: 52,
+          repeats: 12,
+          price: 1000,
+          star: true,
+          breedsAccepted: ["German Shepherd","Rottweiler","Siberian Husky","Mixed / Other"],
+          hasHouse: true,
+          fencedYard: true,
+          groundFloor: false,
+          hasResidentDog: false,
+          hasResidentCat: true,
+          singleClient: false,
+          puppyCare: false,
+          catCare: true,
+          acceptsUnspayedFemale: false,
+          acceptsUnneuteredMale: false,
+          caption: "Spacious home with a quiet room for sensitive pets.",
+          img: "https://images.unsplash.com/photo-1621986519522-24527b93ce20?q=80&w=800&auto=format&fit=crop",
+          availableFrom: "2025-01-01",
+          availableTo: "2025-12-31",
+           maxPets: 3  
+        },
+        {
+          id: 203,
+          name: "Meera A.",
+          city: "Juhu",
+          country: "India",
+          rating: 4.8,
+          reviews: 41,
+          repeats: 9,
+          price: 900,
+          star: true,
+          breedsAccepted: ["Beagle","Bulldog","Dachshund","Mixed / Other"],
+          hasHouse: false,
+          fencedYard: false,
+          groundFloor: true,
+          hasResidentDog: false,
+          hasResidentCat: false,
+          singleClient: false,
+          puppyCare: true,
+          catCare: true,
+          acceptsUnspayedFemale: true,
+          acceptsUnneuteredMale: true,
+          caption: "Cosy apartment, frequent walks, and cuddle breaks.",
+          img: "https://images.unsplash.com/photo-1664293942575-1c37ac73f635?q=80&w=800&auto=format&fit=crop",
+          availableFrom: "2025-07-01",
+          availableTo: "2025-09-30",
+           maxPets: 1
+        },
+        {
+          id: 204,
+          name: "Kabir P.",
+          city: "Worli",
+          country: "India",
+          rating: 4.7,
+          reviews: 31,
+          repeats: 5,
+          price: 800,
+          star: false,
+          breedsAccepted: ["German Shepherd","Rottweiler","Siberian Husky","Mixed / Other"],
+          hasHouse: true,
+          fencedYard: true,
+          groundFloor: true,
+          hasResidentDog: true,
+          hasResidentCat: false,
+          singleClient: false,
+          puppyCare: false,
+          catCare: false,
+          acceptsUnspayedFemale: false,
+          acceptsUnneuteredMale: true,
+          caption: "Active host, outdoor time in a secure yard.",
+          img: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop",
+          availableFrom: "2025-01-01",
+          availableTo: "2025-12-31",
+           maxPets: 2
+        }
+      ];
+
+      /* -------------------- UTILITIES -------------------- */
+      function stars(n) {
+        let s = "";
+        const full = Math.floor(n), half = n % 1 >= 0.5;
+        for (let i = 0; i < full; i++) s += '<i class="bi bi-star-fill"></i>';
+        if (half) s += '<i class="bi bi-star-half"></i>';
+        for (let i = full + (half ? 1 : 0); i < 5; i++)
+          s += '<i class="bi bi-star"></i>';
+        return s;
+      }
+      const toDate = (str) => (str ? new Date(str + "T00:00:00") : null);
+      function rangesOverlap(aFrom, aTo, bFrom, bTo) {
+        if (!bFrom || !bTo) return true;
+        return aFrom <= bTo && aTo >= bFrom;
+      }
+
+      const resultsCol = document.getElementById("resultsCol");
+      const resultsSummary = document.getElementById("resultsSummary");
+
+      function openProfile(s) {
+        const sitter = {
+          id: s.id,
+          name: s.name,
+          location: `${s.city}, India`,
+          photo: s.img,
+          rating: s.rating,
+          price: s.price,
+          services: ["Overnight boarding","Meal schedule","Daily walks"],
+          photos: [
+            "./assets/dog-walking-hoster/img1.jpg",
+            "./assets/dog-walking-hoster/img2.jpg",
+            "./assets/dog-walking-hoster/img3.jpg",
+          ],
+        };
+        localStorage.setItem("selectedSitter", JSON.stringify(sitter));
+        window.location.href = "sitter-profile.html";
+      }
+
+      /* -------------------- RENDER -------------------- */
+      function render(list) {
+        const f = getFiltersFromUI();
+        const dateChip =
+          f.dateFrom && f.dateTo ? `${f.dateFrom} → ${f.dateTo}` : "Any dates";
+        const areaChip = f.area ? f.area : "All Mumbai";
+
+          const petsChip = `${f.petsCount} ${f.petsCount > 1 ? "pets" : "pet"}`;
+  const ageLabel = f.dogAge === "any" ? "Any age" :
+                   f.dogAge === "puppy" ? "Puppy" :
+                   f.dogAge === "adult" ? "Adult" : "Senior";
+
+          resultsSummary.innerHTML = `
+    <span>${list.length} sitter${list.length !== 1 ? "s" : ""} found</span>
+    <span class="badge-chip">Area: ${areaChip}</span>
+    <span class="badge-chip">₹100–₹${document.getElementById("rateRange").value}</span>
+    <span class="badge-chip">${dateChip}</span>
+    <span class="badge-chip">${petsChip}</span>
+    <span class="badge-chip">${ageLabel}</span>
+    ${document.getElementById("starSitters").checked ? '<span class="badge-chip">Star sitters</span>' : ""}
+  `;
+
+        resultsCol.innerHTML = "";
+        if (!list.length) {
+          resultsCol.innerHTML = `<div class="text-muted p-4 text-center">No sitters match your filters. Try widening your search.</div>`;
+          return;
+        }
+
+        list.forEach((it, idx) => {
+          const el = document.createElement("div");
+          el.className = "result-card";
+          el.setAttribute("role", "button");
+          el.setAttribute("tabindex", "0");
+          el.style.cursor = "pointer";
+
+          el.innerHTML = `
+            <div class="d-flex gap-3">
+              <img class="avatar" src="${it.img}" alt="${it.name}">
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="name-line">
+                      ${idx + 1}. ${it.name}
+                      ${it.star ? '<span class="star-badge"><i class="bi bi-star-fill"></i> Star Sitter</span>' : ""}
+                      <button class="heart" title="Save" aria-label="save" onclick="event.stopPropagation()"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="meta">${it.city}, India</div>
+                  </div>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="price-wrap">
+                      <div class="price">₹${it.price}</div>
+                      <div class="price-sub">per night</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-2 mt-2">
+                  <div class="rating">${stars(it.rating)}</div>
+                  <div class="meta"><strong>${it.rating.toFixed(1)}</strong> • ${it.reviews} reviews</div>
+                  <div class="meta"><i class="bi bi-repeat"></i> ${it.repeats || 0} repeat ${(it.repeats || 0) > 1 ? "clients" : "client"}</div>
+                </div>
+
+                <div>${it.caption}</div>
+                <div class="snippet mt-2">Good with: <em>${it.breedsAccepted.join(", ")}</em>.</div>
+
+                <div class="mt-2">
+                  <a href="javascript:void(0)" class="link-primary view-profile-link">View profile</a>
+                </div>
+              </div>
+            </div>
+          `;
+
+          el.addEventListener("click", () => openProfile(it));
+          el.addEventListener("keydown", (e) => { if (e.key === "Enter") openProfile(it); });
+          el.querySelector(".view-profile-link").addEventListener("click", (e) => {
+            e.stopPropagation();
+            openProfile(it);
+          });
+
+          resultsCol.appendChild(el);
+        });
+      }
+
+      /* -------------------- FILTERING -------------------- */
+      function getFiltersFromUI() {
+        const addressRaw = (document.getElementById("addressInput").value || "").trim();
+        const area = addressRaw;
+        const breed = document.getElementById("breedSel").value;
+        const maxPrice = Number(document.getElementById("rateRange").value);
+        const starOnly = document.getElementById("starSitters").checked;
+
+        const dateFrom = document.getElementById("dateFrom").value;
+        const dateTo   = document.getElementById("dateTo").value;
+
+          const petsCount = Math.max(1, Number(document.getElementById("petsCount").value || 1));
+  const dogAge = (document.getElementById("dogAge").value || "any");
+
+        const adv = {
+          hasHouse: document.getElementById("hasHouse").checked,
+          fencedYard: document.getElementById("fencedYard").checked,
+          groundFloor: document.getElementById("groundFloor").checked,
+          noDogAtHome: document.getElementById("noDogAtHome").checked,
+          noCatAtHome: document.getElementById("noCatAtHome").checked,
+          singleClient: document.getElementById("singleClient").checked,
+          noResidentPets: document.getElementById("noResidentPets").checked,
+          puppyCare: document.getElementById("puppyCare").checked,
+          catCare: document.getElementById("catCare").checked,
+          acceptsUnspayedFemale: document.getElementById("unsprayedFemale").checked,
+          acceptsUnneuteredMale: document.getElementById("unNeuteredMale").checked,
+        };
+
+        return { area, breed, maxPrice, starOnly, dateFrom, dateTo, petsCount, dogAge, adv };
+      }
+
+      function passAdvFilters(s, adv) {
+        if (adv.hasHouse && !s.hasHouse) return false;
+        if (adv.fencedYard && !s.fencedYard) return false;
+        if (adv.groundFloor && !s.groundFloor) return false;
+        if (adv.noDogAtHome && s.hasResidentDog) return false;
+        if (adv.noCatAtHome && s.hasResidentCat) return false;
+        if (adv.noResidentPets && (s.hasResidentDog || s.hasResidentCat)) return false;
+        if (adv.singleClient && !s.singleClient) return false;
+        if (adv.puppyCare && !s.puppyCare) return false;
+        if (adv.catCare && !s.catCare) return false;
+        if (adv.acceptsUnspayedFemale && !s.acceptsUnspayedFemale) return false;
+        if (adv.acceptsUnneuteredMale && !s.acceptsUnneuteredMale) return false;
+        return true;
+      }
+
+      function availabilityPass(s, f) {
+        const sFrom = toDate(s.availableFrom),
+              sTo   = toDate(s.availableTo);
+        const wantFrom = toDate(f.dateFrom),
+              wantTo   = toDate(f.dateTo);
+        if (!rangesOverlap(sFrom, sTo, wantFrom, wantTo)) return false;
+        return true;
+      }
+
+      function applyFilters() {
+        const f = getFiltersFromUI();
+
+        let list = allSitters.filter((s) => {
+          if (s.country !== "India") return false;
+
+          if (f.area) {
+            const want = f.area.toLowerCase();
+            const here = s.city.toLowerCase();
+            if (!here.includes(want)) return false;
+          }
+
+          if (f.breed !== "any") {
+            const accepts =
+              s.breedsAccepted?.includes("Mixed / Other") ||
+              s.breedsAccepted?.includes(f.breed);
+            if (!accepts) return false;
+          }
+
+          if (s.price > f.maxPrice) return false;
+
+          if (f.starOnly && !s.star) return false;
+
+             // 👇 NEW: pets capacity check
+    if (s.maxPets && f.petsCount > s.maxPets) return false;
+
+    // 👇 NEW: dog age requirement (if puppy selected, sitter must support puppy care)
+    if (f.dogAge === "puppy" && !s.puppyCare) return false;
+
+          if (!passAdvFilters(s, f.adv)) return false;
+
+          if (!availabilityPass(s, f)) return false;
+
+          return true;
+        });
+
+        render(list);
+
+      }
+
+      /* -------------------- ADVANCED UI -------------------- */
+      const advCountEl = document.getElementById("advCount");
+      const advInputs = document.querySelectorAll(".adv-input");
+      function updateAdvCount() {
+        const n = Array.from(advInputs).filter((i) => i.checked).length;
+        advCountEl.textContent = String(n);
+      }
+      advInputs.forEach((i) =>
+        i.addEventListener("change", () => {
+          updateAdvCount();
+          applyFilters();
+        })
+      );
+      updateAdvCount();
+
+      document.querySelectorAll(".adv-more").forEach((toggler) => {
+        toggler.addEventListener("click", () => {
+          const sel = toggler.getAttribute("data-target");
+          const body = document.querySelector(sel);
+          const open = body.style.display === "block";
+          body.style.display = open ? "none" : "block";
+          toggler.classList.toggle("open", !open);
+        });
+      });
+
+      /* -------------------- EVENT WIRING -------------------- */
+      document.getElementById("addressInput").addEventListener("input", applyFilters);
+
+      document.getElementById("rateRange").addEventListener("input", (e) => {
+        document.getElementById("rateVal").textContent = e.target.value;
+        applyFilters();
+      });
+      document.getElementById("starSitters").addEventListener("change", applyFilters);
+      document.getElementById("breedSel").addEventListener("change", applyFilters);
+
+      document.getElementById("dateFrom").addEventListener("change", applyFilters);
+      document.getElementById("dateTo").addEventListener("change", applyFilters);
+
+      // Reset all
+      document.getElementById("advReset").addEventListener("click", () => {
+        document.getElementById("addressInput").value = "";
+        document.getElementById("breedSel").value = "any";
+        document.getElementById("rateRange").value = 1200;
+        document.getElementById("rateVal").textContent = "1200";
+        document.getElementById("starSitters").checked = true;
+        document.getElementById("dateFrom").value = "";
+        document.getElementById("dateTo").value = "";
+        advInputs.forEach((i) => (i.checked = false));
+        document.getElementById("petsCount").value = "";
+document.getElementById("dogAge").value = "any";
+
+        updateAdvCount();
+        applyFilters();
+      });
+
+      /* -------------------- INITIAL RENDER -------------------- */
+      // Hydrate area from ?location= query (fixes areaSel reference)
+      // Prefill UI from query string
+(function hydrateFromQuery() {
+  const q = new URLSearchParams(location.search);
+
+  const loc = (q.get("location") || "").trim();
+  if (loc) document.getElementById("addressInput").value = loc;
+
+  const from = q.get("from") || "";
+  const to   = q.get("to") || "";
+  if (from) document.getElementById("dateFrom").value = from;
+  if (to)   document.getElementById("dateTo").value = to;
+
+  const breed = (q.get("breed") || "").trim();
+  if (breed) {
+    const sel = document.getElementById("breedSel");
+    // try exact match, else leave as 'any'
+    const opt = Array.from(sel.options).find(o => o.value.toLowerCase() === breed.toLowerCase() || o.text.toLowerCase() === breed.toLowerCase());
+    if (opt) sel.value = opt.value;
+  }
+
+  // 👇 NEW
+  const pets = q.get("pets");
+  if (pets) document.getElementById("petsCount").value = pets;
+
+  const age = (q.get("age") || "").toLowerCase();
+  if (["any","puppy","adult","senior"].includes(age)) {
+    document.getElementById("dogAge").value = age;
+  }
+
+})();
+
+
+      applyFilters();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

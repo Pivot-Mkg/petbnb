@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us • PetBnB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <style>
+    /* ------- Shared footer variables (from index.html) ------- */
+    :root {
+      --footer-bg: #F9F5EE;
+      --footer-text: #1f2937;
+      --muted: #6b7280;
+      --link: #0d6efd;
+    }
+
+    .navbar-brand img {
+      /* min-height: 20%; */
+      width: 115px;
+      height: 70px;
+    }
+
+    .site-footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .site-footer a {
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .footer-list li {
+      margin: 0.35rem 0;
+    }
+
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .privacy-pill i {
+      color: #2563eb;
+    }
+
+    .social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #e5e7eb;
+      margin-right: 0.5rem;
+    }
+
+    .social a:hover {
+      background: #d1d5db;
+    }
+
+    .subtext {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .smallprint {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .newsletter-wrap .input-group {
+      --bs-border-radius: 999px;
+    }
+
+    .newsletter-wrap .form-control {
+      height: 52px;
+      border-radius: 999px 0 0 999px !important;
+      padding-left: 16px;
+    }
+
+    .newsletter-wrap .btn {
+      height: 52px;
+      padding: 0 22px;
+      border-radius: 0 999px 999px 0 !important;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 576px) {
+      .newsletter-wrap .input-group {
+        flex-wrap: wrap;
+      }
+
+      .newsletter-wrap .form-control {
+        border-radius: 999px !important;
+        margin-bottom: 10px;
+      }
+
+      .newsletter-wrap .btn {
+        width: 100%;
+        border-radius: 999px !important;
+      }
+    }
+
+    .about-grid .footer-list li {
+      margin: 0.55rem 0;
+    }
+
+    .about-grid .col-6:first-child {
+      padding-right: 28px;
+    }
+
+    /* ------- Page-specific ------- */
+    .hero-banner {
+      position: relative;
+      min-height: 400px;
+      display: grid;
+      place-items: center;
+      background: url("/assets/images/beautiful-hungarian-vizsla-dog-lying-down-looking-side-pastel-blue-background.jpg") center/cover no-repeat;
+      background-position-y: 3px;
+    }
+
+    .hero-mask {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.35),
+          rgba(0, 0, 0, 0.45));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+      padding: 60px 16px;
+    }
+
+    .hero-content h1 {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .hero-content p {
+      opacity: 1.95;
+      max-width: 684px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      height: 100%;
+      background: #fff;
+      transition: 0.2s ease box-shadow, 0.2s ease transform;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-card .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef2ff;
+      color: #3b82f6;
+      font-size: 1.1rem;
+      margin-right: 0.6rem;
+    }
+
+    .split-wrap {
+      max-width: 1040px;
+    }
+
+    .form-control,
+    .form-select {
+      border: 1px solid #d1d5db;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #86b7fe;
+      box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+    }
+
+    .required::after {
+      content: " *";
+      color: #ef4444;
+    }
+
+    .banner-head-title {
+      color: #b71d4e !important;
+    }
+
+    .btn-primary-color {
+      background-color: #ea624e !important;
+      color: white;
+    }
+
+    .head-text {
+      color: #fd9140 !important;
+    }
+
+    .btn:hover {
+      color: white !important;
+      background-color: #EA624E !important;
+      border-color: var(--bs-btn-hover-border-color);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============== Header (from index.html) ============== -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="index.html">
+        <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+        <!-- <h1>PetBnB</h1> -->
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-search me-1"></i>
+            <a class="nav-link" href="about-us.html">About Us</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-heart me-1"></i>
+            <a class="nav-link" href="contact-us.html">Contact</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="#">FAQ's</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="blog.html">Blog</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-question-circle me-1"></i>
+            <a class="nav-link" href="contact-us.html">Help</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============== Hero Banner ============== -->
+  <header class="hero-banner">
+    <div class="hero-mask"></div>
+    <div class="hero-content">
+      <h1 class="display-5 mb-2 banner-head-title">Contact PetBnB</h1>
+      <p class="banner-head-title fw-bold">
+        We’re here to help with bookings, sitter questions, partnerships, and
+        more. Reach us the way that suits you best.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============== Quick Contact Options ============== -->
+  <section class="container py-5">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold head-text">How can we help?</h2>
+      <p class="text-muted mb-0">
+        Choose a path below or use the form to send us a message.
+      </p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="d-flex align-items-center mb-2">
+            <span class="icon"><i class="fa-solid fa-headset"></i></span>
+            <h5 class="m-0 head-text fw-bold">Customer Support</h5>
+          </div>
+          <p class="text-muted">
+            Questions about bookings, sitters, payments, or your account.
+          </p>
+          <div class="small text-muted mb-1">
+            <i class="fa-regular fa-clock me-1"></i> 24/7 support
+          </div>
+          <a href="#" class="btn btn-outline-dark btn-sm rounded-pill mt-2">Open Help Center</a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="d-flex align-items-center mb-2">
+            <span class="icon" style="background: #ecfdf5; color: #10b981"><i class="fa-solid fa-briefcase"></i></span>
+            <h5 class="m-0 head-text fw-bold">Partnerships & Press</h5>
+          </div>
+          <p class="text-muted">
+            Brand partnerships, media inquiries, or speaking requests.
+          </p>
+          <a href="mailto:press@petbnb.com" class="btn btn-outline-dark btn-sm rounded-pill mt-2">
+            press@petbnb.com
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="contact-card">
+          <div class="d-flex align-items-center mb-2">
+            <span class="icon" style="background: #fff7ed; color: #f59e0b"><i class="fa-solid fa-shield-dog"></i></span>
+            <h5 class="m-0 head-text fw-bold">Safety & Trust</h5>
+          </div>
+          <p class="text-muted">
+            Report safety concerns or policy violations. We take it seriously.
+          </p>
+          <a href="#" class="btn btn-outline-dark btn-sm rounded-pill mt-2">View safety resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Contact Form + Info ============== -->
+  <section class="container py-4">
+    <div class="row g-4 split-wrap mx-auto">
+      <!-- Form -->
+      <div class="col-12 col-lg-7">
+        <div class="p-3 p-md-4 border rounded-4">
+          <h3 class="fw-bold mb-2 head-text">Send us a message</h3>
+          <p class="text-muted mb-4">We reply within one business day.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label required">Full name</label>
+                <input type="text" class="form-control" name="name" required />
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required">Email</label>
+                <input type="email" class="form-control" name="email" required />
+                <div class="invalid-feedback">
+                  Please provide a valid email.
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label required">Reason</label>
+                <select class="form-select" name="reason" required>
+                  <option value="">Choose…</option>
+                  <option>Booking question</option>
+                  <option>Become a sitter</option>
+                  <option>Payment/Billing</option>
+                  <option>Partnership/Press</option>
+                  <option>Other</option>
+                </select>
+                <div class="invalid-feedback">Please select a reason.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Reference (optional)</label>
+                <input type="text" class="form-control" name="ref" placeholder="Booking ID or URL" />
+              </div>
+              <div class="col-12">
+                <label class="form-label required">Message</label>
+                <textarea class="form-control" rows="5" name="message" required></textarea>
+                <div class="invalid-feedback">
+                  Tell us a bit more so we can help.
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="consentCheck" required />
+                  <label class="form-check-label small" for="consentCheck">
+                    I agree to be contacted about my request and accept the
+                    <a href="privacy.html">Privacy Statement</a>.
+                  </label>
+                  <div class="invalid-feedback">
+                    Please agree so we can contact you.
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 d-grid d-sm-flex gap-2">
+                <button class="btn btn-primary-color px-4" type="submit">
+                  Send message
+                </button>
+                <button class="btn btn-outline-dark" type="reset">
+                  Clear
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Side info -->
+      <div class="col-12 col-lg-5">
+        <div class="p-3 p-md-4 border rounded-4 h-100">
+          <h5 class="fw-bold head-text">Business hours</h5>
+          <p class="text-muted mb-3">
+            Mon–Fri 8:00–20:00, Sat–Sun 9:00–17:00 (local time)
+          </p>
+
+          <h5 class="fw-bold">Email</h5>
+          <p class="text-muted">support@petbnb.com</p>
+
+          <h5 class="fw-bold">Social</h5>
+          <div class="d-flex gap-2">
+            <a class="btn btn-outline-dark btn-sm rounded-pill" href="#"><i
+                class="fa-brands fa-facebook-f me-2"></i>Facebook</a>
+            <a class="btn btn-outline-dark btn-sm rounded-pill" href="#"><i
+                class="fa-brands fa-linkedin-in me-2"></i>LinkedIn</a>
+            <a class="btn btn-outline-dark btn-sm rounded-pill" href="#"><i
+                class="fa-brands fa-pinterest-p me-2"></i>Pinterest</a>
+          </div>
+
+          <hr class="my-4" />
+
+          <h5 class="fw-bold head-text">Head office</h5>
+          <address class="text-muted">
+            Modi House, 1st Floor, Off Link Rd, near Fun Republic Andheri
+            West, Mumbai, Maharashtra 400053 support@pivotmkg.com
+          </address>
+
+          <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
+            <!-- Map placeholder (replace with your map embed if desired) -->
+            <iframe title="Map" loading="lazy"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-122.35%2C47.60%2C-122.32%2C47.62&layer=mapnik"
+              style="border: 0"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FAQ (common quick answers) ============== -->
+  <section class="container py-5">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold head-text">Frequently Asked Questions</h2>
+      <p class="text-muted mb-0">Quick answers to common questions.</p>
+    </div>
+
+    <div class="accordion" id="faqAcc">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1h">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1c">
+            What is MyPetBnB?
+          </button>
+        </h2>
+        <div id="q1c" class="accordion-collapse collapse show" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+            MyPetBnB is a community-based platform that connects dog parents with trusted, verified sitters, walkers and
+            trainers across Mumbai.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2c">
+            How does dog boarding work on MyPetBnB?
+          </button>
+        </h2>
+        <div id="q2c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+            When you book boarding, your dog stays at a sitter’s home in a safe and caring environment. They get daily
+            walks, playtime and attention, just like at home.
+
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3c">
+            How are sitters and walkers verified?
+          </button>
+        </h2>
+        <div id="q3c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+
+            All sitters and walkers on MyPetBnB go through background checks, profile verification and are rated by
+            other dog parents for transparency and trust.
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4c">
+            Will I get updates about my dog while I’m away?
+          </button>
+        </h2>
+        <div id="q4c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+
+            Yes! Sitters and walkers share regular photo and video updates and many offer GPS tracking for walks so you
+            can stay connected in real time.
+
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5c">
+            Can I meet the sitter before booking
+          </button>
+        </h2>
+        <div id="q5c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+
+            Absolutely. MyPetBnB encourages a Meet & Greet so you and your dog can feel comfortable before confirming a
+            booking.
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q6c">
+            What if my dog has special needs or requires medication?
+          </button>
+        </h2>
+        <div id="q6c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+
+
+            You can mention any special instructions while booking. Many of our sitters are experienced with senior
+            dogs, dogs with anxiety and pups who need daily medication.
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q7c">
+             Is my dog safe with a sitter I’ve never me
+          </button>
+        </h2>
+        <div id="q7c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+
+
+            Safety is our top priority. Every sitter is verified, reviewed by other parents and supported by our platform. You also have access to 24/7 support if needed.
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q8c">
+             What services does MyPetBnB offer besides boarding?
+          </button>
+        </h2>
+        <div id="q8c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+We offer dog walking, sitting (at your home), day care, drop-in visits and training; all customized to your dog’s needs.
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q9c">
+             How do I pay for bookings?
+          </button>
+        </h2>
+        <div id="q9c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+All payments are made securely through the MyPetBnB platform. This ensures a safe transaction and also keeps your booking protected.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3h">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q10c">
+              Can I become a sitter or walker on MyPetBnB?
+          </button>
+        </h2>
+        <div id="q10c" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+          <div class="accordion-body">
+Yes! If you love dogs and want to start your own dog-care service, you can sign up on our platform. We provide you with tools, visibility and reviews to grow your business.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== Footer (from index.html) ============== -->
+  <footer class="site-footer py-5">
+    <div class="container">
+      <div class="row gy-5">
+        <!-- Newsletter -->
+        <div class="col-12 col-lg-5">
+          <div class="footer-title head-text">
+            All the pet care tips you need—right to your inbox
+          </div>
+          <p class="subtext">
+            Receive the latest adorable pet photos, care tips, training
+            advice, product recommendations, and more.
+          </p>
+
+          <form class="newsletter-wrap mt-2" action="#" method="post">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email" required />
+              <button class="btn btn-outline-dark" type="submit">Sign up</button>
+            </div>
+          </form>
+
+          <p class="smallprint mt-3 mb-0">
+            By providing my email address, I consent to receive marketing
+            communications from PetBnB.com and its affiliates and confirm that
+            I am 18 years of age or older. I can unsubscribe at any time.
+            <a style="color: var(--link)" href="privacy.html">Privacy Statement</a>..
+          </p>
+        </div>
+
+        <!-- Learn More -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-title head-text">Learn More</div>
+          <ul class="footer-list">
+            <li><a href="blog.html">Read Our Blog</a></li>
+          </ul>
+          <div class="mt-3">
+            <a class="privacy-pill" href="privacy.html"><i class="fa-solid fa-check"></i> Your privacy choices</a>
+          </div>
+        </div>
+
+        <!-- About PetBnB -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-title head-text">About Us</div>
+
+          <div class="row about-grid g-0">
+            <!-- Left column -->
+            <div class="col-6 pe-4">
+              <ul class="footer-list mb-0">
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-6">
+              <ul class="footer-list mb-0">
+                <li>
+                  <a href="privacy.html">Privacy<br />Statement</a>
+                </li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Need Help -->
+        <div class="col-12">
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+            <div class="d-flex align-items-center gap-4 my-2">
+              <div class="footer-title mb-0 services-selection-section-title">
+                Need Help?
+              </div>
+              <ul class="footer-list mb-0">
+                <li><a href="#">FAQ's</a></li>
+              </ul>
+            </div>
+
+            <div class="social my-2">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="smallprint text-center text-md-end mt-3">
+        © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // Simple client-side validation + friendly success message
+    (function () {
+      const form = document.getElementById("contactForm");
+      form.addEventListener(
+        "submit",
+        function (e) {
+          e.preventDefault();
+          if (!form.checkValidity()) {
+            e.stopPropagation();
+            form.classList.add("was-validated");
+            return;
+          }
+          // Simulate success
+          form.reset();
+          form.classList.remove("was-validated");
+          const toast = document.createElement("div");
+          toast.className = "alert alert-success mt-3";
+          toast.textContent =
+            "Thanks! Your message has been sent. We’ll get back to you shortly.";
+          form.parentElement.appendChild(toast);
+          setTimeout(() => toast.remove(), 6000);
+        },
+        false
+      );
+    })();
+  </script>
+</body>
+
+</html>

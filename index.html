@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="newstyle.css">
+  <style>
+    .navbar-brand img {
+      /* min-height: 20%; */
+      width: 115px;
+      height: 70px;
+    }
+
+    :root {
+      --footer-bg: #F9F5EE;
+      --footer-text: #1f2937;
+      /* dark slate */
+      --muted: #6b7280;
+      --link: #0d6efd;
+    }
+
+    /* visually dim and disable the non-active boxes */
+    .selection-section.is-disabled {
+      opacity: .55;
+      pointer-events: none;
+      /* blocks clicks/focus inside */
+    }
+
+    .site-footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .site-footer a {
+      color: var(--footer-text);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: .75rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 0;
+    }
+
+    .footer-list li {
+      margin: .35rem 0;
+    }
+
+    .newsletter .form-control {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      height: 48px;
+    }
+
+    .newsletter .btn {
+      height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+    }
+
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 999px;
+      padding: .25rem .6rem;
+      font-size: .9rem;
+      color: #374151;
+    }
+
+    .privacy-pill i {
+      color: #2563eb;
+    }
+
+    .social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #e5e7eb;
+      margin-right: .5rem;
+    }
+
+    .social a:hover {
+      background: #d1d5db;
+    }
+
+    .subtext {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .smallprint {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* --- Newsletter polish --- */
+    .newsletter-wrap .input-group {
+      --bs-border-radius: 999px;
+    }
+
+    .newsletter-wrap .form-control {
+      height: 52px;
+      border-radius: 999px 0 0 999px !important;
+      padding-left: 16px;
+    }
+
+    .newsletter-wrap .btn {
+      height: 52px;
+      padding: 0 22px;
+      border-radius: 0 999px 999px 0 !important;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 576px) {
+      .newsletter-wrap .input-group {
+        flex-wrap: wrap;
+      }
+
+      .newsletter-wrap .form-control {
+        border-radius: 999px !important;
+        margin-bottom: 10px;
+      }
+
+      .newsletter-wrap .btn {
+        width: 100%;
+        border-radius: 999px !important;
+      }
+    }
+
+    /* About PetBnB split list (left/right) */
+    .about-PetBnB-split .col {
+      min-width: 220px;
+    }
+
+    .about-PetBnB-split ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .about-PetBnB-split li {
+      margin: .35rem 0;
+    }
+
+    /* Match spacing & alignment from screenshot */
+    .about-grid .footer-list li {
+      margin: .55rem 0;
+    }
+
+    .about-grid .col-6:first-child {
+      padding-right: 28px;
+    }
+
+    /* little gutter between the two lists */
+
+    .services-selection-section-title {
+      color: #ea624e !important;
+    }
+
+    .btn:hover {
+      color: white !important;
+      background-color: #EA624E !important;
+      border-color: var(--bs-btn-hover-border-color);
+    }
+
+    .btn-primary-color {
+      background-color: #EA624E !important;
+      color: white;
+    }
+
+    .banner-head-title {
+      color: #EA624E !important;
+    }
+
+    .incre-decre-btns {
+      background-color: black;
+      color: white;
+      border: none;
+    }
+
+    .head-text {
+      color: #FD9140 !important;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background: #FF7A00;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .btn-cta:hover {
+      background: #e76d00;
+    }
+
+    /* =========================================
+   Tablet & Mobile layout (≤ 991px)
+   ========================================= */
+    @media (max-width: 991.98px) {
+
+      /* Hero: image crop + overlay text readable */
+      .hero-section {
+        position: relative;
+      }
+
+      .hero-section .img-wrapper {
+        max-height: 52vh;
+        overflow: hidden;
+      }
+
+      .hero-section .img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-section .info-container {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 16px;
+        background: linear-gradient(to top, rgba(0, 0, 0, .45), rgba(0, 0, 0, 0));
+      }
+
+      .hero-section .info .banner-head-title {
+        margin: 0 0 8px 0;
+        line-height: 1.15;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+      }
+
+      .hero-section .info h1.banner-head-title {
+        font-size: 1.35rem;
+      }
+
+      .hero-section .info h2.banner-head-title {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: .95;
+      }
+
+      /* Hide desktop 3-card chooser on mobile (safety) */
+      .services-selection-section {
+        display: none !important;
+      }
+
+      /* New mobile card form */
+      .mobile-hero-form {
+        margin-top: -18px;
+        /* pulls card closer to hero image */
+        background: #fff;
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .08), 0 2px 6px rgba(0, 0, 0, .06);
+        border: 1px solid #eef0f2;
+      }
+
+      .mobile-hero-form .form-control,
+      .mobile-hero-form .form-select {
+        height: 48px;
+        border-radius: 12px;
+      }
+
+      .mhf-field {
+        margin-bottom: 14px;
+      }
+
+      .mhf-label {
+        display: block;
+        font-weight: 600;
+        font-size: .95rem;
+        margin-bottom: 6px;
+        color: #111827;
+      }
+
+      .mhf-submit {
+        width: 100%;
+        height: 52px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      /* Service section spacing & images */
+      .about-services-for-you-section .services-section {
+        margin-bottom: 1.75rem;
+      }
+
+      .about-services-for-you-section img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+
+      /* Footer tidy */
+      .site-footer {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+      }
+
+      .site-footer .footer-title {
+        font-size: 1.05rem;
+      }
+    }
+
+    /* keep selects full width when Select2 is used elsewhere */
+    .select2-container {
+      width: 100% !important;
+    }
+
+    /* Keep the mobile form right below the hero image, not overlapping it */
+    @media (max-width: 991.98px) {
+
+      /* Hero: image stays; overlay text optional (hide if you want a cleaner stack) */
+      .hero-section {
+        position: relative;
+        margin-bottom: 0;
+      }
+
+      .hero-section .img-wrapper {
+        max-height: 52vh;
+        overflow: hidden;
+      }
+
+      .hero-section .img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* If the overlay text is making things busy, uncomment the next line to hide it on mobile */
+      /* .hero-section .info-container { display: none !important; } */
+
+      /* Ensure the big desktop chooser is hidden on mobile */
+      .services-selection-section {
+        display: none !important;
+      }
+
+      /* MOBILE CARD — sit *after* hero, before Services, with even spacing */
+      .mobile-hero-form {
+        margin-top: 12px !important;
+        /* no negative pull */
+        margin-bottom: 20px;
+        /* clean gap before Services */
+        background: #fff;
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .08), 0 2px 6px rgba(0, 0, 0, .06);
+        border: 1px solid #eef0f2;
+      }
+
+      /* Input ergonomics to match screenshot feel */
+      .mobile-hero-form .form-control,
+      .mobile-hero-form .form-select {
+        height: 48px;
+        border-radius: 14px;
+      }
+
+      .mhf-field {
+        margin-bottom: 14px;
+      }
+
+      .mhf-label {
+        display: block;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #111827;
+        margin-bottom: 6px;
+      }
+
+      .mhf-submit {
+        width: 100%;
+        height: 52px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      /* Make sure the Services section starts neatly after the form */
+      .about-services-for-you-section {
+        margin-top: 0 !important;
+      }
+
+      .about-services-for-you-section .services-for-you-section {
+        margin-top: 16px !important;
+      }
+
+      /* Visual consistency for service images below */
+      .about-services-for-you-section img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="index.html">
+        <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+        <!-- <h1>PetBnB</h1> -->
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-search me-1"></i>
+            <a class="nav-link" href="about-us.html">About Us</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-heart me-1"></i>
+            <a class="nav-link" href="contact-us.html">Contact</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="#">FAQ's</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="blog.html">Blog</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="sitter-signup.html">Become a Sitter</a>
+          </li>
+
+        </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="sign-up.html">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-question-circle me-1"></i>
+            <a class="nav-link" href="contact-us.html">Help</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section">
+    <div class="img-wrapper">
+      <img src="./assets/images/funny-rhodesian-ridgeback-puppy-british-silver-cat-looking-up.jpg" alt="">
+    </div>
+    <div class="info-container d-flex flex-column justify-content-center align-items-center">
+      <div class="info">
+        <h1 class="banner-head-title">Loving pet care in your neighborhood</h1>
+        <h2 class="banner-head-title">Book trusted pet sitters, walkers and trainers</h2>
+      </div>
+    </div>
+
+    <div class="pet-selector-container pb-3 d-none d-lg-block">
+
+      <!-- <div class="d-none d-lg-block"> -->
+      <div class="services-selection-section py-4">
+        <div class="container">
+          <div class="row g-4">
+
+            <!-- Boarding Box -->
+            <div class="col-md-4">
+              <div class="selection-section p-3 bg-white shadow rounded-4">
+                <h3 class="mb-3 text-primary services-selection-section-title">Boarding</h3>
+
+                <!-- 1) FIRST INPUT -->
+                <div class="mb-3">
+                  <label for="breed" class="form-label">Breed Name</label>
+                  <select id="breed" class="form-select select2 w-100" multiple>
+                    <option value="">Select Breed</option>
+                    <option>Labrador Retriever</option>
+                    <option>German Shepherd</option>
+                    <option>Golden Retriever</option>
+                    <option>Pug</option>
+                    <option>Beagle</option>
+                    <option>Bulldog</option>
+                    <option>Dachshund</option>
+                    <option>Rottweiler</option>
+                    <option>Shih Tzu</option>
+                    <option>Siberian Husky</option>
+                  </select>
+                </div>
+
+                <!-- 2) SECOND INPUT (TRIGGER) -->
+                <div class="mb-3">
+                  <label for="location" class="form-label">Boarding Location</label>
+                  <input type="text" class="form-control progressive-trigger" id="location"
+                    placeholder="Enter area or city">
+                </div>
+
+                <!-- REST (HIDDEN UNTIL TRIGGERED) -->
+                <div class="progressive-extra">
+                  <div class="row g-2 mb-3">
+                    <div class="col">
+                      <label for="fromDate" class="form-label">From Date</label>
+                      <input type="date" class="form-control" id="fromDate">
+                    </div>
+                    <div class="col">
+                      <label for="toDate" class="form-label">To Date</label>
+                      <input type="date" class="form-control" id="toDate">
+                    </div>
+                  </div>
+
+                  <div class="row g-2 mb-3">
+                    <div class="col">
+                      <label for="boardingInTime" class="form-label">Drop-Off</label>
+                      <select id="boardingInTime" class="form-select">
+                        <option value="">Check-in time?</option>
+                        <option>07:00 AM</option>
+                        <option>08:00 AM</option>
+                        <option>09:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>12:00 AM</option>
+                        <option>01:00 PM</option>
+                        <option>02:00 PM</option>
+                        <option>03:00 PM</option>
+                        <option>04:00 PM</option>
+                        <option>05:00 PM</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <label for="boardingOutTime" class="form-label">Pick-Up</label>
+                      <select id="boardingOutTime" class="form-select">
+                        <option value="">Check-out time?</option>
+                        <option>07:00 AM</option>
+                        <option>08:00 AM</option>
+                        <option>09:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                        <option>12:00 AM</option>
+                        <option>01:00 PM</option>
+                        <option>02:00 PM</option>
+                        <option>03:00 PM</option>
+                        <option>04:00 PM</option>
+                        <option>05:00 PM</option>
+                        <option>06:00 PM</option>
+                        <option>07:00 PM</option>
+                        <option>08:00 PM</option>
+                        <option>09:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="boardingAge" class="form-label">Dog age</label>
+                    <select id="boardingAge" class="form-select">
+                      <option value="any">Any</option>
+                      <option value="puppy">Puppy (&lt; 1 year)</option>
+                      <option value="adult">Adult (1–7 years)</option>
+                      <option value="senior">Senior (8+ years)</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Dogs</label>
+                    <div class="d-flex align-items-center gap-2">
+                      <button type="button" class="btn btn-light border px-3" onclick="decrementBoarding()">−</button>
+                      <span id="boardingDogCount" class="fw-semibold">0</span>
+                      <button type="button" class="incre-decre-btns px-3" onclick="incrementBoarding()">+</button>
+                    </div>
+                  </div>
+                </div> <!-- /progressive-extra -->
+
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary-color" onclick="goToSearchSitters()">Search Sitters</button>
+                  <button class="btn btn-outline-secondary" type="button" onclick="resetSection(this)">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dog Walking Box -->
+            <div class="col-md-4">
+              <div class="selection-section p-3 bg-white shadow rounded-4 h-100">
+                <h3 class="mb-3 text-success services-selection-section-title">Dog Walking</h3>
+
+                <!-- 1) FIRST INPUT -->
+                <div class="mb-3">
+                  <label for="breed-walking" class="form-label">Breed Name</label>
+                  <select id="breed-walking" class="form-select select2">
+                    <option value="">Select Breed</option>
+                    <option>Labrador Retriever</option>
+                    <option>German Shepherd</option>
+                    <option>Golden Retriever</option>
+                    <option>Pug</option>
+                    <option>Beagle</option>
+                    <option>Bulldog</option>
+                    <option>Dachshund</option>
+                    <option>Rottweiler</option>
+                    <option>Shih Tzu</option>
+                    <option>Siberian Husky</option>
+                  </select>
+                </div>
+
+                <!-- 2) SECOND INPUT (TRIGGER) -->
+                <div class="mb-3">
+                  <label for="location-walking" class="form-label">Preferred Walking Area</label>
+                  <input type="text" class="form-control progressive-trigger" id="location-walking"
+                    placeholder="Enter your location">
+                </div>
+
+                <!-- REST (HIDDEN UNTIL TRIGGERED) -->
+                <div class="progressive-extra">
+                  <div class="row g-2 mb-3">
+                    <div class="col">
+                      <label for="walkFromTime" class="form-label">Preferred Start Time</label>
+                      <input type="time" class="form-control" id="walkFromTime">
+                    </div>
+                    <div class="col">
+                      <label for="walkToTime" class="form-label">Preferred End Time</label>
+                      <input type="time" class="form-control" id="walkToTime">
+                    </div>
+                  </div>
+
+                  <div class="row g-2 mb-3">
+                    <div class="col">
+                      <label for="walkFromDate" class="form-label">From Date</label>
+                      <input type="date" class="form-control" id="walkFromDate">
+                    </div>
+                    <div class="col">
+                      <label for="walkToDate" class="form-label">To Date</label>
+                      <input type="date" class="form-control" id="walkToDate">
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="walkDuration" class="form-label">Walk Duration</label>
+                    <select class="form-select" id="walkDuration">
+                      <option value="">Select duration</option>
+                      <option>15 minutes</option>
+                      <option>30 minutes</option>
+                      <option>60 minutes</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">No. of Dogs</label>
+                    <div class="d-flex align-items-center gap-2">
+                      <button type="button" class="btn btn-light border px-3" onclick="decrementWalking()">−</button>
+                      <span id="walkingDogCount" class="fw-semibold">0</span>
+                      <button type="button" class="px-3 incre-decre-btns" onclick="incrementWalking()">+</button>
+                    </div>
+                  </div>
+                </div> <!-- /progressive-extra -->
+
+                <div class="d-grid gap-2">
+                  <button class="btn btn-primary-color" onclick="goToSearchWalkers()">Search Walkers</button>
+                  <button class="btn btn-outline-secondary" type="button" onclick="resetSection(this)">Reset</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Training Box -->
+            <div class="col-md-4">
+              <div class="selection-section p-3 bg-white shadow rounded-4 h-100">
+                <h3 class="mb-3 text-warning services-selection-section-title">Training</h3>
+
+                <!-- 1) FIRST INPUT -->
+                <div class="mb-3">
+                  <label for="breed-training" class="form-label">Breed Name</label>
+                  <select id="breed-training" class="form-select select2">
+                    <option value="">Select Breed</option>
+                    <option>Labrador Retriever</option>
+                    <option>German Shepherd</option>
+                    <option>Golden Retriever</option>
+                    <option>Pug</option>
+                    <option>Beagle</option>
+                    <option>Bulldog</option>
+                    <option>Dachshund</option>
+                    <option>Rottweiler</option>
+                    <option>Shih Tzu</option>
+                    <option>Siberian Husky</option>
+                  </select>
+                </div>
+
+                <!-- 2) SECOND INPUT (TRIGGER) -->
+                <div class="mb-3">
+                  <label for="dogAge" class="form-label">Dog's Age</label>
+                  <input type="number" class="form-control progressive-trigger" id="dogAge"
+                    placeholder="In months or years">
+                </div>
+
+                <!-- REST (HIDDEN UNTIL TRIGGERED) -->
+                <div class="progressive-extra">
+                  <div class="mb-3">
+                    <label for="relationship" class="form-label">How long have you been with your dog?</label>
+                    <input type="text" class="form-control" id="relationship" placeholder="e.g. 1 year, 3 months">
+                  </div>
+                </div> <!-- /progressive-extra -->
+
+                <div class="d-grid gap-2">
+                  <button class="btn text-white btn-primary-color">Start Training</button>
+                  <button class="btn btn-outline-secondary" type="button" onclick="resetSection(this)">Reset</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+  </section>
+
+  <!-- MOBILE/TABLET: unified search form (Rover-style) -->
+  <div class="d-lg-none">
+    <div class="container">
+      <form id="unifiedSearchForm" class="mobile-hero-form" novalidate>
+        <div class="mhf-field">
+          <label class="mhf-label" for="petsCount">How many pets?</label>
+          <select id="petsCount" class="form-select" required>
+            <option value="" selected disabled>Select your pets</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5+</option>
+          </select>
+        </div>
+
+        <div class="mhf-field">
+          <label class="mhf-label" for="unifiedService">Which service do you need?</label>
+          <select id="unifiedService" class="form-select" required>
+            <option value="" selected disabled>Choose a service</option>
+            <option value="boarding">Boarding • in the sitter’s home</option>
+            <option value="walking">Dog Walking</option>
+            <option value="training">Training</option>
+          </select>
+          <div class="invalid-feedback">Please choose a service.</div>
+        </div>
+
+        <div class="mhf-field">
+          <label class="mhf-label" for="unifiedLocation">What’s your address?</label>
+          <input id="unifiedLocation" type="text" class="form-control" placeholder="Add your address" required>
+          <div class="invalid-feedback">Enter a location.</div>
+        </div>
+
+        <!-- Date range (default) -->
+        <div class="mhf-field">
+          <label class="mhf-label" for="unifiedFrom">Which dates do you need?</label>
+          <div id="unifiedDateRange" class="row g-2">
+            <div class="col-6">
+              <input id="unifiedFrom" type="date" class="form-control" placeholder="Start">
+            </div>
+            <div class="col-6">
+              <input id="unifiedTo" type="date" class="form-control" placeholder="End">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Time block (walking) -->
+        <div id="unifiedTimeBlock" class="row g-2 mhf-field d-none">
+          <div class="col-6">
+            <label class="mhf-label" for="unifiedWalkDate">Date</label>
+            <input id="unifiedWalkDate" type="date" class="form-control">
+          </div>
+          <div class="col-6">
+            <label class="mhf-label" for="unifiedWalkTime">Time</label>
+            <input id="unifiedWalkTime" type="time" class="form-control">
+          </div>
+        </div>
+
+        <button class="btn btn-primary-color mhf-submit" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="about-services-for-you-section" id="about">
+    <div class="container">
+      <div class="services-for-you-section-title mt-5">
+        <h2 class="head-text"> Services </h2>
+      </div>
+      <div class="services-for-you-section mt-5">
+        <div class="boarding-section services-section row">
+          <div class="services-for-you-img-section col-md-6">
+            <img src="assets/images/dog-services-imgs/boarding-img.jpg">
+          </div>
+          <div class="boarding-content col-md-6">
+            <h3 class="head-text">Boarding</h3>
+            <p>With MyPetBnB, dog boarding is no longer about cages or kennels, it’s about comfort and care. When you
+              book through our platform, you’re directly connected to trusted dog sitters in your neighbourhood who
+              welcome pups into their own homes.</p>
+
+            <p>Your dog enjoys a safe environment with their own comfortable spot, daily walks, playtime and the warmth
+              of a family setting. Whether you’re away for a few days or an extended holiday, you can travel worry-free
+              knowing your furry friend is in loving hands.</p>
+          </div>
+        </div>
+
+        <div class="walking-section services-section row">
+          <div class="services-for-you-img-section col-md-6">
+            <img src="assets/images/dog-services-imgs/walking-dog-img.jpg">
+          </div>
+          <div class="walking-content col-md-6">
+            <h3 class="head-text">Walking</h3>
+            <p>
+              Daily walks are essential for a dog’s health and happiness but city life doesn’t always leave time for
+              them. That’s why we connect you with compassionate, experienced dog walkers nearby who make every stroll
+              safe, fun and engaging.
+            </p>
+            <p>From quick neighbourhood rounds to long park strolls, your pup will enjoy exercise, stimulation and
+              socialisation. With GPS tracking and live updates, you’ll always know your dog is getting the care and
+              activity they deserve.</p>
+          </div>
+        </div>
+
+        <div class="sitting-section services-section row">
+          <div class="services-for-you-img-section col-md-6">
+            <img src="assets/images/dog-services-imgs/sitting-img.jpg">
+          </div>
+          <div class="sitting-content col-md-6">
+            <h3 class="head-text">Sitting</h3>
+            <p>Some dogs feel most comfortable in their own space. Our dog sitting service ensures they’re cared for
+              right at home. Whether you’re working late, out for dinner or away for the weekend, a trusted sitter comes
+              to your home to feed, walk, play and comfort your pup.</p>
+            <p>Regular photo and video updates keep you connected, while sitters follow your instructions to the last
+              detail; ensuring safety, consistency and peace of mind.</p>
+          </div>
+        </div>
+
+        <div class="Training-section services-section row">
+          <div class="services-for-you-img-section col-md-6">
+            <img src="assets/images/dog-services-imgs/training.jpg">
+          </div>
+          <div class="Training-content col-md-6">
+            <h3 class="head-text">Training</h3>
+            <p>Good behaviour makes life easier for both dogs and parents. Through MyPetBnB, you can connect with
+              experienced trainers who use positive reinforcement to teach obedience, leash manners and social skills.
+            </p>
+            <p>Whether it’s basic puppy training, correcting habits or addressing specific challenges, our trainers help
+              your dog learn in a safe and supportive way. With regular progress updates, you’ll see your pup grow into
+              their best self.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <footer class="site-footer py-5">
+    <div class="container">
+      <div class="row gy-5">
+
+        <!-- Newsletter -->
+        <div class="col-12 col-lg-5">
+          <div class="footer-title head-text">All the pet care tips you need—right to your inbox</div>
+          <p class="subtext">
+            Receive the latest adorable pet photos, care tips, training advice, product recommendations, and more.
+          </p>
+
+          <form class="newsletter-wrap mt-2" action="#" method="post">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email" required>
+              <button class="btn btn-outline-dark" type="submit">Sign up</button>
+            </div>
+          </form>
+
+          <p class="smallprint mt-3 mb-0">
+            By providing my email address, I consent to receive marketing communications from PetBnB.com and its
+            affiliates and
+            confirm that I am 18 years of age or older. I can unsubscribe at any time.
+            <a style="color:var(--link)" href="privacy.html">Privacy Statement</a>..
+          </p>
+        </div>
+
+        <!-- Learn More -->
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-title head-text">Learn More</div>
+          <ul class="footer-list">
+            <li><a href="blog.html">Read Our Blog</a></li>
+
+          </ul>
+          <div class="mt-3">
+            <a class="privacy-pill" href="privacy.html"><i class="fa-solid fa-check"></i> Your privacy choices</a>
+          </div>
+        </div>
+
+        <!-- About PetBnB -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-title head-text">About Us</div>
+
+          <div class="row about-grid g-0">
+            <!-- Left column -->
+            <div class="col-6 pe-4">
+              <ul class="footer-list mb-0">
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-6">
+              <ul class="footer-list mb-0">
+                <li><a href="privacy.html">Privacy<br>Statement</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Need Help -->
+        <div class="col-12">
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+            <div class="d-flex align-items-center gap-4 my-2">
+              <div class="footer-title mb-0 services-selection-section-title">Need Help?</div>
+              <ul class="footer-list mb-0">
+                <li><a href="#">FAQ's</a></li>
+              </ul>
+            </div>
+
+            <div class="social my-2">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="smallprint text-center text-md-end mt-3">
+        © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        placeholder: "Select Breed",
+        allowClear: true,
+        width: '100%',
+        tags: false
+      });
+    });
+  </script>
+
+  <script>
+    // --- separate counters for each card ---
+    let boardingCount = 0;
+    let walkingCount = 0;
+
+    function updateBoardingDisplay() {
+      const el = document.getElementById('boardingDogCount');
+      if (el) el.innerText = boardingCount;
+    }
+    function updateWalkingDisplay() {
+      const el = document.getElementById('walkingDogCount');
+      if (el) el.innerText = walkingCount;
+    }
+
+    function incrementBoarding() { boardingCount++; updateBoardingDisplay(); }
+    function decrementBoarding() { if (boardingCount > 0) { boardingCount--; updateBoardingDisplay(); } }
+
+    function incrementWalking() { walkingCount++; updateWalkingDisplay(); }
+    function decrementWalking() { if (walkingCount > 0) { walkingCount--; updateWalkingDisplay(); } }
+
+    // init displays on load
+    updateBoardingDisplay();
+    updateWalkingDisplay();
+
+    // --- helpers ---
+    function brandsJoinSafe(arr) {
+      return (arr || []).join(',').replace(/^,|,$/g, '');
+    }
+
+    // --- boarding submit ---
+    function goToSearchSitters() {
+      const from = document.getElementById('fromDate').value;
+      const to = document.getElementById('toDate').value;
+      const location = document.getElementById('location').value;
+
+      const breedEl = document.getElementById('breed');
+      const breeds = Array.from(breedEl.selectedOptions)
+        .map(opt => opt.value)
+        .filter(Boolean);
+
+      const pets = boardingCount; // use boarding counter
+      const ageEl = document.getElementById('boardingAge');
+      const age = ageEl ? (ageEl.value || 'any') : 'any';
+
+      if (!from || !to || !location || breeds.length === 0) {
+        alert("Please fill all required fields: dates, location, and breed.");
+        return;
+      }
+
+      const breedParam = encodeURIComponent(brandsJoinSafe(breeds));
+      const locationParam = encodeURIComponent(location);
+
+      const url = `search_sitters.html?from=${from}&to=${to}&location=${locationParam}` +
+        `&breed=${breedParam}&pets=${pets}&age=${encodeURIComponent(age)}`;
+      window.location.href = url;
+    }
+
+    // --- walking submit ---
+    function goToSearchWalkers() {
+      const breed = document.getElementById('breed-walking').value;
+      const theLocation = document.getElementById('location-walking').value;
+      const fromTime = document.getElementById('walkFromTime').value;
+      const toTime = document.getElementById('walkToTime').value;
+      const fromDate = document.getElementById('walkFromDate').value;
+      const toDate = document.getElementById('walkToDate').value;
+      const duration = document.getElementById('walkDuration').value;
+
+      if (!breed || !theLocation || !fromTime || !toTime || !fromDate || !toDate || !duration) {
+        alert("Please fill in all the fields for Dog Walking.");
+        return;
+      }
+
+      const params = new URLSearchParams({
+        breed,
+        location: theLocation,
+        fromTime,
+        toTime,
+        fromDate,
+        toDate,
+        duration,
+        dogs: String(walkingCount) // include walking dog count
+      });
+      window.location.href = `search-walkers-page.html?${params.toString()}`;
+    }
+
+    // make unlockAll global so Reset can call it
+    function unlockAll() {
+      document.querySelectorAll('.selection-section').forEach(sec => {
+        sec.classList.remove('is-disabled');
+
+        const extra = sec.querySelector('.progressive-extra');
+        const trigger = sec.querySelector('.progressive-trigger');
+        if (extra && trigger && !String(trigger.value || '').trim()) {
+          extra.classList.add('d-none');
+        }
+      });
+      window.__activeSection = null;
+    }
+
+    // Reset only the section whose button was clicked
+    function resetSection(btn) {
+      const section = btn.closest('.selection-section');
+      if (!section) return;
+
+      // clear inputs/selects
+      section.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+          el.checked = false;
+        } else {
+          el.value = '';
+        }
+        if (window.jQuery && jQuery(el).hasClass('select2')) {
+          jQuery(el).val(null).trigger('change');
+        }
+      });
+
+      // reset counters in this section
+      if (section.querySelector('#boardingDogCount')) { boardingCount = 0; updateBoardingDisplay(); }
+      if (section.querySelector('#walkingDogCount')) { walkingCount = 0; updateWalkingDisplay(); }
+
+      // hide extras
+      const extra = section.querySelector('.progressive-extra');
+      if (extra) extra.classList.add('d-none');
+
+      // re-enable all cards
+      unlockAll();
+    }
+
+  </script>
+
+
+  <!-- Progressive reveal logic -->
+  <!-- Progressive reveal logic with mutual exclusivity -->
+  <script>
+    (function () {
+      // global handle of which card is active
+      window.__activeSection = null;
+
+      function lockOthers(current) {
+        document.querySelectorAll('.selection-section').forEach(sec => {
+          if (sec !== current) sec.classList.add('is-disabled');
+        });
+      }
+
+      function initProgressive(section) {
+        const extra = section.querySelector('.progressive-extra');
+        const trigger = section.querySelector('.progressive-trigger');
+        if (!extra || !trigger) return;
+
+        // hide extras initially if trigger is empty
+        const hasValue = !!String(trigger.value || '').trim();
+        if (!hasValue) extra.classList.add('d-none');
+
+        const reveal = () => {
+          if (window.__activeSection && window.__activeSection !== section) return;
+          window.__activeSection = section;
+          extra.classList.remove('d-none');
+          lockOthers(section);
+        };
+
+        trigger.addEventListener('focus', reveal, { once: true });
+        trigger.addEventListener('input', () => {
+          if (String(trigger.value || '').trim()) reveal();
+        });
+        trigger.addEventListener('change', reveal);
+
+        if (window.jQuery && jQuery(trigger).hasClass('select2')) {
+          jQuery(trigger).on('select2:select change', reveal);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.selection-section').forEach(initProgressive);
+      });
+    })();
+  </script>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.select2').select2({
+        placeholder: "Select Breed",
+        allowClear: true,
+        width: '100%'
+      });
+    });
+  </script>
+  <script>
+    const isUserSignedUp = localStorage.getItem("petbnb_user_signedup") === "true";
+const sitterWrap = document.getElementById("becomeSitterWrap");
+if (isUserSignedUp && sitterWrap) {
+  sitterWrap.style.display = "block";
+}
+  </script>
+
+  <script>
+    (function () {
+      const ROUTES = {
+        boarding: 'search-sitter-2.html',
+        walking: 'search-walkers-2.html',
+        training: '' // adjust if needed
+      };
+
+      const form = document.getElementById('unifiedSearchForm');
+      if (!form) return;
+
+      const service = document.getElementById('unifiedService');
+      const locationI = document.getElementById('unifiedLocation');
+      const fromI = document.getElementById('unifiedFrom');
+      const toI = document.getElementById('unifiedTo');
+     const walkDate  = document.getElementById('unifiedWalkDate');
+  const walkTime  = document.getElementById('unifiedWalkTime');
+  const petI      = document.getElementById('unifiedPet'); // may not exist
+
+      function updateFields() {
+        if (service.value === 'walking') {
+          dateRange.classList.add('d-none');
+          timeBlock.classList.remove('d-none');
+        } else {
+          timeBlock.classList.add('d-none');
+          dateRange.classList.remove('d-none');
+        }
+      }
+      service.addEventListener('change', updateFields);
+
+      // Defaults
+      const todayISO = new Date().toISOString().split('T')[0];
+      const tomorrowISO = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+      if (fromI) fromI.value = todayISO;
+      if (toI) toI.value = tomorrowISO;
+      if (walkDate) walkDate.value = todayISO;
+
+      // Submit -> redirect
+      form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  if (!service?.value){ service?.classList.add('is-invalid'); return; }
+  service.classList.remove('is-invalid');
+
+  if (!locationI?.value?.trim()){ locationI?.classList.add('is-invalid'); return; }
+  locationI.classList.remove('is-invalid');
+
+  const base   = ROUTES[service.value] || 'search.html';
+  const params = new URLSearchParams();
+
+  params.set('location', locationI.value.trim());
+
+  const petVal = petI?.value || '';
+  if (petVal) params.set('pet', petVal);
+
+  if (service.value === 'walking') {
+    const walkDateVal = walkDate?.value || '';
+    const walkTimeVal = walkTime?.value || '';
+    if (walkDateVal) params.set('date', walkDateVal);
+    if (walkTimeVal) params.set('time', walkTimeVal);
+  } else {
+    const fromVal = fromI?.value || '';
+    const toVal   = toI?.value || '';
+    if (fromVal) params.set('from', fromVal);
+    if (toVal)   params.set('to', toVal);
+  }
+
+  window.location.href = `${base}?${params.toString()}`;
+});
+    })();
+  </script>
+
+</body>
+
+</html>

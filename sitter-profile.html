@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sitter Profile</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <!-- (Optional) your shared site stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css"/>
+
+  <style>
+    body { background:#f8f9fa; }
+    .navbar-brand img { width:115px; height:70px; }
+    .profile-img { width:120px; height:120px; border-radius:50%; object-fit:cover; }
+    .card-soft { background:#fff; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,.06); }
+    .chip { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .75rem; border-radius:999px; border:1px solid #e9ecef; background:#f8f9fa; margin:.25rem .35rem .25rem 0; font-size:.92rem; }
+    .photo-thumb { width:100%; height:200px; object-fit:cover; border-radius:12px; }
+    .meta-label { font-size:.9rem; color:#6c757d; margin-bottom:.25rem; }
+    .sticky-lg-top { top:90px; }
+
+    /* Footer */
+    .site-footer { background:#f7f7f7; color:#1f2937; border-top:1px solid #e5e7eb; }
+    .site-footer a { color:#1f2937; text-decoration:none; }
+    .site-footer a:hover { text-decoration:underline; }
+    .footer-title { font-weight:700; font-size:1.125rem; margin-bottom:.75rem; }
+    .footer-list { list-style:none; padding-left:0; margin-bottom:0; }
+    .footer-list li { margin:.35rem 0; }
+    .newsletter-wrap .input-group { --bs-border-radius:999px; }
+    .newsletter-wrap .form-control { height:52px; border-radius:999px 0 0 999px !important; padding-left:16px; }
+    .newsletter-wrap .btn { height:52px; padding:0 22px; border-radius:0 999px 999px 0 !important; white-space:nowrap; }
+
+    /* Compact calendar */
+    .cal-card { max-width:420px; }
+    .legend-dot{display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #d0d7de;vertical-align:-2px;margin-right:6px}
+    .legend-dot.avail{background:#d1fae5;border-color:#10b981}
+    .legend-dot.busy{background:repeating-linear-gradient(45deg,#eee,#eee 4px,#e5e7eb 4px,#e5e7eb 8px);border-color:#cbd5e1}
+
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
+    .cal-grid .wk{font-weight:700;font-size:.85rem}
+    .cal-day{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;border-radius:10px;font-weight:600}
+    .cal-day.avail{background:#c7f9d0;border:1px solid #10b981;color:#065f46}
+    .cal-day.busy{background:repeating-linear-gradient(45deg,#f1f5f9,#f1f5f9 6px,#e5e7eb 6px,#e5e7eb 12px);border:1px solid #cbd5e1;color:#6b7280}
+    .cal-day.empty{background:transparent;border:1px dashed transparent}
+
+    @media (max-width:576px){
+      .newsletter-wrap .input-group { flex-wrap:wrap; }
+      .newsletter-wrap .form-control { border-radius:999px !important; margin-bottom:10px; }
+      .newsletter-wrap .btn { width:100%; border-radius:999px !important; }
+      .cal-card{max-width:100%}
+      .cal-grid{gap:.4rem}
+      .cal-day{border-radius:8px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item d-flex align-items-center"><i class="bi bi-search me-1"></i><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li class="nav-item d-flex align-items-center"><i class="bi bi-heart me-1"></i><a class="nav-link" href="contact-us.html">Contact</a></li>
+          <li class="nav-item d-flex align-items-center"><i class="bi bi-paw me-1"></i><a class="nav-link" href="#">FAQ's</a></li>
+          <li class="nav-item d-flex align-items-center"><i class="bi bi-paw me-1"></i><a class="nav-link" href="blog.html">Blog</a></li>
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Sign In</a></li>
+          <li class="nav-item d-flex align-items-center"><i class="bi bi-question-circle me-1"></i><a class="nav-link" href="contact-us.html">Help</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <a href="search_sitters.html" class="mb-3 d-inline-block text-primary">&larr; Back to search</a>
+
+    <!-- Header Info -->
+    <div class="d-flex align-items-center mb-4">
+      <img id="profileImage" src="" alt="Sitter" class="profile-img me-3"/>
+      <div>
+        <h3 id="sitterName" class="mb-1"></h3>
+        <p id="sitterLocation" class="mb-1 text-muted"></p>
+        <p class="mb-2">
+          <span style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#ratingModal">
+            <span id="sitterRating"></span>
+          </span>
+        </p>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-success" id="bookBoardingBtn">Book Boarding</button>
+          <button class="btn btn-outline-secondary" id="contactSitterBtn">Contact Sitter</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="row g-3 mb-4" id="photoGallery"></div>
+
+    <!-- Services + Map -->
+    <div class="row g-4">
+      <!-- Services / Hosting -->
+      <div class="col-lg-8">
+        <div class="card-soft p-4 h-100">
+          <h5 class="mb-3">Services Offered</h5>
+          <div id="sitterServices" class="mb-3"></div>
+
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="meta-label">Can Host</div>
+              <div id="canHost" class="fw-semibold">Dogs: All Sizes</div>
+            </div>
+            <div class="col-md-6">
+              <div class="meta-label">Max Pets</div>
+              <div id="maxPets" class="fw-semibold">3</div>
+            </div>
+          </div>
+
+          <hr class="my-4"/>
+
+          <h6 class="mb-3">What’s included with boarding/day care</h6>
+          <div id="includedChips">
+            <span class="chip"><i class="bi bi-house-heart"></i> Safe & clean home</span>
+            <span class="chip"><i class="bi bi-camera"></i> Daily photo/video updates</span>
+            <span class="chip"><i class="bi bi-bag-check"></i> Feeding per schedule</span>
+            <span class="chip"><i class="bi bi-emoji-smile"></i> Playtime & walks</span>
+            <span class="chip"><i class="bi bi-heart-pulse"></i> Basic meds (on request)</span>
+          </div>
+
+          <hr class="my-4"/>
+
+          <!-- Pricing quick view -->
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="card-soft p-3 h-100">
+                <div class="meta-label">Day Care (per hour)</div>
+                <div class="d-flex justify-content-between">
+                  <strong>₹<span id="priceHour">120</span></strong>
+                  <small class="text-muted">Hourly</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card-soft p-3 h-100">
+                <div class="meta-label">Overnight (per night)</div>
+                <div class="d-flex justify-content-between">
+                  <strong>₹<span id="priceNight">500</span></strong>
+                  <small class="text-muted">Per Night</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="col-lg-4">
+        <div class="card-soft h-100">
+          <div class="ratio ratio-4x3">
+            <iframe id="sitterMap" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-3">
+            <strong>Service area</strong>
+            <div id="mapAddress" class="text-muted small"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability + Pet Care Experience -->
+    <section class="row g-4 align-items-start my-4">
+      <!-- Availability -->
+      <div class="col-lg-5">
+        <div class="cal-card p-3 card-soft">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <h6 class="mb-1" id="calMonthLabel">—</h6>
+              <div class="small">
+                <span class="me-3"><span class="legend-dot avail"></span> Available</span>
+                <span><span class="legend-dot busy"></span> Not available</span>
+              </div>
+            </div>
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-secondary" id="calPrev" aria-label="Previous">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button class="btn btn-outline-secondary" id="calNext" aria-label="Next">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="cal-grid small text-center text-muted mb-2" id="calWeek"></div>
+          <div class="cal-grid" id="calGrid"></div>
+
+          <div class="mt-3 small text-muted" id="calUpdated">Calendar last updated just now</div>
+          <div class="mt-1 small">
+            Boarding Cancellation Policy:
+            <a href="#" data-bs-toggle="modal" data-bs-target="#cancelPolicyModal" class="text-decoration-underline">24 hours</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="col-lg-7">
+        <div class="card-soft p-4">
+          <h5 class="mb-3">Pet care experience</h5>
+          <p id="experienceText">
+            Hello! My name is <span id="sitterExpName"></span>. I provide full-time boarding/day care on weekdays, weekends, and holidays.
+            I tailor routines based on your pet’s energy level, offer basic medication administration and light grooming,
+            and maintain a clean, safe home environment. I’ve cared for multiple breeds and temperaments with structured schedules.
+          </p>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#experienceModal">Read more</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Read more modal -->
+    <div class="modal fade" id="experienceModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content p-3">
+          <div class="modal-header">
+            <h5 class="modal-title">Pet care experience</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Hello! My name is <span id="sitterExpNameModal"></span>. I provide full-time boarding/day care on weekdays, weekends, and holidays.
+              I tailor routines based on your pet’s energy level, offer basic medication administration and light grooming,
+              and maintain a clean, safe, and playful environment. I’m comfortable with puppies, seniors, and special needs.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-light w-100" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <section class="py-4">
+      <h4 class="mb-3">What Pet Parents Are Saying</h4>
+      <div class="row g-4" id="testimonialSection"></div>
+    </section>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer py-5">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-12 col-lg-5">
+          <div class="footer-title">All the pet care tips you need—right to your inbox</div>
+          <p class="text-muted">Receive the latest adorable pet photos, care tips, training advice, product recommendations, and more.</p>
+          <form class="newsletter-wrap mt-2" action="#" method="post">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email" required/>
+              <button class="btn btn-dark" type="submit">Sign up</button>
+            </div>
+          </form>
+          <p class="mt-3 mb-0 text-muted small">
+            By providing my email address, I consent to receive marketing communications and confirm I am 18+.
+            <a href="#" style="color:#0d6efd">Privacy Statement</a>.
+          </p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-title">Learn More</div>
+          <ul class="footer-list">
+            <li><a href="blog.html">Read Our Blog</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">RoverProtect</a></li>
+            <li><a href="#">Safety</a></li>
+          </ul>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-title">About Rover</div>
+          <div class="row g-0">
+            <div class="col-6 pe-4">
+              <ul class="footer-list mb-0">
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="#">Get the App</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Investor Relations</a></li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="footer-list mb-0">
+                <li><a href="privacy.html">Privacy<br/>Statement</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+            <div class="d-flex align-items-center gap-4 my-2">
+              <div class="footer-title mb-0">Need Help?</div>
+              <ul class="footer-list mb-0">
+                <li><a href="contact-us.html">Help Center</a></li>
+              </ul>
+            </div>
+            <div class="my-2">
+              <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="me-2"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-pinterest"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center text-md-end text-muted small">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Modals (Ratings + Cancel Policy + Booking + Status) ===== -->
+  <div class="modal fade" id="ratingModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title">Why this sitter is highly rated</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p id="ratingDetails" class="mb-4"></p>
+          <h6>Customer Reviews</h6>
+          <p>
+            <span id="starRatingDisplay"></span>
+            <strong id="avgRating">—</strong> out of 5
+          </p>
+          <p id="totalRatings">—</p>
+          <div id="ratingBars"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancellation Policy Modal -->
+  <div class="modal fade" id="cancelPolicyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title">Cancellation Policy</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <h6>Boarding/Day Care: 24 Hours</h6>
+          <ul>
+            <li>Full refund if cancelled 24 hours before the service start.</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-light w-100" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Modal (NEW) -->
+  <div class="modal fade" id="boardingModal" tabindex="-1" aria-labelledby="boardingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="boardingModalLabel">Book Boarding</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Price summary -->
+          <div class="card-soft p-3 mb-3">
+            <h6 class="mb-2">Nightly Pricing</h6>
+            <div class="d-flex justify-content-between align-items-center">
+              <span>Per Night</span>
+              <span>₹<strong id="nightlyPrice">—</strong></span>
+            </div>
+          </div>
+
+          <form id="boardingForm" action="javascript:void(0)">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="checkInInput">Check-in</label>
+                <input type="date" class="form-control" id="checkInInput" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="checkOutInput">Check-out</label>
+                <input type="date" class="form-control" id="checkOutInput" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="petsInput">No. of pets</label>
+                <select id="petsInput" class="form-select">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label d-block">Nights</label>
+                <div class="form-control bg-light" id="nightsDisplay">—</div>
+              </div>
+            </div>
+
+            <hr class="my-3"/>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <strong>Total</strong>
+              <strong>₹<span id="totalBoarding">—</span></strong>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="ownerNameInput">Your Name</label>
+              <input type="text" class="form-control" id="ownerNameInput" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="ownerPhoneInput">Phone Number</label>
+              <input type="tel" class="form-control" id="ownerPhoneInput" required />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Confirm Booking</button>
+          </form>
+
+          <div class="small text-muted mt-2">By confirming, we’ll notify the sitter to accept your request.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Bar (visible only with ?admin=1) -->
+<div id="adminBar" class="position-fixed bottom-0 start-50 translate-middle-x mb-3 d-none"
+     style="z-index:1080; max-width:960px; width:calc(100% - 2rem);">
+  <div class="alert alert-secondary shadow d-flex align-items-center justify-content-between mb-0">
+    <div>
+      <strong>Pending bookings</strong>
+      <span class="text-muted"> — for this sitter</span>
+      <div id="adminBarList" class="small mt-1"></div>
+    </div>
+    <div class="ms-3">
+      <button class="btn btn-success btn-sm me-2" id="adminAcceptBtn">Accept</button>
+      <button class="btn btn-outline-danger btn-sm" id="adminRejectBtn">Reject</button>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Booking Status Modal (NEW) -->
+  <div class="modal fade" id="boardingStatusModal" tabindex="-1" aria-labelledby="boardingStatusLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="boardingStatusLabel">Awaiting Sitter Confirmation</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="boardingStatusBody">
+          <div class="d-flex align-items-center">
+            <div class="spinner-border me-3" role="status" aria-hidden="true"></div>
+            <div>
+              <div id="boardingStatusLine" class="fw-semibold">Pending…</div>
+              <small class="text-muted">We’ve sent your request to the sitter. You’ll be notified here once they respond.</small>
+            </div>
+          </div>
+          <hr/>
+          <div id="boardingStatusDetails" class="small"></div>
+        </div>
+        <div class="modal-footer" id="boardingStatusFooter">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Scripts ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* ---------- helpers ---------- */
+    function renderStars(rating) {
+      const full = Math.floor(rating), half = rating % 1 >= 0.5, empty = 5 - full - (half ? 1 : 0);
+      return (
+        '<i class="bi bi-star-fill text-warning"></i>'.repeat(full) +
+        (half ? '<i class="bi bi-star-half text-warning"></i>' : '') +
+        '<i class="bi bi-star text-warning"></i>'.repeat(empty)
+      );
+    }
+    function getBookings() {
+      try { return JSON.parse(localStorage.getItem("bookings") || "[]"); } catch { return []; }
+    }
+    function setBookings(list) { localStorage.setItem("bookings", JSON.stringify(list)); }
+    function findBooking(id) { return getBookings().find(b => b.id === id); }
+    function putPendingCheckout(payload) {
+      localStorage.setItem("pendingCheckout", JSON.stringify(payload));
+    }
+    /* date utils */
+    function ymd(d) {
+      const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), da=String(d.getDate()).padStart(2,"0");
+      return `${y}-${m}-${da}`;
+    }
+    function eachDate(start, end) {
+      const out = [];
+      const d = new Date(start);
+      while (d < end) { out.push(ymd(d)); d.setDate(d.getDate()+1); }
+      return out;
+    }
+    function daysBetween(a, b) {
+      const A = new Date(a), B = new Date(b);
+      const ms = B - A;
+      return Math.max(0, Math.floor(ms/(1000*60*60*24)));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const sitter = JSON.parse(localStorage.getItem("selectedSitter") || "{}") || {};
+
+      // Header
+      document.getElementById("sitterName").textContent     = sitter.name || "";
+      document.getElementById("sitterLocation").textContent = sitter.location || "";
+      document.getElementById("profileImage").src           = sitter.photo || sitter.profileImage || sitter.image || "";
+      document.getElementById("sitterRating").innerHTML     = renderStars(sitter.rating || 4.6) + " " + (sitter.rating || 4.6);
+
+      // Experience names
+      const n = sitter.name || "Sitter";
+      const expNameEl  = document.getElementById("sitterExpName");
+      const expNameEl2 = document.getElementById("sitterExpNameModal");
+      if (expNameEl)  expNameEl.textContent  = n;
+      if (expNameEl2) expNameEl2.textContent = n;
+
+      // Map
+      const mapQ = encodeURIComponent(sitter.location || "");
+      document.getElementById("sitterMap").src = `https://www.google.com/maps?q=${mapQ}&output=embed`;
+      document.getElementById("mapAddress").textContent = sitter.location || "";
+
+      // Services
+      const defaultServices = [
+        "Day Care (home-based)",
+        "Overnight Boarding",
+        "Pick & Drop (on request)",
+        "Puppies under 1 year",
+        "Un-neutered male pets OK"
+      ];
+      const services = Array.isArray(sitter.services) && sitter.services.length ? sitter.services : defaultServices;
+      const svcWrap = document.getElementById("sitterServices");
+      svcWrap.innerHTML = "";
+      services.forEach(s => {
+        const el = document.createElement("span");
+        el.className = "chip";
+        el.innerHTML = `<i class="bi bi-check2-circle"></i>${s}`;
+        svcWrap.appendChild(el);
+      });
+
+      // Hosting meta & prices
+      document.getElementById("canHost").textContent = sitter.canHost || "Dogs: All Sizes";
+      document.getElementById("maxPets").textContent = sitter.maxPets || "3";
+      const priceHour  = Number(sitter.hourlyPrice || sitter.priceHour || 120);
+      const priceNight = Number(sitter.nightPrice  || sitter.priceNight || 500);
+      document.getElementById("priceHour").textContent  = priceHour;
+      document.getElementById("priceNight").textContent = priceNight;
+
+      // Gallery
+      const gallery = document.getElementById("photoGallery");
+      const photos = (Array.isArray(sitter.photos) && sitter.photos.length) ? sitter.photos : [
+        "./assets/dog-hosters-imgs/sample-host1.jpg",
+        "./assets/dog-hosters-imgs/sample-host2.jpg",
+        "./assets/dog-hosters-imgs/sample-host3.jpg",
+      ];
+      photos.forEach(src => {
+        const col = document.createElement("div");
+        col.className = "col-md-4";
+        col.innerHTML = `<img src="${src}" class="photo-thumb" alt="">`;
+        gallery.appendChild(col);
+      });
+
+      // Testimonials
+      const testimonials = Array.isArray(sitter.reviews) && sitter.reviews.length ? sitter.reviews : [
+        { name:"Priya Thakur", location:"Andheri",  comment:"My pup settled quickly, got regular updates!", rating:4.5, photo:"https://i.pravatar.cc/80?img=5" },
+        { name:"Rupam",        location:"Bandra",   comment:"Clean home, caring sitter. Will rebook.",     rating:5,   photo:"https://i.pravatar.cc/80?img=12" },
+        { name:"Pranav",       location:"Bavdhan",  comment:"Timely walks and playtime. Great!",           rating:4,   photo:"https://i.pravatar.cc/80?u=pranav_bavdhan" },
+      ];
+      const tWrap = document.getElementById("testimonialSection");
+      testimonials.forEach(t => {
+        const avatar = t.photo || `https://i.pravatar.cc/80?u=${encodeURIComponent(t.name + "_" + (t.location||""))}`;
+        const div = document.createElement("div");
+        div.className = "col-md-4";
+        div.innerHTML = `
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src="${avatar}" alt="${t.name}" width="56" height="56" class="rounded-circle me-3" loading="lazy">
+                <div>
+                  <h6 class="mb-0">${t.name}</h6>
+                  <small class="text-muted">${t.location || ""}</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                ${renderStars(t.rating || 5)}
+                <small class="text-muted ms-2">${(t.rating && t.rating.toFixed) ? t.rating.toFixed(1) : (t.rating || "5.0")}</small>
+              </div>
+              <p class="mb-0">“${t.comment || ""}”</p>
+            </div>
+          </div>`;
+        tWrap.appendChild(div);
+      });
+
+      // Rating modal content
+      document.getElementById("ratingDetails").textContent =
+        sitter.ratingNotes || "Known for cleanliness, consistent updates, and gentle handling of pets.";
+      const avg = sitter.rating || 4.6;
+      document.getElementById("avgRating").textContent   = avg.toFixed ? avg.toFixed(1) : avg;
+      document.getElementById("totalRatings").textContent = (sitter.totalRatings || 300) + " global ratings";
+      document.getElementById("starRatingDisplay").innerHTML = renderStars(avg);
+      const ratingBars = document.getElementById("ratingBars");
+      const dist = sitter.ratingDistribution || { 5: 82, 4: 13, 3: 3, 2: 1, 1: 1 };
+      Object.entries(dist).forEach(([k, p]) => {
+        const bar = document.createElement("div");
+        bar.className = "mb-2 d-flex align-items-center";
+        bar.innerHTML = `
+          <span style="width:50px;">${k} star</span>
+          <div class="flex-grow-1 bg-light mx-2" style="height:10px;border-radius:5px;">
+            <div style="width:${p}%;height:100%;background-color:#ff9900;border-radius:5px;"></div>
+          </div>
+          <span style="width:30px;">${p}%</span>`;
+        ratingBars.appendChild(bar);
+      });
+
+      // Availability calendar (uses sitter.unavailable*)
+      (function initCalendar(){
+        const week = ["S","M","T","W","T","F","S"];
+        const weekWrap = document.getElementById("calWeek");
+        const grid = document.getElementById("calGrid");
+        const lbl  = document.getElementById("calMonthLabel");
+        const prevBtn = document.getElementById("calPrev");
+        const nextBtn = document.getElementById("calNext");
+        const updated = document.getElementById("calUpdated");
+        if (!weekWrap || !grid) return;
+
+        weekWrap.innerHTML = week.map(w => `<div class="wk">${w}</div>`).join("");
+
+        // Pull config from sitter object (optionally saved by your admin)
+        const UNAVAILABLE = sitter.unavailableDates || ["2025-10-02"];
+        const UNAVAILABLE_RANGES = sitter.unavailableRanges || []; // e.g., [["2025-10-20","2025-10-22"]]
+        const WEEKLY_OFFS = sitter.weeklyOffs || [0]; // Sundays off
+
+        // Build a Set for busy checks
+        const busySet = new Set(UNAVAILABLE);
+        function addRange(s, e) {
+          const start = new Date(s), end = new Date(e);
+          for (let d = new Date(start); d <= end; d.setDate(d.getDate()+1)) {
+            busySet.add(ymd(d));
+          }
+        }
+        UNAVAILABLE_RANGES.forEach(([s,e]) => addRange(s,e));
+
+        // Expose for booking validation
+        window.__sitterBusyCheck = function(dateStr){
+          const d = new Date(dateStr);
+          return busySet.has(ymd(d)) || WEEKLY_OFFS.includes(d.getDay());
+        };
+
+        let view = new Date();
+        view.setDate(1);
+
+        function label(d){ return d.toLocaleString("en-US",{month:"long",year:"numeric"}); }
+
+        function render(){
+          lbl.textContent = label(view);
+          grid.innerHTML = "";
+          const firstDow = new Date(view.getFullYear(), view.getMonth(), 1).getDay();
+          const dim = new Date(view.getFullYear(), view.getMonth()+1, 0).getDate();
+
+          for (let i=0; i<firstDow; i++) {
+            const e = document.createElement("div"); e.className="cal-day empty"; grid.appendChild(e);
+          }
+          for (let d=1; d<=dim; d++){
+            const cell = document.createElement("div");
+            const dateObj = new Date(view.getFullYear(), view.getMonth(), d);
+            const isBusy = window.__sitterBusyCheck(ymd(dateObj));
+            cell.className = "cal-day " + (isBusy ? "busy" : "avail");
+            cell.textContent = d;
+            grid.appendChild(cell);
+          }
+          if (updated) updated.textContent = "Calendar last updated just now";
+        }
+
+        prevBtn?.addEventListener("click", () => { view.setMonth(view.getMonth()-1); render(); });
+        nextBtn?.addEventListener("click", () => { view.setMonth(view.getMonth()+1); render(); });
+        render();
+      })();
+
+      /* ---------- Contact button ---------- */
+      document.getElementById("contactSitterBtn").addEventListener("click", () => {
+        const name = sitter.name ? `?subject=Inquiry for ${encodeURIComponent(sitter.name)}` : "";
+        window.location.href = "mailto:hello@example.com" + name; // replace with your flow / modal
+      });
+
+      /* ---------- Booking modal wiring ---------- */
+      const bookBtn = document.getElementById("bookBoardingBtn");
+      bookBtn.type = "button";
+      bookBtn.setAttribute("data-bs-toggle", "modal");
+      bookBtn.setAttribute("data-bs-target", "#boardingModal");
+
+      // Fill nightly price in modal
+      document.getElementById("nightlyPrice").textContent = priceNight;
+
+      const checkInInput  = document.getElementById("checkInInput");
+      const checkOutInput = document.getElementById("checkOutInput");
+      const petsInput     = document.getElementById("petsInput");
+      const nightsDisplay = document.getElementById("nightsDisplay");
+      const totalBoarding = document.getElementById("totalBoarding");
+
+      // min dates: today/tomorrow
+      const today = new Date(); today.setHours(0,0,0,0);
+      const minIn  = ymd(today);
+      const minOut = ymd(new Date(today.getFullYear(), today.getMonth(), today.getDate()+1));
+      checkInInput.min = minIn;
+      checkOutInput.min = minOut;
+
+      function updateTotals() {
+        const inVal  = checkInInput.value;
+        const outVal = checkOutInput.value;
+        if (!inVal || !outVal) { nightsDisplay.textContent = "—"; totalBoarding.textContent = "—"; return; }
+        const nights = daysBetween(inVal, outVal);
+        if (nights <= 0) { nightsDisplay.textContent = "0"; totalBoarding.textContent = "—"; return; }
+
+        // validate availability (no busy day inside [checkIn, checkOut))
+        const span = eachDate(new Date(inVal), new Date(outVal)); // excludes checkout day (common UX)
+        const anyBusy = span.some(ds => window.__sitterBusyCheck ? window.__sitterBusyCheck(ds) : false);
+        nightsDisplay.textContent = String(nights) + (anyBusy ? " (⚠️ contains unavailable day)" : "");
+        const pets = Number(petsInput.value || 1);
+        const total = nights * priceNight * pets;
+        totalBoarding.textContent = anyBusy ? "—" : total.toString();
+      }
+      checkInInput.addEventListener("change", () => {
+        // adjust checkout min >= checkin+1
+        if (checkInInput.value) {
+          const d = new Date(checkInInput.value);
+          d.setDate(d.getDate()+1);
+          checkOutInput.min = ymd(d);
+          if (checkOutInput.value && new Date(checkOutInput.value) <= new Date(checkInInput.value)) {
+            checkOutInput.value = ymd(d);
+          }
+        }
+        updateTotals();
+      });
+      checkOutInput.addEventListener("change", updateTotals);
+      petsInput.addEventListener("change", updateTotals);
+
+      // Submit booking → pending → status modal polling
+      const statusModal = new bootstrap.Modal(document.getElementById("boardingStatusModal"));
+      const boardingForm = document.getElementById("boardingForm");
+      const statusBody   = document.getElementById("boardingStatusBody");
+      const statusLine   = document.getElementById("boardingStatusLine");
+      const statusTitle  = document.getElementById("boardingStatusLabel");
+      const statusDetails= document.getElementById("boardingStatusDetails");
+      const statusFooter = document.getElementById("boardingStatusFooter");
+      let activeBookingId = null, pollTimer = null;
+
+      function renderBoardingStatus(booking) {
+        const spinner = statusBody.querySelector(".spinner-border");
+        statusDetails.innerHTML = `
+          <div><strong>Sitter:</strong> ${booking.sitterName}</div>
+          <div><strong>Check-in:</strong> ${booking.checkIn}</div>
+          <div><strong>Check-out:</strong> ${booking.checkOut}</div>
+          <div><strong>Nights:</strong> ${booking.nights}</div>
+          <div><strong>Pets:</strong> ${booking.pets}</div>
+          <div><strong>Total:</strong> ₹${booking.paymentAmount}</div>
+          <div><strong>Your name:</strong> ${booking.ownerName}</div>
+          <div><strong>Your phone:</strong> ${booking.phone}</div>
+        `;
+
+        if (booking.status === "pending") {
+          statusTitle.textContent = "Awaiting Sitter Confirmation";
+          statusLine.textContent = "Pending…";
+          spinner.classList.remove("d-none");
+        }
+        if (booking.status === "confirmed") {
+          statusTitle.textContent = "Boarding Confirmed 🎉";
+          statusLine.textContent = "The sitter accepted your booking!";
+          spinner.classList.add("d-none");
+          if (!statusFooter.querySelector("#toPaymentBtn")) {
+            const btn = document.createElement("button");
+            btn.id = "toPaymentBtn";
+            btn.className = "btn btn-success ms-auto";
+            btn.textContent = "Proceed to Payment";
+            btn.addEventListener("click", () => {
+              putPendingCheckout({
+                bookingId: booking.id,
+                sitterName: booking.sitterName,
+                checkIn: booking.checkIn,
+                checkOut: booking.checkOut,
+                nights: booking.nights,
+                pets: booking.pets,
+                amount: booking.paymentAmount
+              });
+              window.location.href = "checkout.html";
+            });
+            statusFooter.appendChild(btn);
+          }
+        }
+        if (booking.status === "rejected") {
+          statusTitle.textContent = "Booking Rejected";
+          statusLine.textContent = "The sitter can’t take these dates.";
+          spinner.classList.add("d-none");
+        }
+      }
+      function startPolling(id) {
+        if (pollTimer) clearInterval(pollTimer);
+        pollTimer = setInterval(() => {
+          const b = findBooking(id);
+          if (!b) return;
+          renderBoardingStatus(b);
+          if (b.status !== "pending") { clearInterval(pollTimer); pollTimer = null; }
+        }, 1500);
+      }
+      window.addEventListener("storage", (e) => {
+        if (!activeBookingId) return;
+        if (e.key === "booking_status_" + activeBookingId) {
+          const b = findBooking(activeBookingId);
+          if (b) renderBoardingStatus(b);
+        }
+      });
+
+      boardingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const checkIn  = checkInInput.value;
+        const checkOut = checkOutInput.value;
+        const pets     = Number(petsInput.value || 1);
+        const owner    = (document.getElementById("ownerNameInput").value || "").trim();
+        const phone    = (document.getElementById("ownerPhoneInput").value || "").trim();
+
+        // basic validations
+        if (!checkIn || !checkOut || !owner || !phone) {
+          return alert("Please fill all fields.");
+        }
+        const nights = daysBetween(checkIn, checkOut);
+        if (nights <= 0) return alert("Check-out must be after check-in.");
+
+        // availability validation
+        const span = eachDate(new Date(checkIn), new Date(checkOut));
+        const anyBusy = span.some(ds => window.__sitterBusyCheck ? window.__sitterBusyCheck(ds) : false);
+        if (anyBusy) return alert("Selected dates include an unavailable day. Please choose different dates.");
+
+        const amount = nights * priceNight * pets;
+
+        const booking = {
+          id: "bk_" + Date.now(),
+          type: "boarding",
+          sitterId: sitter.id || sitter.name,
+          sitterName: sitter.name || "Sitter",
+          checkIn, checkOut, nights, pets,
+          ownerName: owner, phone,
+          status: "pending",
+          createdAt: Date.now(),
+          priceNight,
+          paymentAmount: amount
+        };
+        const list = getBookings(); list.push(booking); setBookings(list);
+        activeBookingId = booking.id;
+
+        // close booking modal, open status
+        const modalInstance = bootstrap.Modal.getInstance(document.getElementById("boardingModal")) || new bootstrap.Modal(document.getElementById("boardingModal"));
+        modalInstance.hide();
+        renderBoardingStatus(booking);
+        statusModal.show();
+        startPolling(booking.id);
+      });
+
+      /* ===== End booking flow ===== */
+    });
+  </script>
+  
+</body>
+</html>

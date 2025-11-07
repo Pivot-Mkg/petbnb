@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PetBnB Blog</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for footer social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <style>
+      :root {
+        --footer-bg: #f9f5ee;
+        --green: #12a167; /* Rover-like green */
+        --mint: #e7f6f8; /* pale blue/green panel */
+        --ink: #0f172a;
+        --muted: #475569;
+        --footer-text: #1f2937;
+        --link: #0d6efd;
+      }
+      body {
+        color: var(--ink);
+      }
+
+          .navbar-brand img {
+    /* min-height: 20%; */
+    width: 115px;
+    height: 70px;
+}
+      .page {
+        max-width: 1180px;
+      }
+
+      /* HERO SPLIT */
+      .hero-wrap {
+        margin-top: 18px;
+      }
+      .hero-img {
+        position: relative;
+        height: 100%;
+        background: #f3f4f6 center/cover no-repeat;
+        border: 0;
+      }
+      .hero-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #F4A9A3;
+        color: #F7EBDD;
+        padding: 28px 28px 30px;
+      }
+      .hero-eyebrow {
+        font-size: 0.9rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        opacity: 0.95;
+      }
+      .hero-title {
+        font-weight: 800;
+        font-size: 2.35rem;
+        line-height: 1.15;
+        margin: 0.35rem 0 1rem;
+      }
+      .hero-excerpt {
+        font-size: 1.05rem;
+        opacity: 0.95;
+        max-width: 52ch;
+      }
+
+      /* LATEST STORIES */
+      .stories {
+        background: var(--mint);
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 22px;
+        height: 100%;
+      }
+      .stories h3 {
+        color: #E7148C; /* darker green */
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+      .story {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 14px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .story:last-child {
+        border-bottom: 0;
+      }
+      .story img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 2px;
+      }
+      .story .cat {
+        font-size: 0.8rem;
+        font-weight: 800;
+        color: #E7148C;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+      }
+      .story a {
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.15rem;
+        line-height: 1.25;
+      }
+      .story a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 992px) {
+        .hero-title {
+          font-size: 1.9rem;
+        }
+        .story {
+          grid-template-columns: 100px 1fr;
+        }
+        .story img {
+          width: 100px;
+          height: 70px;
+        }
+        .hero-img {
+  position: relative;
+  /* height: 100%;  <-- remove this */
+  min-height: 420px;          /* desktop baseline */
+  background: #f3f4f6 center/cover no-repeat;
+  border: 0;
+}
+
+.stories {
+  background: var(--mint);
+  border-left: 1px solid rgba(0,0,0,.05);
+  padding: 22px;
+  /* height: 100%;  <-- remove this */
+}
+
+.hero-card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #F4A9A3;
+    color: #F7EBDD;
+    padding: 8px 40px 0px;
+}
+      }
+
+      @media (max-width: 600px) {
+  .hero-card {
+    padding: 16px 18px 20px !important; /* smaller padding */
+  }
+
+  .hero-title {
+    font-size: 1.4rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .hero-excerpt {
+    font-size: 0.9rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Make hero image section more compact */
+  .hero-img {
+    min-height: 280px !important;
+    background-position: center center;
+  }
+
+  /* Reduce Latest Stories padding */
+  .stories {
+    padding: 14px !important;
+  }
+}
+
+
+      .newsletter-section {
+        background: #fffaf3;
+      }
+
+      .newsletter-card-section{
+
+      }
+      .newsletter-section h2 {
+        color: #111827;
+      }
+      .newsletter-section .btn-primary {
+        background: #2563eb;
+        border: none;
+        border-radius: 999px;
+      }
+      .newsletter-section .btn-primary:hover {
+        background: #1d4ed8;
+      }
+
+      .popular-posts h2 {
+        font-size: 1.75rem;
+        color: #E7148C;
+      }
+      .pop-list {
+        counter-reset: num;
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      .pop-list li {
+        counter-increment: num;
+        margin: 0 0 18px 0;
+        line-height: 1.35;
+      }
+      .pop-list li::before {
+        content: counter(num) ". ";
+        font-weight: 800;
+        color: #0f172a;
+        margin-right: 0.25rem;
+      }
+      .pop-list a {
+        color: #1f3a8a;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .pop-list a:hover {
+        text-decoration: underline;
+      }
+
+      .pop-card {
+        display: block;
+        text-decoration: none;
+        color: #0f172a;
+      }
+      .pop-card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+      }
+      .pop-card .title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin: 10px 0 0;
+        line-height: 1.25;
+      }
+      .pop-card:hover .title {
+        text-decoration: underline;
+      }
+
+      .back-top {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        display: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .back-top:hover {
+        filter: brightness(0.95);
+      }
+
+
+      @media (max-width: 768px) {
+        .pop-card img {
+          height: 160px;
+        }
+      }
+
+      /* ===== Footer styles from index.html ===== */
+      .site-footer {
+        background-color: var(--footer-bg);
+        color: var(--footer-text);
+        border-top: 1px solid #e5e7eb;
+      }
+      .site-footer a {
+        color: var(--footer-text);
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      .footer-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+      .footer-list li {
+        margin: 0.35rem 0;
+      }
+      .subtext {
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+      .smallprint {
+        color: #6b7280;
+        font-size: 0.9rem;
+      }
+
+      /* Newsletter polish */
+      .newsletter-wrap .input-group {
+        --bs-border-radius: 999px;
+      }
+      .newsletter-wrap .form-control {
+        height: 52px;
+        border-radius: 999px 0 0 999px !important;
+        padding-left: 16px;
+      }
+      .newsletter-wrap .btn {
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 0 999px 999px 0 !important;
+        white-space: nowrap;
+      }
+      @media (max-width: 576px) {
+        .newsletter-wrap .input-group {
+          flex-wrap: wrap;
+        }
+        .newsletter-wrap .form-control {
+          border-radius: 999px !important;
+          margin-bottom: 10px;
+        }
+        .newsletter-wrap .btn {
+          width: 100%;
+          border-radius: 999px !important;
+        }
+      }
+
+      .privacy-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: white;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.9rem;
+        color: #374151;
+      }
+      .privacy-pill i {
+        color: #2563eb;
+      }
+      .social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e5e7eb;
+        margin-right: 0.5rem;
+      }
+      .social a:hover {
+        background: #d1d5db;
+      }
+
+      /* About Rover two-column split */
+      .about-grid .footer-list li {
+        margin: 0.55rem 0;
+      }
+      .about-grid .col-6:first-child {
+        padding-right: 28px;
+      }
+
+      .btn:hover {
+        color: white !important;
+        background-color: #ea624e !important;
+        border-color: var(--bs-btn-hover-border-color);
+      }
+
+      .newsletter-card-section {
+    background-color: #F7EBDD!important;
+}
+
+/* 📱 Show static hero content below image on mobile */
+.hero-card-mobile {
+  display: none; /* hidden by default */
+}
+
+/* For desktop: show figcaption overlay, hide the mobile copy */
+@media (min-width: 501px) {
+  .hero-card {
+    display: block;
+  }
+  .hero-card-mobile {
+    display: none;
+  }
+}
+
+/* For mobile (≤500px): hide overlay and show standalone div */
+@media (max-width: 500px) {
+  .hero-card {
+    display: none !important; /* hide overlay inside figure */
+  }
+
+  .hero-img {
+        min-height: 100% !important;
+        background-position: center center;
+    }
+
+  /* Show the duplicate hero card below image */
+  .hero-card-mobile {
+    display: block;
+    background-color: #F4A9A3;
+    color: #F7EBDD;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-top: 10px;
+    position: relative; /* ensures it stays in normal flow */
+    z-index: 1; /* prevent overlap */
+  }
+
+  .hero-card-mobile .hero-title {
+    font-size: 1.3rem;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .hero-card-mobile .hero-excerpt {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+    </style>
+
+  </head>
+  <body>
+   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      <!-- <h1>PetBnB</h1> -->
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-search me-1"></i>
+          <a class="nav-link" href="about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-heart me-1"></i>
+          <a class="nav-link" href="contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-question-circle me-1"></i>
+          <a class="nav-link" href="contact-us.html">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <main class="container page hero-wrap">
+      <div class="row g-3">
+        <!-- Left: Featured article with image + green overlay card -->
+        <div class="col-12 col-lg-8">
+          <figure
+            class="hero-img rounded-1 shadow-sm"
+            style="background-image: url('assets/images/blog-background.jpg')"
+          >
+            <figcaption class="hero-card rounded-top-0 rounded-bottom-1">
+              <div class="hero-eyebrow">New Pet</div>
+              <h1 class="hero-title">The Cost of Dog Parenthood in 2025</h1>
+              <p class="hero-excerpt">
+                It’s no secret that the cost of living goes up each year. In
+                2025, the cost-of-living adjustment (COLA) rose by 2.5%. But
+                have you thought about how much this affects the costs of
+                raising your...
+              </p>
+            </figcaption>
+          </figure>
+
+          <!-- Duplicate hero card for mobile -->
+<div class="hero-card-mobile rounded-1 shadow-sm">
+  <div class="hero-eyebrow">New Pet</div>
+  <h1 class="hero-title">The Cost of Dog Parenthood in 2025</h1>
+  <p class="hero-excerpt">
+    It’s no secret that the cost of living goes up each year. In 2025,
+    the cost-of-living adjustment (COLA) rose by 2.5%. But have you
+    thought about how much this affects the costs of raising your...
+  </p>
+</div>
+
+
+          
+        </div>
+
+        <!-- Right: Latest stories list -->
+        <aside class="col-12 col-lg-4">
+          <section class="stories rounded-1 shadow-sm">
+            <h3 class="h4">Latest stories</h3>
+
+            <article class="story">
+              <img
+                src="assets/images/blogs/new-pet-img.jpg"
+                alt="Cat supplies"
+              />
+              <div>
+                <div class="cat">New Pet</div>
+                <a
+                  href="blog-1-Why-Pet-Parents-Are-Choosing-Local-Hosts-Over.html"
+                  title="The Cost of Cat Parenthood in 2025"
+                  >Why Pet Parents Are Choosing Local Hosts Over</a
+                >
+              </div>
+            </article>
+
+            <article class="story">
+              <img
+                src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=600&auto=format&fit=crop"
+                alt="Suitcase with cats"
+              />
+              <div>
+                <div class="cat">Travel</div>
+                <a
+                  href="blog-2-What-Every-Pet-Parent-Should-Check-Before-Leaving-Their-Pet.html"
+                  title="What Every Pet Parent Should Check Before Leaving Their Pet"
+                  >What Every Pet Parent Should Check Before Leaving Their Pet</a
+                >
+              </div>
+            </article>
+
+            <article class="story">
+              <img
+                src="assets/images/blogs/travel-2.jpg"
+                alt="Dog and cat on sofa"
+              />
+              <div>
+                <div class="cat">Travel</div>
+                <a
+                  href="blog-3How-Technology-Is-Redefining-Trust-Safety.html"
+                  title="How Technology Is Redefining Trust, Safety"
+                >
+                  How Technology Is Redefining Trust, Safety
+                </a>
+              </div>
+            </article>
+          </section>
+        </aside>
+      </div>
+
+      
+
+      <!-- Popular Posts -->
+      <section class="popular-posts my-5">
+        <div class="container px-3 px-md-4">
+          <h2 class="fw-bold mb-4">Popular Posts</h2>
+
+          <div class="row g-4">
+            <!-- LEFT: Numbered list -->
+            <aside class="col-12 col-lg-4">
+              <ol class="pop-list">
+                <li>
+                  <a href="#"
+                    >Why Do Dogs Sniff Around & Take Forever to Poop?</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    >Why Does My Dog Run Away Every Chance They Get?</a
+                  >
+                </li>
+                <li>
+                  <a href="#"
+                    >Why Is My Dog Chewing Their Paws? Causes & How to Help</a
+                  >
+                </li>
+                <li><a href="#">The Ultimate Guide to Walking Your Dog</a></li>
+            
+              </ol>
+            </aside>
+
+            <!-- RIGHT: Cards grid -->
+            <div class="col-12 col-lg-8">
+              <div class="row g-4">
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-10.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Building a Culture of Care, Connection and Comfort in Pet Boarding and Hosting</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-9.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Weekend Getaways? Here’s How to Find a Reliable Pet Host Near You in Minutes</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-8.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Why Every Pet Deserves a Second Home: The Emotional Side of Pet Boarding</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-7.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">How AI and GPS Are Changing the Way Pet Parents Monitor Their Pets While Away</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-6.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Verified, Loved and Reviewed: The Rise of India’s Superhosts for Pets</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-5.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Paws and Staycations: How Working Professionals Are Managing Pet Care During Travel</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-4.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">Safety First: Key Features of a Reliable and Trusted Pet Sitter Profile</h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-3.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">
+                      Tech Meets Tails: How Digital Platforms Are Simplifying Pet Hosting in India
+                    </h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-2.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">
+                      Beyond Kennels: Why Home-Based Pet Boarding Is Winning Hearts Across India
+                    </h3>
+                  </a>
+                </article>
+
+                <article class="col-12 col-md-6 col-xl-4">
+                  <a class="pop-card" href="./blogs/blog-1.html">
+                    <img
+                      src="https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=900&auto=format&fit=crop"
+                      alt=""
+                    />
+                    <h3 class="title">
+                      From Guests to Guardians: How Pet Hosts Are Building a New Kind of Community
+                    </h3>
+                  </a>
+                </article>
+
+                              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back to top -->
+        <button
+          id="backTop"
+          class="back-top"
+          aria-label="Back to top"
+          fdprocessedid="dm672"
+        >
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </section>
+    </main>
+
+    <!-- ======= FOOTER from index.html ======= -->
+    <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Newsletter -->
+          <div class="col-12 col-lg-5">
+            <div class="footer-title head-text">
+              All the pet care tips you need—right to your inbox
+            </div>
+            <p class="subtext">
+              Receive the latest adorable pet photos, care tips, training
+              advice, product recommendations, and more.
+            </p>
+
+            <form class="newsletter-wrap mt-2" action="#" method="post">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email…"
+                  aria-label="Your email"
+                  required
+                />
+                <button class="btn btn-outline-dark" type="submit">
+                  Sign up
+                </button>
+              </div>
+            </form>
+
+            <p class="smallprint mt-3 mb-0">
+              By providing my email address, I consent to receive marketing
+              communications from PetBnB.com and its affiliates and confirm that
+              I am 18 years of age or older. I can unsubscribe at any time.
+              <a style="color: var(--link)" href="privacy.html"
+                >Privacy Statement</a
+              >
+            </p>
+          </div>
+
+          <!-- Learn More -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-title head-text">Learn More</div>
+            <ul class="footer-list">
+              <li><a href="blog.html">Read Our Blog</a></li>
+            </ul>
+            <div class="mt-3">
+              <a class="privacy-pill" href="privacy.html"
+                ><i class="fa-solid fa-check"></i> Your privacy choices</a
+              >
+            </div>
+          </div>
+
+          <!-- About PetBnB -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-title head-text">About Us</div>
+
+            <div class="row about-grid g-0">
+              <!-- Left column -->
+              <div class="col-6 pe-4">
+                <ul class="footer-list mb-0">
+                  <li><a href="about-us.html">About Us</a></li>
+                  <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+
+              <!-- Right column -->
+              <div class="col-6">
+                <ul class="footer-list mb-0">
+                  <li>
+                    <a href="privacy.html">Privacy<br />Statement</a>
+                  </li>
+                  <li><a href="terms-of-service.html">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Need Help -->
+          <div class="col-12">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
+            >
+              <div class="d-flex align-items-center gap-4 my-2">
+                <div class="footer-title mb-0 services-selection-section-title">
+                  Need Help?
+                </div>
+                <ul class="footer-list mb-0">
+                  <li><a href="#">FAQ's</a></li>
+                </ul>
+              </div>
+
+              <div class="social my-2">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="linkedin"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#" aria-label="Pinterest"
+                  ><i class="fa-brands fa-pinterest-p"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="smallprint text-center text-md-end mt-3">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <!-- ======= /FOOTER ======= -->
+
+    <!-- Tiny script for Back to top -->
+    <script>
+      const backTop = document.getElementById("backTop");
+      window.addEventListener("scroll", () => {
+        backTop.style.display = window.scrollY > 400 ? "inline-flex" : "none";
+      });
+      backTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+    </script>
+
+    
+  </body>
+</html>

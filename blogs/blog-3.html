@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    How Digital Platforms Are Simplifying Pet Hosting in India
+    </title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+     <link rel="stylesheet" href="../assets/css/style.css">
+
+      <link rel="stylesheet" href="../assets/blog.css">
+
+    <style>
+      :root {
+        --green: #10b981;
+        --mint: #eaf8f0;
+        --mint-border: #d7efdf;
+        --toc-link: #1b5e7a;
+
+        /* Footer palette */
+        --footer-bg: #f7f7f7;
+        --footer-text: #1f2937;
+        --muted: #6b7280;
+        --link: #2563eb;
+      }
+
+         .navbar-brand img {
+    /* min-height: 20%; */
+    width: 115px;
+    height: 70px;
+}
+
+      /* Hero */
+      .hero-img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .hero-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-top: 1rem;
+      }
+      .hero-meta {
+        color: #6b7280;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Left: Popular posts list */
+      .popside {
+        counter-reset: item;
+      }
+      .popside li {
+        counter-increment: item;
+        margin: 0.65rem 0;
+      }
+      .popside li::before {
+        content: counter(item) ". ";
+        font-weight: 700;
+        color: #0f172a;
+        margin-right: 0.25rem;
+      }
+
+      /* Left: Ad */
+      .ad-box {
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        background: #fff;
+        width: 100%;
+      }
+      .ad-box .ad-brand {
+        font-weight: 900;
+        color: #12a167;
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+      }
+      .ad-box .ad-headline {
+        font-weight: 800;
+        font-size: 1.35rem;
+        line-height: 1.25;
+        margin: 10px 0 14px;
+      }
+      .ad-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      /* TOC (right column) */
+      .toc-box {
+        background: var(--mint);
+        border: 1px solid var(--mint-border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+      }
+      .toc-topbar {
+        height: 8px;
+        background: var(--green);
+      }
+      .toc-inline {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+      }
+      .toc-inline li {
+        position: relative;
+      }
+      .toc-inline li:not(:last-child)::after {
+        content: "•";
+        margin-left: 0.5rem;
+        margin-right: 0.25rem;
+        color: #2b6b74;
+        opacity: 0.9;
+      }
+      .toc-inline a {
+        color: var(--toc-link);
+        text-decoration: underline;
+        white-space: nowrap;
+      }
+      .toc-inline a:hover,
+      .toc-inline a.active {
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      /* Article body */
+      .article-body {
+        max-width: 980px;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Back-to-top */
+      .back-top {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: #16a34a;
+        color: #fff;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        display: none;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+      .back-top:hover {
+        background: #0f8a5b;
+        transform: translateY(-3px);
+      }
+
+   /* Footer (borrowed & polished from index.html) */
+      .site-footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        border-top: 1px solid #e5e7eb;
+      }
+      .site-footer a {
+        color: var(--footer-text);
+        text-decoration: none;
+      }
+      .site-footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-title {
+        font-weight: 700;
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+      }
+      .footer-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+      }
+      .footer-list li {
+        margin: 0.35rem 0;
+      }
+
+      /* Newsletter input group (pill) */
+      .newsletter-wrap .input-group {
+        --bs-border-radius: 999px;
+      }
+      .newsletter-wrap .form-control {
+        height: 52px;
+        border-radius: 999px 0 0 999px !important;
+        padding-left: 16px;
+      }
+      .newsletter-wrap .btn {
+        height: 52px;
+        padding: 0 22px;
+        border-radius: 0 999px 999px 0 !important;
+        white-space: nowrap;
+      }
+      @media (max-width: 576px) {
+        .newsletter-wrap .input-group {
+          flex-wrap: wrap;
+        }
+        .newsletter-wrap .form-control {
+          border-radius: 999px !important;
+          margin-bottom: 10px;
+        }
+        .newsletter-wrap .btn {
+          width: 100%;
+          border-radius: 999px !important;
+        }
+      }
+
+      .privacy-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        background: #fff;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.9rem;
+        color: #374151;
+      }
+
+      .social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #e5e7eb;
+        margin-right: 0.5rem;
+      }
+      .social a:hover {
+        background: #d1d5db;
+      }
+      .subtext {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .smallprint {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+       .btn:hover {
+        color: white !important;
+        background-color: #ea624e !important;
+        border-color: var(--bs-btn-hover-border-color);
+      }
+
+        .head-text {
+        color: #ea624e!important;;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="../index.html">
+      <img src="../assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      <!-- <h1>PetBnB</h1> -->
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-search me-1"></i>
+          <a class="nav-link" href="../about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-heart me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-paw me-1"></i>
+          <a class="nav-link" href="../blog.html">Blog</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <i class="bi bi-question-circle me-1"></i>
+          <a class="nav-link" href="../contact-us.html">Help</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!-- ===== /Header ===== -->
+
+    <!-- Hero -->
+    <section class="container my-5">
+      <img
+        src="../assets/images/blogs/blog-2-pge-img.jpg"
+        alt="Dog and cat on suitcase"
+        class="hero-img shadow-sm"
+      />
+    </section>
+
+    <!-- Article wrap -->
+    <section class="article-wrap container my-4">
+      <div class="row g-4 d-flex-col align-items-center justify-content-center">
+        <!-- LEFT SIDEBAR -->
+        
+
+        <!-- RIGHT / MAIN CONTENT -->
+        <article class="col-12 col-lg-8 col-xl-9 order-1 order-lg-2">
+          <h1 class="display-5 fw-bold lh-tight mb-2 head-text">
+            Tech Meets Tails: How Digital Platforms Are Simplifying Pet Hosting in India
+          </h1>
+          <p class="hero-meta">By PetBnB Team • Updated November 2025</p>
+
+          <div class="mb-3 small">
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >PETS</a
+            >
+            <span class="mx-1"></span>
+            <a href="#" class="text-success fw-semibold text-decoration-none"
+              >NEW PET</a
+            >
+          </div>
+
+          <div class="small d-flex flex-column gap-2 mb-3 text-secondary">
+            <div>
+              <i class="bi bi-link-45deg me-1"></i>This post contains affiliate
+              links. Read more
+              <a href="#" class="text-decoration-none">here</a>.
+            </div>
+            <div>
+              <i class="bi bi-hospital me-1"></i>Not a substitute for
+              professional veterinary help.
+            </div>
+          </div>
+
+          <p class="lead">
+           In recent years, India has witnessed a remarkable surge in pet ownership, driven by changing lifestyles, increased disposable income and a greater awareness of the emotional bond between humans and their pets. As more households welcome furry friends, the need for reliable, accessible pet care, especially when owners are away; has become a pressing concern. Enter the era of digital pet hosting platforms, where technology and tails come together to revolutionise how pet care is delivered across the country.
+          </p>
+          <p class="lead">
+            These platforms offer a novel solution to an age-old problem, giving pet parents peace of mind by connecting them effortlessly to trusted hosts who provide loving, personalised care. Beyond convenience, they are paving the way for more transparent, safer and community‑centric pet care practices in India.
+          </p>
+
+          <!-- TOC -->
+          <div class="toc-box mt-3">
+            <div class="toc-topbar"></div>
+            <div class="p-3 p-md-4">
+              <h3 class="h2 fw-bold mb-3">Woof Woof!</h3>
+              <ul class="toc-list">
+                <li><a href="#q1">Digital Pet Hosting</a></li>
+                <li><a href="#q2">Revolution in Pet Hosting</a></li>
+                <li><a href="#q3">Urban Pet Parenting Challenges</a></li>
+                <li><a href="#q4">Top Pet Hosting Platforms</a></li>
+                <li><a href="#q5">Overcoming Pet Care Gaps</a></li>
+                <li><a href="#q6">Tech-Enabled Pet Parenting</a></li>
+                <li><a href="#q7">Pet Care Success Stories</a></li>
+                <li><a href="#q8">Future of Pet Hosting</a></li>
+                <li><a href="#q9">End Note</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Article Content -->
+          <div class="article-body">
+            <h2 id="q1" class="q-title head-text">The Growing Market for Digital Pet Hosting</h2>
+            <p>
+              India’s pet care industry is no longer a niche market; it has blossomed into a multi-thousand crore sector with digital innovation at its core. Between metros like Mumbai, Delhi, Bengaluru and emerging urban centres, pet owners are embracing apps and online services to manage their pets’ needs efficiently.
+            </p>
+
+            <p>
+              Digital pet hosting platforms sit at the intersection of this growth, blending hospitality with technology. What sets these platforms apart is their ability to offer convenience without compromising the quality or emotional aspect of pet care; a key expectation for Indian pet parents who regard their pets as family members.
+            </p>
+
+            <h2 id="q2" class="q-title head-text">What Makes Digital Pet Hosting so Revolutionary?</h2>
+            <p>
+              Unlike traditional pet boarding, which often involves impersonal kennels or expensive professional services, digital platforms invite a more personalised and flexible approach. Here’s how they stand out:
+            </p>
+
+            <ol>
+                <li>Easy-to-Use Interfaces</li>
+                <p>Most platforms are designed with user friendliness in mind. Owners can browse host listings based on location, pet type and care needs, making the selection process intuitive and efficient.</p>
+                <li>Comprehensive Host Verification</li>
+                <p>Inbuilt verification processes, including identity checks, background screenings and pet care certifications, establish trust. Reviews and ratings provide social proof, letting pet owners make informed choices.</p>
+                <li>Real-Time Communication and Care Updates</li>
+                <p>Pet parents receive updates through photos, messages and sometimes even short videos of their pets, allowing them to stay connected and relaxed even when miles apart. Many platforms incorporate instant chat functions between host and owner, facilitating smooth communication.</p>
+                <li>Transparent Pricing and Secure Payments</li>
+                <p>Upfront pricing models and digital payments eliminate uncertainties and reduce hassles, allowing for a transparent, worry-free transaction experience. Insurance options covering accidents or illnesses during stays provide an added layer of reassurance.</p>
+            </ol>
+
+        
+
+            <h2 id="q3" class="q-title head-text">The Impact on Indian Urban Pet Owners</h2>
+            <p>
+              Urban lifestyles in India are increasingly fast-paced and demanding. Long working hours, frequent travel and nuclear family structures often leave pet owners struggling to balance care and commitments. Digital pet hosting platforms address these challenges directly:
+            </p>
+
+            <ul>
+                <li>By offering hosts close to the owner’s residence, platforms reduce the stress and fatigue pets experience with long journeys to kennels.</li>
+                <li>In-home, home-like boarding environments provide a nurturing space filled with companionship, reducing anxiety and behavioural issues commonly seen post-kennel stays.</li>
+                <li>Flexibility in booking; from a few hours to multiple weeks, caters perfectly to Indian pet parents’ diverse schedules.</li>
+                
+            </ul>
+
+            <p>The platforms also empower owners with the ability to pre-screen hosts, read reviews and even conduct meet-and-greet sessions before confirming bookings, building confidence that their pets will be treated with love and care.</p>
+
+            <h2 id="q4" class="q-title head-text">Leading Platforms and Their Innovations</h2>
+
+            <p>
+              Several homegrown platforms have risen to prominence in India’s pet care ecosystem:
+            </p>
+
+            <ul>
+                <li>PetBacker operates one of the largest marketplaces in India, combining pet sitting, walking, boarding and grooming services under a unified app interface. Their focus on host verification and customer service sets a high standard.</li>
+                <li>All Tails prides itself on being India’s first fully integrated pet care platform, blending tele-veterinary services, training and medication delivery alongside boarding and hosting. This all-in-one approach is particularly appealing to pet parents seeking convenience and quality under one digital roof.</li>
+                <li>Pawsome India, touted as India’s first “pet Super App,” includes social networking features that foster community connections among pet owners. It encourages socialisation, information exchange and peer support alongside traditional pet care offerings; an innovation that resonates with India’s growing community orientation.</li>
+            </ul>
+
+            <h2 id="q5" class="q-title head-text">Addressing the Challenges</h2>
+            <p>
+              While home-based boarding is growing rapidly, some concerns remain:
+            </p>
+            <li>Digital Accessibility: Though smartphones and internet penetration are rapidly increasing, some pet owners in smaller towns and rural areas still face barriers in using these services. Expanding reach and simplifying the user experience will be crucial moving forward.</li>
+            <li>Host Quality Consistency: The quality of boarding depends largely on individual hosts. Platforms are investing in more rigorous screening, ongoing training and user-generated feedback systems to ensure consistent care standards</li>
+            <li>Affordability: While many platforms offer competitive pricing, the premium associated with humanised, home-based care can be prohibitive for some pet parents. Introduction of tiered services may help make digital boarding more inclusive.</li>
+
+            <h2 id="q6" class="q-title head-text">Technology’s Role Beyond Hosting
+            </h2>
+           
+            <p>The influence of technology in pet care is not limited to booking platforms alone. Innovations such as smart collars, health trackers and AI-powered diagnostic tools are starting to integrate with digital services, providing hosts and owners with new ways to monitor pet health and wellbeing in real-time.</p>
+            <p>This integration of IoT (Internet of Things) technologies with hosting platforms will empower caregivers with alerts about activity levels, heart rate and GPS tracking, ensuring pets remain safe and active even when away from their primary homes.</p>
+
+             <h2 id="q7" class="q-title head-text">
+                Stories from the Digital Pet Care Frontier
+            </h2>
+             
+            <p>Tech-enabled pet hosting has generated heartwarming tales across India. For instance, a software engineer in Bengaluru found relief in a digital platform after struggling to find trustworthy care during extended travel. Through the app, she connected with a seasoned host who became a second family to her Golden Retriever.</p>
+
+            <p>Similarly, a family in Delhi credits their digital platform for creating lasting friendships with pet hosts who went beyond duty, providing medical attention and emotional support during difficult times. These stories underscore the human side of tech innovation; the fostering of community and connection.</p>
+
+            <div class="container-fluid">
+              <img
+                src="../assets/images/blogs/blog-2.jpg"
+                alt=""
+                style="height: 100%; width: 70%" class="blog-2-image"
+              />
+            </div>
+
+            <h2 id="q8" class="q-title head-text">Looking Ahead: The Future of Digital Pet Hosting in India</h2>
+            <p>
+              As India’s pet care sector matures, digital pet hosting platforms are set to grow in sophistication and reach. We can anticipate:
+            </p>
+
+            <ul>
+                <li>Enhanced use of AI for personalised host matching and pet care recommendation.</li>
+                <li>Broader adoption of platforms in tier-2 and tier-3 cities as awareness and infrastructure improve.</li>
+                <li>Greater collaborations between veterinary experts and hosting services, making health monitoring a core part of boarding experiences.</li>
+                <li>Expansion of pet care ecosystems integrating grooming, training, nutrition and wellness services into one seamless digital journey.</li>
+            </ul>
+
+            <p>
+              In essence, the future promises a comprehensive pet parenting experience grounded in technology but deeply rooted in care, trust and community; values cherished by Indian pet owners.
+            </p>
+
+            <h2 id="q9" class="q-title head-text">End Note</h2>
+            <p>The intersection of technology and pet hosting is transforming pet care in India. Digital platforms are simplifying how pet parents find loving caregivers while fostering transparency, trust and personalised experiences for their pets.</p>
+            <p>These platforms speak to the heart of India’s urban pet culture; where convenience meets compassion and technology unlocks new levels of connection and peace of mind. As the digital pet care community expands, the bond between humans and their animals grows ever stronger, proving that sometimes, the best technology is the one that helps us care a little more deeply.</p>
+          
+           
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Footer (from index) ===== -->
+       <footer class="site-footer py-5">
+      <div class="container">
+        <div class="row gy-5">
+          <!-- Newsletter -->
+          <div class="col-12 col-lg-5">
+            <div class="footer-title head-text">
+              Woof Woof! Join the PetBnB Pack
+            </div>
+            <p class="subtext"></p>
+            <p class="subtext">
+              Get heart-melting pet photos, smart care tips, training hacks, and
+              must-try product finds straight to your inbox.
+            </p>
+
+            <form class="newsletter-wrap mt-2" action="#" method="post">
+              <div class="input-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your email…"
+                  aria-label="Your email"
+                  required
+                />
+                <button
+                  class="btn btn-outline-dark btn-primary-color"
+                  type="submit"
+                >
+                  Sign up
+                </button>
+              </div>
+            </form>
+
+            <p class="smallprint mt-3 mb-0">
+              By sharing my email, I agree to receive updates from PetBnB.com
+              and its affiliates. I confirm I’m 18+ and know I can unsubscribe
+              anytime.
+              <a style="color: var(--link)" href="../privacy.html"
+                >Privacy Statement</a
+              >..
+            </p>
+          </div>
+
+          <!-- Learn More -->
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="footer-title head-text">Learn More</div>
+            <ul class="footer-list">
+              <li><a href="../blog.html">Read Our Blog</a></li>
+            </ul>
+            <div class="mt-3">
+              <a class="privacy-pill" href="../privacy.html"
+                ><i class="fa-solid fa-check"></i> Your privacy choices</a
+              >
+            </div>
+          </div>
+
+          <!-- About PetBnB -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="footer-title head-text">About Us</div>
+
+            <div class="row about-grid g-0">
+              <!-- Left column -->
+              <div class="col-6 pe-4">
+                <ul class="footer-list mb-0">
+                  <li><a href="../about-us.html">About Us</a></li>
+                  <li><a href="../contact-us.html">Contact Us</a></li>
+                </ul>
+              </div>
+
+              <!-- Right column -->
+              <div class="col-6">
+                <ul class="footer-list mb-0">
+                  <li>
+                    <a href="../privacy.html">Privacy<br />Statement</a>
+                  </li>
+                  <li><a href="../terms-of-service.html">Terms of Service</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Need Help -->
+          <div class="col-12">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
+            >
+              <div class="d-flex align-items-center gap-4 my-2">
+                <div class="footer-title mb-0 services-selection-section-title">
+                  Need Help?
+                </div>
+                <ul class="footer-list mb-0">
+                  <li><a href="#">FAQ's</a></li>
+                </ul>
+              </div>
+
+              <div class="social my-2">
+                <a href="#" aria-label="Facebook"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" aria-label="linkedin"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#" aria-label="Pinterest"
+                  ><i class="fa-brands fa-pinterest-p"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="smallprint text-center text-md-end mt-3">
+          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+    <!-- ===== /Footer ===== -->
+
+    <!-- Back to Top -->
+    <button id="backTop" class="back-top" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Back-to-top show/hide & click
+      const backTop = document.getElementById("backTop");
+      window.addEventListener("scroll", () => {
+        backTop.style.display = window.scrollY > 400 ? "flex" : "none";
+      });
+      backTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
+
+      // Active TOC link on scroll
+      (function () {
+        const links = Array.from(document.querySelectorAll(".toc-inline a"));
+        if (!links.length) return;
+        const map = Object.fromEntries(
+          links.map((a) => [a.getAttribute("href").slice(1), a])
+        );
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((en) => {
+              if (en.isIntersecting) {
+                links.forEach((a) => a.classList.remove("active"));
+                const a = map[en.target.id];
+                if (a) a.classList.add("active");
+              }
+            });
+          },
+          { rootMargin: "-20% 0px -70% 0px", threshold: 0.01 }
+        );
+        Object.keys(map).forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
