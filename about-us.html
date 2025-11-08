@@ -1,613 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About • PetBnB</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • PetBnB</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <style>
-      :root {
-        --ink: #0f172a;
-        --muted: #6b7280;
-        --green: #10b981;
-        --deepGreen: #0f8a5b;
-        --link: #0d6efd;
-        --footer-bg: #f9f5ee;
-        --footer-text: #1f2937;
-      }
-          .navbar-brand img {
-    /* min-height: 20%; */
-    width: 115px;
-    height: 70px;
-}
-      html,
-      body {
-        overflow-x: hidden;
-      }
-      body {
-        color: var(--ink);
-        background: #fff;
-      }
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-      /* Page width */
-      .page {
-        max-width: 1180px;
-      }
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
-      /* Section 1 – Stats + Value props */
-      .stats-wrap {
-        padding: 42px 0 8px;
-        text-align: center;
-      }
-      .stats-wrap h1 {
-        font-weight: 800;
-        letter-spacing: 0.3px;
-        line-height: 1.25;
-        margin-bottom: 22px;
-      }
-      .big-num {
-        font-size: 2.25rem;
-        font-weight: 800;
-        color: #136a43;
-      }
-      .stat-sub {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-      .section-head {
-        font-size: 2rem;
-        font-weight: 800;
-        margin: 36px 0 10px;
-      }
-      .check li {
-        margin: 0.5rem 0;
-      }
-      .check li::marker {
-        content: "✓ ";
-        color: #208b5e;
-        font-weight: 700;
-      }
+  <!-- jQuery (optional, but if you use it, load before Bootstrap JS) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-      /* Section 2 – Image hero + white card */
-      .about-hero {
-        position: relative;
-        min-height: clamp(280px, 45vh, 420px);
-        background: url("https://images.unsplash.com/photo-1444212477490-ca407925329e?q=80&w=1600&auto=format&fit=crop")
-          center/cover no-repeat;
-        padding-bottom: clamp(40px, 8vw, 96px);
-      }
-      .about-card {
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        padding: 36px 28px;
-        max-width: 980px;
-        margin: 0 auto;
-        position: relative;
-        top: clamp(16px, 6vw, 72px);
-        margin-bottom: clamp(24px, 6vw, 56px);
-        z-index: 1;
+  <style>
+    :root{
+      --ink:#0f172a; --muted:#6b7280; --green:#10b981; --deepGreen:#0f8a5b;
+      --link:#0d6efd; --footer-bg:#f9f5ee; --footer-text:#1f2937;
+    }
+    .navbar-brand img{ width:115px; height:70px; }
+    html,body{ overflow-x:hidden; }
+    body{ color:var(--ink); background:#fff; }
+    .page{ max-width:1180px; }
 
+    /* Keep navbar above overlays & make collapsed area readable on mobile */
+    .navbar{ position:relative; z-index:1050; }
+    @media (max-width: 991.98px){
+      #navbarMain{
+        background:#fff;
+        border-top:1px solid #eee;
+        padding:.5rem 1rem;
       }
-      .about-card h2 {
-        font-weight: 900;
-        font-size: 2.4rem;
-        margin-bottom: 12px;
-      }
-      .leadish {
-        font-size: 1.05rem;
-        color: #374151;
-      }
+    }
 
-      /* Footer (borrowed & polished from index.html) */
-      .site-footer {
-        background: var(--footer-bg);
-        color: var(--footer-text);
-        border-top: 1px solid #e5e7eb;
-      }
-      .site-footer a {
-        color: var(--footer-text);
-        text-decoration: none;
-      }
-      .site-footer a:hover {
-        text-decoration: underline;
-      }
-      .footer-title {
-        font-weight: 700;
-        font-size: 1.125rem;
-        margin-bottom: 0.75rem;
-      }
-      .footer-list {
-        list-style: none;
-        padding-left: 0;
-        margin-bottom: 0;
-      }
-      .footer-list li {
-        margin: 0.35rem 0;
-      }
+    .stats-wrap{ padding:42px 0 8px; text-align:center; }
+    .stats-wrap h1{ font-weight:800; letter-spacing:.3px; line-height:1.25; margin-bottom:22px; }
+    .big-num{ font-size:2.25rem; font-weight:800; color:#136a43; }
+    .stat-sub{ color:var(--muted); font-size:.95rem; }
+    .section-head{ font-size:2rem; font-weight:800; margin:36px 0 10px; }
+    .check li{ margin:.5rem 0; }
+    .check li::marker{ content:"✓ "; color:#208b5e; font-weight:700; }
 
-      /* Newsletter input group (pill) */
-      .newsletter-wrap .input-group {
-        --bs-border-radius: 999px;
-      }
-      .newsletter-wrap .form-control {
-        height: 52px;
-        border-radius: 999px 0 0 999px !important;
-        padding-left: 16px;
-      }
-      .newsletter-wrap .btn {
-        height: 52px;
-        padding: 0 22px;
-        border-radius: 0 999px 999px 0 !important;
-        white-space: nowrap;
-      }
-      @media (max-width: 576px) {
-        .newsletter-wrap .input-group {
-          flex-wrap: wrap;
-        }
-        .newsletter-wrap .form-control {
-          border-radius: 999px !important;
-          margin-bottom: 10px;
-        }
-        .newsletter-wrap .btn {
-          width: 100%;
-          border-radius: 999px !important;
-        }
-      }
+    .about-hero{
+      position:relative;
+      min-height:clamp(280px,45vh,420px);
+      background:url("https://images.unsplash.com/photo-1444212477490-ca407925329e?q=80&w=1600&auto=format&fit=crop") center/cover no-repeat;
+      padding-bottom:clamp(40px,8vw,96px);
+    }
+    .about-card{
+      background:#fff; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+      padding:36px 28px; max-width:980px; margin:0 auto; position:relative; top:clamp(16px,6vw,72px);
+      margin-bottom:clamp(24px,6vw,56px); z-index:1;
+    }
+    .about-card h2{ font-weight:900; font-size:2.4rem; margin-bottom:12px; }
+    .leadish{ font-size:1.05rem; color:#374151; }
 
-      .privacy-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        background: #fff;
-        border: 1px solid #d1d5db;
-        border-radius: 999px;
-        padding: 0.25rem 0.6rem;
-        font-size: 0.9rem;
-        color: #374151;
-      }
+    .site-footer{ background:var(--footer-bg); color:var(--footer-text); border-top:1px solid #e5e7eb; }
+    .site-footer a{ color:var(--footer-text); text-decoration:none; }
+    .site-footer a:hover{ text-decoration:underline; }
+    .footer-title{ font-weight:700; font-size:1.125rem; margin-bottom:.75rem; }
+    .footer-list{ list-style:none; padding-left:0; margin-bottom:0; }
+    .footer-list li{ margin:.35rem 0; }
+    .newsletter-wrap .input-group{ --bs-border-radius:999px; }
+    .newsletter-wrap .form-control{ height:52px; border-radius:999px 0 0 999px!important; padding-left:16px; }
+    .newsletter-wrap .btn{ height:52px; padding:0 22px; border-radius:0 999px 999px 0!important; white-space:nowrap; }
+    @media (max-width:576px){
+      .newsletter-wrap .input-group{ flex-wrap:wrap; }
+      .newsletter-wrap .form-control{ border-radius:999px!important; margin-bottom:10px; }
+      .newsletter-wrap .btn{ width:100%; border-radius:999px!important; }
+    }
+    .privacy-pill{
+      display:inline-flex; align-items:center; gap:.35rem; background:#fff; border:1px solid #d1d5db;
+      border-radius:999px; padding:.25rem .6rem; font-size:.9rem; color:#374151;
+    }
+    .social a{ width:36px; height:36px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:#e5e7eb; margin-right:.5rem; }
+    .social a:hover{ background:#d1d5db; }
+    .subtext{ color:var(--muted); font-size:.95rem; }
+    .smallprint{ color:var(--muted); font-size:.9rem; }
+    .about-grid .footer-list li{ margin:.55rem 0; }
+    .about-grid .col-6:first-child{ padding-right:28px; }
+    .btn:hover{ color:#fff!important; background-color:#ea624e!important; border-color:var(--bs-btn-hover-border-color); }
+    .head-text{ color:#fd9140!important; }
 
-      .social a {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #e5e7eb;
-        margin-right: 0.5rem;
-      }
-      .social a:hover {
-        background: #d1d5db;
-      }
-      .subtext {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-      .smallprint {
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      /* About PetBnB split list (left/right) */
-      .about-grid .footer-list li {
-        margin: 0.55rem 0;
-      }
-      .about-grid .col-6:first-child {
-        padding-right: 28px;
-      } /* visual gutter */
-
-      .btn:hover {
-        color: white !important;
-        background-color: #ea624e !important;
-        border-color: var(--bs-btn-hover-border-color);
-      }
-
-      .head-text {
-        color: #fd9140 !important;
-      }
-
-      /* * --- Mobile polish: stop lifting card; make it full-width-ish ---  */
-@media (max-width: 576px){
-  .about-hero{
-    min-height: auto;
-    padding-bottom: 20px;
-  }
-  .about-card{
-    top: 0;               /* no float */
-    margin-top: 16px;     /* normal flow */
-    padding: 22px 18px;   /* tighter padding */
-  }
-  .stats-wrap h1, .section-head{
-    font-size: 1.5rem;
-  }
-}
-
-/* Tighten vertical rhythm globally a bit */
-section.py-5 { padding-top: 2.25rem !important; padding-bottom: 2.25rem !important; }
-section.bg-light.py-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-
-/* Images never overflow; load lazily where possible */
-img { max-width: 100%; height: auto; display: block; }
-    </style>
-  </head>
-  <body>
-    <!-- Simple topbar
-  <header class="border-bottom bg-white">
-    <div class="container page py-3 d-flex justify-content-between align-items-center">
-      <a class="text-decoration-none fw-bold fs-4 text-dark" href="index.html">PetBnB</a>
-      <nav class="d-flex gap-3">
-        <a class="text-decoration-none text-dark" href="blog.html">Blog</a>
-        <a class="text-decoration-none text-dark" href="#footer">Contact</a>
-      </nav>
-    </div>
-  </header> -->
+    @media (max-width:576px){
+      .about-hero{ min-height:auto; padding-bottom:20px; }
+      .about-card{ top:0; margin-top:16px; padding:22px 18px; }
+      .stats-wrap h1, .section-head{ font-size:1.5rem; }
+    }
+    section.py-5{ padding-top:2.25rem!important; padding-bottom:2.25rem!important; }
+    section.bg-light.py-5{ padding-top:2rem!important; padding-bottom:2rem!important; }
+    img{ max-width:100%; height:auto; display:block; }
+  </style>
+</head>
+<body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
-  <div class="container-fluid">
-    <!-- Brand (left) -->
-    <a class="navbar-brand" href="index.html">
-      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo" style="width:115px;height:70px;">
-    </a>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">
+        <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
+      </a>
 
-    <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
-      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarMain"
+              aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarMain">
-      <!-- CENTERED LINKS (desktop/tablet) -->
-      <ul class="navbar-nav nav-links mb-2 mb-lg-0">
-        <li class="nav-item d-flex align-items-center">
-          <a class="nav-link" href="about-us.html">About Us</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <a class="nav-link" href="contact-us.html">Contact</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <a class="nav-link" href="#">FAQ's</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <a class="nav-link" href="blog.html">Blog</a>
-        </li>
-        
-          <!-- <li class="nav-item d-flex align-items-center">
-            <i class="bi bi-paw me-1"></i>
-            <a class="nav-link" href="sitter-signup.html">Become a Sitter</a>
-          </li> -->
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav nav-links mb-2 mb-lg-0">
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="about-us.html">About Us</a></li>
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="contact-us.html">Contact</a></li>
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="#">FAQ's</a></li>
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="blog.html">Blog</a></li>
+        </ul>
 
-       <!-- RIGHT CTA on desktop; FULL-WIDTH inside collapse on mobile/tablet -->
-      <div class="nav-cta-wrap ms-lg-0">
-  <!-- Desktop (lg+): pill button -->
-  <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3"
-     href="#">Register</a>
-
-  <!-- Tablet & Mobile (< lg): looks like other tabs -->
-  <a class="nav-link d-lg-none" href="#">Register</a>
-</div>
-
-        <!-- <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold" type="button" href="#">Register</a>
-          </li>
-          <li class="nav-item d-none">
-            <a class="nav-link" href="#">Sign In</a>
-          </li>
-          <li class="nav-item d-flex align-items-center d-none">
-            <i class="bi bi-question-circle me-1"></i>
-            <a class="nav-link" href="contact-us.html">Help</a>
-          </li>
-        </ul> -->
+        <div class="nav-cta-wrap ms-lg-0">
+          <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3" href="#">Register</a>
+          <a class="nav-link d-lg-none" href="#">Register</a>
+        </div>
       </div>
     </div>
   </nav>
 
-    <main>
-      <!-- ============ Section 2: Hero Image + White Card ============ -->
-      <section class="about-hero">
-        <div class="about-card container">
-          <h2 class="head-text">About US</h2>
-          <p class="leadish mb-3">
-            Welcome to MyPetBnB, Mumbai’s trusted community of 5-star Pet
-            sitters and walkers.
-          </p>
+  <main>
+    <!-- Hero / About -->
+    <section class="about-hero">
+      <div class="about-card container">
+        <h2 class="head-text">About US</h2>
+        <p class="leadish mb-3">Welcome to MyPetBnB, Mumbai’s trusted community of 5-star Pet sitters and walkers.</p>
+        <p class="leadish">We believe Pets deserve more than cages, they deserve love, comfort and care even when their parents are away. At MyPetBnB, our mission is simple: to create a safe, homely space for every Pet while giving parents peace of mind.</p>
+        <p class="leadish">Founded in 2025, MyPetBnB connects Pet parents with verified local sitters and walkers across neighbourhoods in Mumbai. Whether it’s for a few hours, a weekend or an extended trip, we make sure your pup is never alone.</p>
+        <p class="leadish mb-0">We also empower our sitter community with tools, reviews and support to build their own Pet-care businesses on MyPetBnB; backed by the trust and transparency of a growing platform.</p>
+      </div>
+    </section>
 
-          <p class="leadish">
-            We believe Pets deserve more than cages, they deserve love, comfort
-            and care even when their parents are away. At MyPetBnB, our mission
-            is simple: to create a safe, homely space for every Pet while giving
-            parents peace of mind.
-          </p>
-          <p class="leadish">
-            Founded in 2025, MyPetBnB connects Pet parents with verified local
-            sitters and walkers across neighbourhoods in Mumbai. Whether it’s
-            for a few hours, a weekend or an extended trip, we make sure your
-            pup is never alone.
-          </p>
+    <section class="py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-3 head-text">Loving Pet Care in Your Neighbourhood</h2>
+        <p class="text-muted mb-5">Discover trusted Pet sitters and walkers near you. We support our community with features like:</p>
+        <div class="d-flex align-items-center justify-content-center gap-2"><span class="text-success fw-bold">✓</span><span>Verified reviews from Pet parents</span></div>
+        <div class="d-flex align-items-start justify-content-center gap-2 mt-2"><span class="text-success fw-bold">✓</span><span>Background checks for sitters</span></div>
+        <div class="d-flex align-items-start justify-content-center gap-2 mt-2"><span class="text-success fw-bold">✓</span><span>Meet &amp; Greet to find the right fit</span></div>
+        <div class="d-flex align-items-start justify-content-center gap-2 mt-2"><span class="text-success fw-bold">✓</span><span>Real-time updates and photos</span></div>
+      </div>
+    </section>
 
-          <p class="leadish mb-0">
-            We also empower our sitter community with tools, reviews and support
-            to build their own Pet-care businesses on MyPetBnB; backed by the
-            trust and transparency of a growing platform.
-          </p>
+    <section class="py-5">
+      <div class="container text-center">
+        <h2 class="fw-bold head-text">Good Pets. Good People.</h2>
+        <p class="text-muted mx-auto" style="max-width: 720px">From boarding to daily walks, MyPetBnB has you covered. Our sitters offer:</p>
+        <div class="row g-3 justify-content-center mt-4">
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> Pet Boarding</div>
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> Pet Sitting</div>
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> Pet Walking</div>
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> Pet Day Care</div>
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> Drop-in Visits</div>
+          <div class="col-6 col-md-3"><span class="text-success">✓</span> House Sitting</div>
         </div>
-      </section>
-
-      <!-- ========== Section 2: Loving pet care ========== -->
-      <section class="py-5 bg-light">
-        <div class="container text-center">
-          <h2 class="fw-bold mb-3 head-text">
-            Loving Pet Care in Your Neighbourhood
-          </h2>
-          <p class="text-muted mb-5">
-            Discover trusted Pet sitters and walkers near you. We support our
-            community with features like:
-          </p>
-
-          <!-- <div class="row g-4"> -->
-          <!-- <div class="col-md-12 col-lg-4"> -->
-          <div class="d-flex align-items-center justify-content-center gap-2">
-            <span class="text-success fw-bold">✓</span>
-            <span>Verified reviews from Pet parents</span>
-          </div>
-          <div
-            class="d-flex align-items-start justify-content-center gap-2 mt-2"
-          >
-            <span class="text-success fw-bold">✓</span>
-            <span>Background checks for sitters</span>
-          </div>
-          <div
-            class="d-flex align-items-start justify-content-center gap-2 mt-2"
-          >
-            <span class="text-success fw-bold">✓</span>
-            <span>Meet &amp; Greet to find the right fit</span>
-          </div>
-          <div
-            class="d-flex align-items-start justify-content-center gap-2 mt-2"
-          >
-            <span class="text-success fw-bold">✓</span>
-            <span>Real-time updates and photos </span>
-          </div>
-
-          <!-- <div class="col-md-6 col-lg-4">
-        <div class="d-flex align-items-start gap-2">
-          <span class="text-success fw-bold">✓</span>
-          <span><a href="#" class="text-decoration-underline">Reservation protection</a> for every booking</span>
-        </div>
-        <div class="d-flex align-items-start gap-2 mt-2">
-          <span class="text-success fw-bold">✓</span>
-          <span><a href="#" class="text-decoration-underline">24/7 support</a> for pet parents and sitters</span>
-        </div>
-        <div class="d-flex align-items-start gap-2 mt-2">
-          <span class="text-success fw-bold">✓</span>
-          <span>Vet advice for sitters during bookings</span>
+        <div class="mt-4">
+          <a href="index.html" class="btn btn-outline-dark btn-primary-color btn-lg px-4 rounded-pill">Search Sitters</a>
         </div>
       </div>
+    </section>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="d-flex align-items-start gap-2">
-          <span class="text-success fw-bold">✓</span>
-          <span>A team of trust and safety experts</span>
-        </div>
-        <div class="d-flex align-items-start gap-2 mt-2">
-          <span class="text-success fw-bold">✓</span>
-          <span>Ongoing sitter education resources</span>
-        </div>
-        <div class="d-flex align-items-start gap-2 mt-2">
-          <span class="text-success fw-bold">✓</span>
-          <span>Vet care reimbursement through the <a href="#" class="text-decoration-underline">PetBnB Guarantee</a></span>
-        </div>
-      </div> -->
-          <!-- </div> -->
-        </div>
-      </section>
+    <section class="py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="fw-bold mb-3 head-text">Grow a Pet-Sitting Business</h2>
+        <p class="text-muted mb-4 mx-auto" style="max-width: 720px">We help sitters and walkers turn their love for Pets into thriving services. With dedicated tools, transparent reviews, and parent support, MyPetBnB makes it easy to grow with confidence.</p>
+        <a href="#" class="btn btn-outline-dark btn-primary-color px-4 rounded-pill">Learn more</a>
+      </div>
+    </section>
 
-      <!-- ========== Section 3: Good pets. Good people. ========== -->
-      <section class="py-5">
-        <div class="container text-center">
-          <h2 class="fw-bold head-text">Good Pets. Good People.</h2>
-          <p class="text-muted mx-auto" style="max-width: 720px">
-            From boarding to daily walks, MyPetBnB has you covered. Our sitters
-            offer:
-          </p>
+    <div style="height: 110px"></div>
+  </main>
 
-          <div class="row g-3 justify-content-center mt-4">
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> Pet Boarding
+  <footer class="site-footer py-5">
+    <div class="container">
+      <div class="row gy-5">
+        <div class="col-12 col-lg-5">
+          <div class="footer-title head-text">Woof Woof! Join the PetBnB Pack</div>
+          <p class="subtext">Get heart-melting pet photos, smart care tips, training hacks, and must-try product finds straight to your inbox.</p>
+          <form class="newsletter-wrap mt-2" action="#" method="post">
+            <div class="input-group">
+              <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email" required/>
+              <button class="btn btn-outline-dark btn-primary-color" type="submit">Sign up</button>
             </div>
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> Pet Sitting
-            </div>
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> Pet Walking
-            </div>
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> Pet Day Care
-            </div>
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> Drop-in Visits
-            </div>
-            <div class="col-6 col-md-3">
-              <span class="text-success">✓</span> House Sitting
-            </div>
-          </div>
-
-          <div class="mt-4">
-            <a
-              href="index.html"
-              class="btn btn-outline-dark btn-primary-color btn-lg px-4 rounded-pill"
-              >Search Sitters</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- ========== Section 4: Our pets are our family ==========
-<section class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold">Our pets are our family</h2>
-    <p class="text-muted mx-auto" style="max-width:760px;">
-      They’re there for us when we need it most, and at PetBnB we’re there for them too.  
-      We believe this focus on treating pets like family is part of why more than  
-      <strong>42 million services have been booked</strong> on PetBnB.
-    </p>
-  </div>
-</section> -->
-
-      <!-- ========== Section 5: Grow a pet-sitting business ========== -->
-      <section class="py-5 bg-light">
-        <div class="container text-center">
-          <h2 class="fw-bold mb-3 head-text">Grow a Pet-Sitting Business</h2>
-          <p class="text-muted mb-4 mx-auto" style="max-width: 720px">
-            We help sitters and walkers turn their love for Pets into thriving
-            services. With dedicated tools, transparent reviews, and parent
-            support, MyPetBnB makes it easy to grow with confidence.
-          </p>
-          <a
-            href="#"
-            class="btn btn-outline-dark btn-primary-color px-4 rounded-pill"
-            >Learn more</a
-          >
-        </div>
-      </section>
-
-      <!-- ========== Section 6: Careers ========== -->
-      <section class="py-5 d-none">
-        <div class="container text-center">
-          <h2 class="fw-bold mb-3 head-text">Come Work (and Play!) With Us</h2>
-          <p class="text-muted mx-auto" style="max-width: 780px">
-            At MyPetBnB, our furry coworkers are just as important as our human
-            ones and we wouldn’t have it any other way. Want to join our pack?
-            We’re hiring.
-            <a href="#" class="fw-semibold text-decoration-underline"
-              >We’re hiring.</a
-            >
+          </form>
+          <p class="smallprint mt-3 mb-0">
+            By sharing my email, I agree to receive updates from PetBnB.com and its affiliates. I confirm I’m 18+ and know I can unsubscribe anytime.
+            <a style="color: var(--link)" href="privacy.html">Privacy Statement</a>.
           </p>
         </div>
-      </section>
 
-      <div style="height: 110px"></div>
-      <!-- visual breathing room before footer -->
-    </main>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="footer-title head-text">Learn More</div>
+          <ul class="footer-list"><li><a href="blog.html">Read Our Blog</a></li></ul>
+          <div class="mt-3"><a class="privacy-pill" href="privacy.html"><i class="fa-solid fa-check"></i> Your privacy choices</a></div>
+        </div>
 
-    <footer class="site-footer py-5">
-      <div class="container">
-        <div class="row gy-5">
-          <!-- Newsletter -->
-          <div class="col-12 col-lg-5">
-            <div class="footer-title head-text">
-              Woof Woof! Join the PetBnB Pack
-            </div>
-            <p class="subtext"></p>
-            <p class="subtext">
-              Get heart-melting pet photos, smart care tips, training hacks, and
-              must-try product finds straight to your inbox.
-            </p>
-
-            <form class="newsletter-wrap mt-2" action="#" method="post">
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Your email…"
-                  aria-label="Your email"
-                  required
-                />
-                <button
-                  class="btn btn-outline-dark btn-primary-color"
-                  type="submit"
-                >
-                  Sign up
-                </button>
-              </div>
-            </form>
-
-            <p class="smallprint mt-3 mb-0">
-              By sharing my email, I agree to receive updates from PetBnB.com
-              and its affiliates. I confirm I’m 18+ and know I can unsubscribe
-              anytime.
-              <a style="color: var(--link)" href="privacy.html"
-                >Privacy Statement</a
-              >..
-            </p>
-          </div>
-
-          <!-- Learn More -->
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="footer-title head-text">Learn More</div>
-            <ul class="footer-list">
-              <li><a href="blog.html">Read Our Blog</a></li>
-            </ul>
-            <div class="mt-3">
-              <a class="privacy-pill" href="privacy.html"
-                ><i class="fa-solid fa-check"></i> Your privacy choices</a
-              >
-            </div>
-          </div>
-
-          <!-- About PetBnB -->
-          <div class="col-12 col-sm-6 col-lg-4">
-            <div class="footer-title head-text">About Us</div>
-
-            <div class="row about-grid g-0">
-              <!-- Left column -->
-              <div class="col-6 pe-4">
-                <ul class="footer-list mb-0">
-                  <li><a href="about-us.html">About Us</a></li>
-                  <li><a href="contact-us.html">Contact Us</a></li>
-                </ul>
-              </div>
-
-              <!-- Right column -->
-              <div class="col-6">
-                <ul class="footer-list mb-0">
-                  <li>
-                    <a href="privacy.html">Privacy<br />Statement</a>
-                  </li>
-                  <li><a href="terms-of-service.html">Terms of Service</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Need Help -->
-         <div class="col-12">
-          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
-            <!-- <div class="d-flex align-items-center gap-4 my-2">
-              <div class="footer-title mb-0 services-selection-section-title">Need Help?</div>
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="footer-title head-text">About Us</div>
+          <div class="row about-grid g-0">
+            <div class="col-6 pe-4">
               <ul class="footer-list mb-0">
-                <li><a href="#">FAQ's</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
               </ul>
-            </div> -->
+            </div>
+            <div class="col-6">
+              <ul class="footer-list mb-0">
+                <li><a href="privacy.html">Privacy<br>Statement</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-12">
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
             <div class="social my-2">
               <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-              
             </div>
-            <div class="smallprint text-center text-md-end mt-3">
-        © 2025 A Place for PetBnB, Inc. All Rights Reserved.
-      </div>
+            <div class="smallprint text-center text-md-end mt-3">© 2025 A Place for PetBnB, Inc. All Rights Reserved.</div>
           </div>
         </div>
-        </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper (required for navbar toggler) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+</body>
 </html>
