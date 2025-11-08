@@ -18,15 +18,67 @@
 </style>
 </head>
 <body>
-<nav class="navbar navbar-light bg-white border-bottom">
-  <div class="container d-flex justify-content-between">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB" style="height:46px">
-      <span class="fw-semibold">Sitter Requests</span>
+<nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <div class="container-fluid">
+    <!-- Brand (left) -->
+    <a class="navbar-brand" href="index.html">
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo" style="width:115px;height:70px;">
     </a>
-    <div class="small text-muted" id="sitterNameSlot">—</div>
-  </div>
-</nav>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <!-- CENTERED LINKS (desktop/tablet) -->
+      <ul class="navbar-nav nav-links mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link" href="about-us.html">About Us</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link" href="contact-us.html">Contact</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link" href="#">FAQ's</a>
+        </li>
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link" href="blog.html">Blog</a>
+        </li>
+        
+          <!-- <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="sitter-signup.html">Become a Sitter</a>
+          </li> -->
+      </ul>
+
+       <!-- RIGHT CTA on desktop; FULL-WIDTH inside collapse on mobile/tablet -->
+      <div class="nav-cta-wrap ms-lg-0">
+  <!-- Desktop (lg+): pill button -->
+  <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3"
+     href="#">Register</a>
+
+  <!-- Tablet & Mobile (< lg): looks like other tabs -->
+  <a class="nav-link d-lg-none" href="#">Register</a>
+</div>
+
+        <!-- <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold" type="button" href="#">Register</a>
+          </li>
+          <li class="nav-item d-none">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item d-flex align-items-center d-none">
+            <i class="bi bi-question-circle me-1"></i>
+            <a class="nav-link" href="contact-us.html">Help</a>
+          </li>
+        </ul> -->
+      </div>
+    </div>
+  </nav>
 
 <main class="container py-4">
   <!-- Filters / summary -->

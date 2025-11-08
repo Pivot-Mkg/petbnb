@@ -124,3 +124,75 @@ body{
   display: flex;
 }
 
+/* What-we-do section (clean, no paws) */
+.wwd-wrap{
+  background:#f6f6f7;            /* subtle light grey like the ref */
+}
+
+/* Image card */
+.wwd-img-wrap{
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  background:#fff;
+}
+.wwd-img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  /* nice aspect ratio on mobile; taller on desktop */
+  aspect-ratio: 4 / 3;
+}
+@media (min-width:992px){
+  .wwd-img{ aspect-ratio: 16 / 11; }
+}
+
+/* Spacing scale like screenshot */
+.py-lg-6{ padding-top:4.5rem!important; padding-bottom:4.5rem!important; }
+
+/* --- Navbar layout polish --- */
+#navbarMain {
+  /* make the collapse a flex container on lg+ so we can center the middle ul */
+}
+@media (min-width: 992px) {
+  #navbarMain {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+  /* center the middle links row on lg+ */
+  .navbar-nav.nav-links {
+    margin-left: auto !important;
+    margin-right: auto !important; /* centers the middle UL */
+  }
+}
+
+/* Register button styles */
+.btn-register {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: .6rem 1.2rem;
+}
+@media (max-width: 991.98px) {
+  /* on tablet/mobile, make the Register CTA full-width and prominent inside the collapse */
+  .btn-register {
+    display: block;
+    width: 100%;
+    padding: .85rem 1.2rem;
+    font-size: 1rem;
+  }
+  .nav-cta-wrap {
+    padding-top: .5rem;
+  }
+}
+
+/* Optional: slightly tighter nav-link spacing on lg+ */
+@media (min-width: 992px) {
+  .navbar .nav-link {
+    padding: .5rem .9rem;
+  }
+}
+nav.navbar.navbar-expand-lg.navbar-light.bg-white.px-5.border-bottom {
+    padding: 1em !important;
+}

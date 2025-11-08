@@ -150,51 +150,65 @@
   <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
   <div class="container-fluid">
-
+    <!-- Brand (left) -->
     <a class="navbar-brand" href="index.html">
-      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
-      <!-- <h1>PetBnB</h1> -->
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo" style="width:115px;height:70px;">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- CENTERED LINKS (desktop/tablet) -->
+      <ul class="navbar-nav nav-links mb-2 mb-lg-0">
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-search me-1"></i>
           <a class="nav-link" href="about-us.html">About Us</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-heart me-1"></i>
           <a class="nav-link" href="contact-us.html">Contact</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-paw me-1"></i>
           <a class="nav-link" href="#">FAQ's</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-paw me-1"></i>
           <a class="nav-link" href="blog.html">Blog</a>
         </li>
+        
+          <!-- <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="sitter-signup.html">Become a Sitter</a>
+          </li> -->
       </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign In</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-question-circle me-1"></i>
-          <a class="nav-link" href="contact-us.html">Help</a>
-        </li>
-      </ul>
+       <!-- RIGHT CTA on desktop; FULL-WIDTH inside collapse on mobile/tablet -->
+      <div class="nav-cta-wrap ms-lg-0">
+  <!-- Desktop (lg+): pill button -->
+  <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3"
+     href="#">Register</a>
+
+  <!-- Tablet & Mobile (< lg): looks like other tabs -->
+  <a class="nav-link d-lg-none" href="#">Register</a>
+</div>
+
+        <!-- <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold" type="button" href="#">Register</a>
+          </li>
+          <li class="nav-item d-none">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item d-flex align-items-center d-none">
+            <i class="bi bi-question-circle me-1"></i>
+            <a class="nav-link" href="contact-us.html">Help</a>
+          </li>
+        </ul> -->
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
     <!-- Walker Listings Template (Generated based on Dog Walking Form Inputs) -->
     <div class="container py-5">
@@ -285,35 +299,24 @@
 
           <!-- Need Help -->
           <div class="col-12">
-            <div
-              class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top"
-            >
-              <div class="d-flex align-items-center gap-4 my-2">
-                <div class="footer-title mb-0 services-selection-section-title">
-                  Need Help?
-                </div>
-                <ul class="footer-list mb-0">
-                  <li><a href="#">FAQ's</a></li>
-                </ul>
-              </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+            <!-- <div class="d-flex align-items-center gap-4 my-2">
+              <div class="footer-title mb-0 services-selection-section-title">Need Help?</div>
+              <ul class="footer-list mb-0">
+                <li><a href="#">FAQ's</a></li>
+              </ul>
+            </div> -->
 
-              <div class="social my-2">
-                <a href="#" aria-label="Facebook"
-                  ><i class="fa-brands fa-facebook-f"></i
-                ></a>
-                <a href="#" aria-label="linkedin"
-                  ><i class="fa-brands fa-linkedin-in"></i
-                ></a>
-                <a href="#" aria-label="Pinterest"
-                  ><i class="fa-brands fa-pinterest-p"></i
-                ></a>
-              </div>
+            <div class="social my-2">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              
             </div>
+            <div class="smallprint text-center text-md-end mt-3">
+        © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+      </div>
           </div>
         </div>
-
-        <div class="smallprint text-center text-md-end mt-3">
-          © 2025 A Place for PetBnB, Inc. All Rights Reserved.
         </div>
       </div>
     </footer>

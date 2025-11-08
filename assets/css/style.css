@@ -7,3 +7,75 @@
       font-family: "Quicksand", sans-serif;
 
 }
+
+.btn:hover {
+    color: white !important;
+    background-color: #EA624E !important;
+    border-color: var(--bs-btn-hover-border-color);
+}
+
+.btn-primary-color {
+    background-color: #EA624E !important;
+    color: white;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-white.px-5.border-bottom {
+    padding: 1em !important;
+}
+
+/* --- Navbar layout polish --- */
+#navbarMain {
+  /* make the collapse a flex container on lg+ so we can center the middle ul */
+}
+@media (min-width: 992px) {
+  #navbarMain {
+    display: flex !important;
+    align-items: center;
+    width: 100%;
+  }
+  /* center the middle links row on lg+ */
+  .navbar-nav.nav-links {
+    margin-left: auto !important;
+    margin-right: auto !important; /* centers the middle UL */
+  }
+}
+
+/* Register button styles */
+.btn-register {
+  border-radius: 999px;
+  font-weight: 600;
+  padding: .6rem 1.2rem;
+}
+@media (max-width: 991.98px) {
+  /* on tablet/mobile, make the Register CTA full-width and prominent inside the collapse */
+  .btn-register {
+    display: block;
+    width: 100%;
+    padding: .85rem 1.2rem;
+    font-size: 1rem;
+  }
+  .nav-cta-wrap {
+    padding-top: .5rem;
+  }
+}
+
+/* Optional: slightly tighter nav-link spacing on lg+ */
+@media (min-width: 992px) {
+  .navbar .nav-link {
+    padding: .5rem .9rem;
+  }
+}
+
+    .mobile-img{
+      display: none;
+    }
+
+    @media (max-width:600px) {
+         .mobile-img{
+      display: block;
+    }   
+
+    .desktop-img{
+      display: none;
+    }
+    }

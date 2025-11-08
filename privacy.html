@@ -115,63 +115,75 @@
  <!-- Header (site navbar) -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
   <div class="container-fluid">
-
+    <!-- Brand (left) -->
     <a class="navbar-brand" href="index.html">
-      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
-      <!-- <h1>PetBnB</h1> -->
+      <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo" style="width:115px;height:70px;">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+      aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarMain">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <!-- CENTERED LINKS (desktop/tablet) -->
+      <ul class="navbar-nav nav-links mb-2 mb-lg-0">
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-search me-1"></i>
           <a class="nav-link" href="about-us.html">About Us</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-heart me-1"></i>
           <a class="nav-link" href="contact-us.html">Contact</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-paw me-1"></i>
           <a class="nav-link" href="#">FAQ's</a>
         </li>
         <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-paw me-1"></i>
           <a class="nav-link" href="blog.html">Blog</a>
         </li>
+        
+          <!-- <li class="nav-item d-flex align-items-center">
+            <i class="bi bi-paw me-1"></i>
+            <a class="nav-link" href="sitter-signup.html">Become a Sitter</a>
+          </li> -->
       </ul>
 
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign In</a>
-        </li>
-        <li class="nav-item d-flex align-items-center">
-          <i class="bi bi-question-circle me-1"></i>
-          <a class="nav-link" href="contact-us.html">Help</a>
-        </li>
-      </ul>
+       <!-- RIGHT CTA on desktop; FULL-WIDTH inside collapse on mobile/tablet -->
+      <div class="nav-cta-wrap ms-lg-0">
+  <!-- Desktop (lg+): pill button -->
+  <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3"
+     href="#">Register</a>
+
+  <!-- Tablet & Mobile (< lg): looks like other tabs -->
+  <a class="nav-link d-lg-none" href="#">Register</a>
+</div>
+
+        <!-- <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold" type="button" href="#">Register</a>
+          </li>
+          <li class="nav-item d-none">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+          <li class="nav-item d-flex align-items-center d-none">
+            <i class="bi bi-question-circle me-1"></i>
+            <a class="nav-link" href="contact-us.html">Help</a>
+          </li>
+        </ul> -->
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
   <main class="container my-5 bg-white p-5 rounded shadow-sm">
     <h2 class="mb-4 head-text">Privacy Policy</h2>
-    <p>Last Updated: 27 March 2025</p>
-    <p>[Previous versions: March 26, 2024; June 27, 2023; March 31, 2020; May 8, 2019; June 4, 2018; April 6, 2018; January 25, 2018; December 1, 2017; March 28, 2014; April 20, 2012; November 14, 2011; July 21, 2011]</p>
+    
+    <p>This Privacy Policy explains how PetBnB Technologies Pvt. Ltd. (“PetBnB,” “we,” “our,” or “us”) collects, uses, and protects your personal information while providing our services for pet parents and pet sitters.</p>
 
-    <p>This Privacy Statement explains how A Place for Rover, Inc. and its affiliates (“Rover, “we,” or “us”) collects, uses, and discloses your personal information to provide our services to you (“Services”). This Privacy Statement applies to personal information we collect when you use any Services, including but not limited to our website, software applications, and related services for pet owners and pet service providers (“Pet Service Providers”) to find each other and arrange for the provision of pet care services (the “Rover Service”), or when you otherwise interact with us.</p>
+    <p>This Policy applies when you use our website, mobile app, or any related services that connect pet owners with verified sitters, walkers, and trainers (“Services”).</p>
 
-    <p>California and other US consumers can find specific disclosures, including “Notice at Collection” details, here. Individuals in Washington and Nevada should also refer to our Consumer Health Data Privacy Policy.</p>
-
-    <p>Please note that certain of our affiliates may have separate privacy statements. Our corporate affiliates and any separate privacy statements are listed here. This Privacy Statement does not apply to websites, applications, or services that display or link to other privacy statements, unless expressly stated otherwise in those privacy statements.</p>
+    <p>By using PetBnB, you agree to the collection and use of information in accordance with this Policy.</p>
 
     <!-- <h3 class="fw-bold">Table of Contents</h3>
 
@@ -183,35 +195,95 @@
     <a href="#">YUK, Switzerland, and European Economic Area Data Protection Rights</a>
     <a href="#">Contact Us</a> -->
 
-    <h3 class="fw-bold head-text">How Do We Collect Your Information?</h3>
+    <h3 class="fw-bold head-text">How We Collect Your Information</h3>
 
-    <p>The information we collect varies based on how you interact with us, which Services you use, and the choices you make. We collect and process information about you with your consent and/or as necessary to provide the products and services you use, operate our business, meet our contractual and legal obligations, protect the security of our systems and our customers, or fulfill other legitimate interests.</p>
+    <p>We collect personal information when you interact with PetBnB — for example, when you create an account, complete a booking, or contact support. Information is gathered in the following ways:</p>
 
-    <p>We collect information about you in various ways when you use our Services, including information you provide directly, information collected automatically, information collected via third-party data sources, and data we infer or generate from other information. We may also share information with, and receive information from, our affiliates for the purposes described in this Privacy Statement.</p>
-
-    <p>When you are asked to provide information, you may decline. You may also use web browser or operating system controls to prevent certain types of automatic data collection. But if you choose not to provide information that is necessary for certain products or features, those products or features may not be available or function correctly.</p>
+    <p>Information You Provide Directly</p>
     <ul>
-      <li>Personal details such as name, email, phone number, and address.</li>
-      <li>Pet information (name, breed, age, health conditions).</li>
+      <li>Personal details such as name, email, phone number, and address</li>
+      <li>Pet details (e.g., name, breed, age, special needs, health conditions)</li>
+      <li>Booking history, reviews, and communication with other users</li>
+      <li>Payment information (securely processed via third-party payment providers)</li>
+
+      <li>Optional profile details like profile picture, bio, and location preferences</li>
+    </ul>
+
+    <p>Information Collected Automatically</p>
+    <ul>
+      <li>Device and usage data (browser type, operating system, app version, IP address)</li>
+      <li>Location data (if you choose to enable location access)</li>
       <li>Booking history and communication with sitters/owners.</li>
-      <li>Payment details (processed securely through third-party providers).</li>
+      <li>Cookies and analytics data to improve performance and personalize your experience.</li>
     </ul>
 
-    <h4 class="head-text">How We Use Your Information</h4>
+    <h4 class="head-text">Information from Third Parties</h4>
     <ul>
-      <li>To match pet owners with suitable sitters.</li>
-      <li>To process bookings and payments.</li>
-      <li>To provide customer support.</li>
-      <li>To send service updates, reminders, and promotional offers.</li>
+      <li>Verification partners or payment gateways may share limited data to confirm your identity or payment status.</li>    
     </ul>
+
+    You may choose not to share certain information, but this could limit access to features or services.
+
+    <h4 class="head-text">How We Use Your Informationy</h4>
+    <p>We use your information to ensure a safe, seamless, and personalized experience across the PetBnB platform, including to:</p>
+
+    <ul>
+      <li>Match pet parents with suitable sitters, walkers, and trainers</li>
+      <li>Facilitate bookings and payments</li>
+      <li>Provide customer support and resolve issues</li>
+      <li>Send updates, confirmations, or reminders about your bookings</li>
+      <li>Improve our products and user experience</li>
+      <li>Communicate promotional offers, newsletters, or updates (opt-out anytime)</li>
+      <li>Ensure user safety, prevent fraud, and maintain trust on the platform</li>
+    </ul>
+
 
     <h4 class="head-text">Sharing & Security</h4>
-    <p>We never sell your data. Limited information is shared only with sitters or owners to complete bookings. Data is secured with encryption and stored responsibly.</p>
+    <p>We do not sell or rent your personal data. We only share limited information where necessary to operate PetBnB services, such as:</p>
 
-    <h4 class="head-text">Your Rights</h4>
-    <p>You can request access, updates, or deletion of your personal data at any time. Contact us at <a href="mailto:support@petbnb.com">support@petbnb.com</a>.</p>
+    <ul>
+      <li>With sitters, walkers, or owners when a booking is made (for contact and pet care coordination)</li>
+      <li>With payment processors to handle secure transactions</li>
+      <li>With trusted partners or vendors that help us provide technology, analytics, or communication tools</li>
+      <li>When required by law or to protect rights, safety, or property</li>
+    </ul>
+    <p class="mt-4">We use encryption, secure data storage, and limited access protocols to protect your information. However, no online system is 100% secure, and you share data at your discretion.</p>
 
-    <p class="mt-4">This Privacy Policy may be updated periodically. Continued use of PetBnB means you accept any changes.</p>
+    <h4 class="head-text">Your Rights & Choices</h4>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access and review your personal information</li>
+      <li>Update or correct inaccurate details</li>
+      <li>Delete your account and associated data (subject to legal retention requirements)</li>
+      <li>Withdraw consent for marketing communications</li>
+    </ul>
+
+    <p>To exercise your rights, please contact us at support@mypetbnb.com .We may verify your identity before fulfilling your request.</p>
+
+    <h4 class="head-text">Data Retention</h4>
+    <p>We retain personal information as long as necessary to:</p>
+    <ul>
+      <li>Provide our services</li>
+      <li>Comply with legal obligations</li>
+      <li>Resolve disputes</li>
+      <li>Enforce agreements</li>
+    </ul>
+
+    <p>When no longer required, data is securely deleted or anonymized</p>
+
+    <h4 class="head-text">Children’s Privacy</h4>
+    <p>PetBnB is not intended for individuals under 18 years of age. We do not knowingly collect personal information from minors. If you believe a child has provided information, contact us immediately for removal.</p>
+
+    <h4 class="head-text">Policy Updates</h4>
+
+    <p>We may update this Privacy Policy from time to time. The revised version will be posted with a new “Last Updated” date. Continued use of PetBnB after such updates means you accept the changes</p>
+
+    <h4 class="head-text">Contact Us</h4>
+    <p>If you have any questions, concerns, or complaints about this Privacy Policy or how your data is handled, please contact us at:</p>
+
+    <p>📧 support@mypetbnb.com
+    <p>🏢 PetBnB Technologies Pvt. Ltd.</p>
+    <p>Mumbai, India</p>
   </main>
 
  <footer class="site-footer py-5">
@@ -285,26 +357,25 @@
 
       <!-- Need Help -->
       <div class="col-12">
-        <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
-          <div class="d-flex align-items-center gap-4 my-2">
-            <div class="footer-title mb-0">Need Help?</div>
-            <ul class="footer-list mb-0">
-              <li><a href="contact-us.html">Help Center</a></li>
-            </ul>
-          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
+            <!-- <div class="d-flex align-items-center gap-4 my-2">
+              <div class="footer-title mb-0 services-selection-section-title">Need Help?</div>
+              <ul class="footer-list mb-0">
+                <li><a href="#">FAQ's</a></li>
+              </ul>
+            </div> -->
 
-          <div class="social my-2">
-            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" aria-label="linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+            <div class="social my-2">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              
+            </div>
+            <div class="smallprint text-center text-md-end mt-3">
+        © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+      </div>
           </div>
         </div>
-      </div>
 
-    </div>
-
-    <div class="smallprint text-center text-md-end mt-3">
-      © 2025 A Place for Rover, Inc. All Rights Reserved.
     </div>
   </div>
 </footer>
