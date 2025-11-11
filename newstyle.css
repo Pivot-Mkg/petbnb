@@ -46,6 +46,7 @@ body{
 
    .info{
     color: white;
+    text-align: left;
   }
 
   .pet-selector-container{
