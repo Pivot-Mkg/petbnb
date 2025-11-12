@@ -82,7 +82,7 @@ body{
 
         .bg-white {
     --bs-bg-opacity: 1;
-    background-color: rgb(255 255 255 / 0%) !important;
+    background-color: rgb(255 255 255) !important;
 }
 
 /* About uss */
@@ -165,7 +165,7 @@ body{
   /* center the middle links row on lg+ */
   .navbar-nav.nav-links {
     margin-left: auto !important;
-    margin-right: auto !important; /* centers the middle UL */
+    margin-right: 47px !important; /* centers the middle UL */
   }
 }
 
@@ -194,6 +194,37 @@ body{
     padding: .5rem .9rem;
   }
 }
-nav.navbar.navbar-expand-lg.navbar-light.bg-white.px-5.border-bottom {
+
+/* nav.navbar.navbar-expand-lg.navbar-light.bg-white.px-5.border-bottom {
     padding: 1em !important;
+} */
+
+.hero-section .img-wrapper::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(205, 199, 199, 0.65),
+    rgba(159, 158, 158, 0.25)
+  );
+
+  
 }
+
+/* Default: bold black */
+.navbar .nav-link {
+  font-weight: 700;
+  color: #111 !important;
+}
+
+/* Hover state */
+.navbar .nav-link:hover {
+  color: #EA624E !important;
+}
+
+/* Active/current page */
+.navbar .nav-link.active,
+.navbar .nav-link[aria-current="page"] {
+  color: #EA624E !important;
+}
+

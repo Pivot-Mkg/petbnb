@@ -16,6 +16,7 @@
 
   <!-- Your CSS -->
   <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./newstyle.css" />
 
   <!-- jQuery (optional, but if you use it, load before Bootstrap JS) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -113,7 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
         <img src="./assets/logo/petbnb-LOGO.png" alt="PetBnB Logo">
@@ -252,5 +253,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
           crossorigin="anonymous"></script>
+
+          <script>
+  (function () {
+    // current file (e.g., "about-us.html"), ignoring query/hash
+    const path = location.pathname.split("/").pop() || "index.html";
+    const clean = (href) => (href || "").split("#")[0].split("?")[0].split("/").pop();
+
+    document.querySelectorAll(".navbar .nav-link").forEach((a) => {
+      const hrefFile = clean(a.getAttribute("href"));
+      // Match exact file OR match base file when current has a hash
+      if (hrefFile && (hrefFile === path || (path === "" && hrefFile === "index.html"))) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+      // Special case: links like contact-us.html#FAQs should still light up on contact-us.html
+      if (!a.classList.contains("active") && path && hrefFile && path.startsWith(hrefFile)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>

@@ -125,7 +125,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
  <!-- Header (site navbar) -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white px-5 border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
   <div class="container-fluid">
     <!-- Brand (left) -->
     <a class="navbar-brand" href="index.html">
@@ -191,7 +191,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main class="container my-5 bg-white p-5 rounded shadow-sm">
     <h2 class="mb-4 head-text">Privacy Policy</h2>
     
-    <p>This Privacy Policy explains how PetBnB Technologies Pvt. Ltd. (“PetBnB,” “we,” “our,” or “us”) collects, uses, and protects your personal information while providing our services for pet parents and pet sitters.</p>
+    <p>This Privacy Policy explains how PetBnB (a division of Experentia Marketing Services LLP) (“PetBnB,” “we,” “our,” or “us”) collects, uses, and protects your personal information while providing our services for pet parents and pet sitters.</p>
 
     <p>This Policy applies when you use our website, mobile app, or any related services that connect pet owners with verified sitters, walkers, and trainers (“Services”).</p>
 
@@ -290,12 +290,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <p>We may update this Privacy Policy from time to time. The revised version will be posted with a new “Last Updated” date. Continued use of PetBnB after such updates means you accept the changes</p>
 
-    <h4 class="head-text">Contact Us</h4>
-    <p>If you have any questions, concerns, or complaints about this Privacy Policy or how your data is handled, please contact us at:</p>
-
-    <p>📧 support@mypetbnb.com
-    <p>🏢 PetBnB Technologies Pvt. Ltd.</p>
-    <p>Mumbai, India</p>
+    
   </main>
 
  <footer class="site-footer py-5">
@@ -395,3 +390,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+  (function () {
+    // current file (e.g., "about-us.html"), ignoring query/hash
+    const path = location.pathname.split("/").pop() || "index.html";
+    const clean = (href) => (href || "").split("#")[0].split("?")[0].split("/").pop();
+
+    document.querySelectorAll(".navbar .nav-link").forEach((a) => {
+      const hrefFile = clean(a.getAttribute("href"));
+      // Match exact file OR match base file when current has a hash
+      if (hrefFile && (hrefFile === path || (path === "" && hrefFile === "index.html"))) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+      // Special case: links like contact-us.html#FAQs should still light up on contact-us.html
+      if (!a.classList.contains("active") && path && hrefFile && path.startsWith(hrefFile)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  })();
+</script>

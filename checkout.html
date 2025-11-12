@@ -14,7 +14,7 @@
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-light bg-white border-bottom">
+  <nav class="navbar navbar-light bg-white">
     <div class="container">
       <a class="navbar-brand fw-semibold" href="index.html">PetBnB</a>
     </div>
@@ -252,5 +252,28 @@
       rzp.open();
     });
   </script>
+
+  <script>
+  (function () {
+    // current file (e.g., "about-us.html"), ignoring query/hash
+    const path = location.pathname.split("/").pop() || "index.html";
+    const clean = (href) => (href || "").split("#")[0].split("?")[0].split("/").pop();
+
+    document.querySelectorAll(".navbar .nav-link").forEach((a) => {
+      const hrefFile = clean(a.getAttribute("href"));
+      // Match exact file OR match base file when current has a hash
+      if (hrefFile && (hrefFile === path || (path === "" && hrefFile === "index.html"))) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+      // Special case: links like contact-us.html#FAQs should still light up on contact-us.html
+      if (!a.classList.contains("active") && path && hrefFile && path.startsWith(hrefFile)) {
+        a.classList.add("active");
+        a.setAttribute("aria-current", "page");
+      }
+    });
+  })();
+</script>
+
   </body>
 </html>
