@@ -29,7 +29,7 @@
       /* soft active pill base */
     }
 
-    nav{
+    nav {
       background-color: white;
     }
 
@@ -175,7 +175,7 @@
       }
     }
 
-  
+
     /* ===== COLORS (keep your brand) ===== */
     :root {
       --footer-bg: #F9F5EE;
@@ -298,7 +298,7 @@
         margin-bottom: 14px
       }
     }
-    
+
 
     .mobile-img {
       display: none
@@ -343,12 +343,12 @@
       }
     }
 
-     @media (max-width:1240px) {
+    @media (max-width:1240px) {
       .hero-form-card {
         min-height: 437px;
       }
     }
-    
+
 
     /* --- Lock the desktop form width and visual consistency --- */
     @media (min-width: 992px) {
@@ -487,55 +487,73 @@
       }
 
 
-      
+
 
       /* .hero-section .hero-img{ width:100%; height:auto; display:block; } */
     }
 
     /* RESET old rules — allow Personal details to toggle normally */
-.accordion-button[data-bs-target*="Personal"],
-.accordion-button[aria-controls*="Personal"] {
-  pointer-events: auto !important;
-  cursor: pointer !important;
-}
+    .accordion-button[data-bs-target*="Personal"],
+    .accordion-button[aria-controls*="Personal"] {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
 
-/* Show the Bootstrap chevron again */
-.accordion-button[data-bs-target*="Personal"]::after,
-.accordion-button[aria-controls*="Personal"]::after {
-  display: inline-block !important;
-}
+    /* Show the Bootstrap chevron again */
+    .accordion-button[data-bs-target*="Personal"]::after,
+    .accordion-button[aria-controls*="Personal"]::after {
+      display: inline-block !important;
+    }
 
-/* Optional: make open/active accordion headers stand out */
-.accordion-button:not(.collapsed) {
-  color: #EA624E; /* your brand color */
-  font-weight: 700;
-  background-color: #fff;
-  box-shadow: none;
-}
+    /* Optional: make open/active accordion headers stand out */
+    .accordion-button:not(.collapsed) {
+      color: #EA624E;
+      /* your brand color */
+      font-weight: 700;
+      background-color: #fff;
+      box-shadow: none;
+    }
 
-/* Optional: hover effect for inactive accordions */
-.accordion-button.collapsed:hover {
-  color: #EA624E;
-}
+    /* Optional: hover effect for inactive accordions */
+    .accordion-button.collapsed:hover {
+      color: #EA624E;
+    }
 
-/* Smooth transitions for accordion panels */
-.accordion-collapse {
-  transition: height 0.35s ease;
-}
-
-<style>
-/* Make Select2 show Bootstrap invalid state */
-.select2-container--default .select2-selection--single.is-invalid,
-.select2-container--default .select2-selection--multiple.is-invalid {
-  border-color: #dc3545 !important;
-  padding-right: calc(1.5em + .75rem);
-  background-image: none;
-}
-</style>
-
+    /* Smooth transitions for accordion panels */
+    .accordion-collapse {
+      transition: height 0.35s ease;
+    }
   </style>
 
-  
+  <style>
+    /* Make Select2 show Bootstrap invalid state */
+    .select2-container--default .select2-selection--single.is-invalid,
+    .select2-container--default .select2-selection--multiple.is-invalid {
+      border-color: #dc3545 !important;
+      padding-right: calc(1.5em + .75rem);
+      background-image: none;
+    }
+
+    @media (max-width:400px) {
+
+      .seg-tabs .btn,
+      .role-toggle .btn {
+        flex: 1 1 0;
+        border: none;
+        background: transparent;
+        color: #7a3a00;
+        border-radius: 999px;
+        font-weight: 200;
+        height: 56px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+  </style>
+
+
+
+
 
 
 </head>
@@ -581,9 +599,10 @@
               <h2 class="banner-head-title fw-normal mb-4">Book trusted pet sitters, walkers and trainers</h2>
               <!-- <a class="btn btn-outline-danger" href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a> -->
               <div class="nav-cta-wrap ms-lg-0">
-          <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3" href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a>
-          
-        </div>
+                <a class="btn btn-primary-color rounded-pill fw-semibold px-3 py-2"
+                  href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a>
+
+              </div>
             </div>
           </div>
 
@@ -600,349 +619,371 @@
               </div>
 
               <!-- PANE: Pet Parent (default active) -->
-<div class="role-pane active" data-pane="parent">
-  <!-- FAQ-style collapses just for PET PARENT -->
-  <div class="accordion faq-accordion mb-3" id="ppAccordion">
+              <div class="role-pane active" data-pane="parent">
+                <!-- FAQ-style collapses just for PET PARENT -->
+                <div class="accordion faq-accordion mb-3" id="ppAccordion">
 
-    <!-- PERSONAL -->
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="ppPersonalHead">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#ppPersonal" aria-expanded="true" aria-controls="ppPersonal">
-          Personal details
-        </button>
-      </h2>
-      <div id="ppPersonal" class="accordion-collapse collapse show" aria-labelledby="ppPersonalHead"
-        data-bs-parent="#ppAccordion">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Full Name</label> -->
-              <input type="text" class="form-control" data-role="pp_name" placeholder="Your full name" required>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Email</label> -->
-              <input type="email" class="form-control" data-role="pp_email" placeholder="Email" required>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
-              <input type="text" class="form-control" data-role="location" placeholder="Locality" required>
-              <div class="invalid-feedback">Enter a location.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  <!-- PERSONAL -->
+                  <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="ppPersonalHead">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ppPersonal" aria-expanded="true" aria-controls="ppPersonal">
+                        Personal details
+                      </button>
+                    </h2>
+                    <div id="ppPersonal" class="accordion-collapse collapse show" aria-labelledby="ppPersonalHead"
+                      data-bs-parent="#ppAccordion">
+                      <div class="accordion-body">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Full Name</label> -->
+                            <input type="text" class="form-control" data-role="pp_name" placeholder="Your full name"
+                              required>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Email</label> -->
+                            <input type="email" class="form-control" data-role="pp_email" placeholder="Email" required>
+                          </div>
+                        </div>
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
+                            <input type="text" class="form-control" data-role="location" placeholder="Locality"
+                              required>
+                            <div class="invalid-feedback">Enter a location.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-    <!-- PET & PREFERENCES (includes Service now) -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="ppProHead">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#ppPro" aria-expanded="false" aria-controls="ppPro">
-          Pet & preferences
-        </button>
-      </h2>
-      <div id="ppPro" class="accordion-collapse collapse" aria-labelledby="ppProHead"
-        data-bs-parent="#ppAccordion">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">How many pets?</label> -->
-              <select class="form-select" data-role="pets" required>
-                <option value="" selected disabled>Pet No.</option>
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Pet Type</label> -->
-              <select class="form-select" data-role="pp_type" required>
-                <option value="" selected disabled>Pet type</option>
-                <option>Dog</option><option>Cat</option><option>Other</option>
-              </select>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Breed</label> -->
-              <input type="text" class="form-control" data-role="pp_breed" placeholder="Breed">
-            </div>
-            <!-- Moved service here -->
-          <div class="col-12 col-md-6 mb-3">
-            <!-- <label class="form-label fw-semibold">Which service do you need?</label> -->
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="boarding">Boarding • in the sitter’s home</option>
-              <option value="walking">Dog Walking</option>
-              <option value="training">Training</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
-          </div>
+                  <!-- PET & PREFERENCES (includes Service now) -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="ppProHead">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ppPro" aria-expanded="false" aria-controls="ppPro">
+                        Pet & preferences
+                      </button>
+                    </h2>
+                    <div id="ppPro" class="accordion-collapse collapse" aria-labelledby="ppProHead"
+                      data-bs-parent="#ppAccordion">
+                      <div class="accordion-body">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">How many pets?</label> -->
+                            <select class="form-select" data-role="pets" required>
+                              <option value="" selected disabled>Pet No.</option>
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5+</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Pet Type</label> -->
+                            <select class="form-select" data-role="pp_type" required>
+                              <option value="" selected disabled>Pet type</option>
+                              <option>Dog</option>
+                              <option>Cat</option>
+                              <option>Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Breed</label> -->
+                            <input type="text" class="form-control" data-role="pp_breed" placeholder="Breed">
+                          </div>
+                          <!-- Moved service here -->
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Which service do you need?</label> -->
+                            <select class="form-select" data-role="service" required>
+                              <option value="" selected disabled>Choose a service</option>
+                              <option value="boarding">Boarding • in the sitter’s home</option>
+                              <option value="walking">Dog Walking</option>
+                              <option value="training">Training</option>
+                            </select>
+                            <div class="invalid-feedback">Please choose a service.</div>
+                          </div>
+                        </div>
 
-          
 
-          <!-- Date vs time -->
-          <div class="mb-3" data-role="dateRange">
-            <label class="form-label fw-semibold">Which dates do you need?</label>
-            <div class="row g-2">
-              <div class="col-6"><input type="date" class="form-control" data-role="from"></div>
-              <div class="col-6"><input type="date" class="form-control" data-role="to"></div>
-            </div>
-          </div>
 
-          <div class="row g-2 mb-3 d-none" data-role="timeBlock">
-            <div class="col-6">
-              <label class="form-label fw-semibold">Date</label>
-              <input type="date" class="form-control" data-role="walkDate">
-            </div>
-            <div class="col-6">
-              <label class="form-label fw-semibold">Time</label>
-              <input type="time" class="form-control" data-role="walkTime">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                        <!-- Date vs time -->
+                        <div class="mb-3" data-role="dateRange">
+                          <label class="form-label fw-semibold">Which dates do you need?</label>
+                          <div class="row g-2">
+                            <div class="col-6"><input type="date" class="form-control" data-role="from"></div>
+                            <div class="col-6"><input type="date" class="form-control" data-role="to"></div>
+                          </div>
+                        </div>
 
-  </div><!-- /accordion -->
-</div>
+                        <div class="row g-2 mb-3 d-none" data-role="timeBlock">
+                          <div class="col-6">
+                            <label class="form-label fw-semibold">Date</label>
+                            <input type="date" class="form-control" data-role="walkDate">
+                          </div>
+                          <div class="col-6">
+                            <label class="form-label fw-semibold">Time</label>
+                            <input type="time" class="form-control" data-role="walkTime">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+<!-- <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button> -->
+
+                </div><!-- /accordion -->
+              <button id="parentSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Submit</button>
+              </div>
+
 
 
 
 
               <!-- PANE: Pet Host (accordion) -->
-<div class="role-pane" data-pane="host">
-  <div class="accordion faq-accordion mb-3" id="hostAccordion">
+              <div class="role-pane" data-pane="host">
+                <div class="accordion faq-accordion mb-3" id="hostAccordion">
 
-    <!-- PERSONAL (open) -->
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="hostPersonalHead">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#hostPersonal" aria-expanded="true" aria-controls="hostPersonal">
-          Personal details
-        </button>
-      </h2>
-      <div id="hostPersonal" class="accordion-collapse collapse show" aria-labelledby="hostPersonalHead"
-        data-bs-parent="#hostAccordion">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Full Name</label> -->
-              <input type="text" class="form-control" data-role="host_name" placeholder="Your full name" required>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Email</label> -->
-              <input type="email" class="form-control" data-role="host_email" placeholder="Email" required>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
-              <!-- data-role="location" is required by your submit validator -->
-              <input type="text" class="form-control" data-role="location"
-                     placeholder="Locality"
-                     oninput="this.nextElementSibling.value=this.value">
-              <!-- keep host_locality for URL params -->
-              <input type="hidden" data-role="host_locality">
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                  <!-- PERSONAL (open) -->
+                  <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="hostPersonalHead">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#hostPersonal" aria-expanded="true" aria-controls="hostPersonal">
+                        Personal details
+                      </button>
+                    </h2>
+                    <div id="hostPersonal" class="accordion-collapse collapse show" aria-labelledby="hostPersonalHead"
+                      data-bs-parent="#hostAccordion">
+                      <div class="accordion-body">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Full Name</label> -->
+                            <input type="text" class="form-control" data-role="host_name" placeholder="Your full name"
+                              required>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Email</label> -->
+                            <input type="email" class="form-control" data-role="host_email" placeholder="Email"
+                              required>
+                          </div>
+                        </div>
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
+                            <!-- data-role="location" is required by your submit validator -->
+                            <input type="text" class="form-control" data-role="location" placeholder="Locality"
+                              oninput="this.nextElementSibling.value=this.value">
+                            <!-- keep host_locality for URL params -->
+                            <input type="hidden" data-role="host_locality">
 
-    <!-- HOSTING PROFILE (includes service) -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="hostProfileHead">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#hostProfile" aria-expanded="false" aria-controls="hostProfile">
-          Hosting profile & offerings
-        </button>
-      </h2>
-      <div id="hostProfile" class="accordion-collapse collapse" aria-labelledby="hostProfileHead"
-        data-bs-parent="#hostAccordion">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Hosting Experience</label> -->
-              <select class="form-select" data-role="host_experience" required>
-                <option value="" selected disabled>Hosting Experience</option>
-                <option>Beginner</option>
-                <option>1–2 years</option>
-                <option>3+ years</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Daily Rate (₹)</label> -->
-              <input type="number" class="form-control" data-role="host_rate"
-                     placeholder="Price per day/night" min="0" required>
-            </div>
-            
-          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-          <!-- Primary service (needed for validator) -->
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="boarding">Boarding</option>
-              <option value="daycare">Day Care</option>
-              <option value="grooming">Grooming</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
+                  <!-- HOSTING PROFILE (includes service) -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="hostProfileHead">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#hostProfile" aria-expanded="false" aria-controls="hostProfile">
+                        Hosting profile & offerings
+                      </button>
+                    </h2>
+                    <div id="hostProfile" class="accordion-collapse collapse" aria-labelledby="hostProfileHead"
+                      data-bs-parent="#hostAccordion">
+                      <div class="accordion-body">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Hosting Experience</label> -->
+                            <select class="form-select" data-role="host_experience" required>
+                              <option value="" selected disabled>Hosting Experience</option>
+                              <option>Beginner</option>
+                              <option>1–2 years</option>
+                              <option>3+ years</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Daily Rate (₹)</label> -->
+                            <input type="number" class="form-control" data-role="host_rate"
+                              placeholder="Price per day/night" min="0" required>
+                          </div>
 
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label fw-semibold">Home Photos Upload</label>
-              <input type="file" class="form-control" data-role="host_photos" multiple accept="image/*">
-              
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label fw-semibold">Pet Types You Host</label>
-              <select class="form-select select2" multiple data-role="host_pet_types" required>
-                <option value="" selected disabled>Pet Types You Host</option>
-                <option>Dogs</option>
-                <option>Cats</option>
-                <option>Both</option>
-              </select>
-            </div>
-          </div>
+                        </div>
 
-          <!-- no date/time blocks for host (updateFields will safely skip) -->
-        </div>
-      </div>
-    </div>
+                        <!-- Primary service (needed for validator) -->
+                        <div class="mb-3">
+                          <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
+                          <select class="form-select" data-role="service" required>
+                            <option value="" selected disabled>Choose a service</option>
+                            <option value="boarding">Boarding</option>
+                            <option value="daycare">Day Care</option>
+                            <option value="grooming">Grooming</option>
+                          </select>
+                          <div class="invalid-feedback">Please choose a service.</div>
+                        </div>
 
-  </div>
-</div>
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Home Photos Upload</label>
+                            <input type="file" class="form-control" data-role="host_photos" multiple accept="image/*">
 
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Pet Types You Host</label>
+                            <select class="form-select select2" multiple data-role="host_pet_types" required>
+                              <option value="" selected disabled>Pet Types You Host</option>
+                              <option>Dogs</option>
+                              <option>Cats</option>
+                              <option>Both</option>
+                            </select>
+                          </div>
+                        </div>
 
-<!-- PANE: Service Provider (accordion) -->
-<div class="role-pane" data-pane="provider">
-  <div class="accordion faq-accordion mb-3" id="spAccordion">
+                        <!-- no date/time blocks for host (updateFields will safely skip) -->
+                      </div>
+                    </div>
+                  </div>
 
-    <!-- PERSONAL (open) -->
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="spPersonalHead">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#spPersonal" aria-expanded="true" aria-controls="spPersonal">
-          Personal details
-        </button>
-      </h2>
-      <div id="spPersonal" class="accordion-collapse collapse show" aria-labelledby="spPersonalHead"
-        data-bs-parent="#spAccordion">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Full Name</label> -->
-              <input type="text" class="form-control" data-role="sp_name" placeholder="Your full name" required>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Email</label> -->
-              <input type="email" class="form-control" data-role="sp_email" placeholder="Email" required>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Operating Locality / Area</label> -->
-              <!-- validator expects data-role="location" -->
-              <input type="text" class="form-control" data-role="location" placeholder="e.g., Borivali West" required>
-              <div class="invalid-feedback">Locality</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                </div>
+              <button id="hostSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Submit</button>
 
-    <!-- PROFILE & OFFERINGS (includes service) -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="spProHead">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#spPro" aria-expanded="false" aria-controls="spPro">
-          Profile & offerings
-        </button>
-      </h2>
-      <div id="spPro" class="accordion-collapse collapse" aria-labelledby="spProHead"
-        data-bs-parent="#spAccordion">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="walking">Dog Walking</option>
-              <option value="training">Training</option>
-              <option value="grooming">Grooming</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
-
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Experience Level</label> -->
-              <select class="form-select" data-role="sp_experience" required>
-                <option value="" selected disabled>Experience Level</option>
-                <option>Beginner</option>
-                <option>1–2 years</option>
-                <option>3+ years</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Service Radius (km)</label> -->
-              <input type="number" class="form-control" data-role="sp_radius" placeholder="Service Radius (km)" min="1" max="25">
-              
-            </div>
-          </div>
-
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Availability Slots</label> -->
-              <select class="form-select" data-role="sp_availability">
-                <option value="" selected disabled>Availability Slots</option>
-                <option>Morning</option>
-                <option>Evening</option>
-                <option>Flexible</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <!-- <label class="form-label fw-semibold">Rate per Session (₹)</label> -->
-              <input type="number" class="form-control" data-role="sp_rate" placeholder="Rate per Session (₹)" min="0" required>
-              
-            </div>
-          </div>
-
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label fw-semibold">Certification (if any)</label>
-              <input type="file" class="form-control" data-role="sp_cert_file" accept=".pdf,.jpg,.png,.jpeg">
-              
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <label class="form-label fw-semibold">Profile Photo &amp; ID Proof</label>
-              <input type="file" class="form-control" data-role="sp_id_proof" multiple accept="image/*,.pdf">
-             
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Reviews / References</label> -->
-            <textarea class="form-control" rows="2" data-role="sp_reviews"
-              placeholder="Reviews / References"></textarea>
-          </div>
-
-          <!-- no date/time blocks needed here -->
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+              </div>
 
 
+              <!-- PANE: Service Provider (accordion) -->
+              <div class="role-pane" data-pane="provider">
+                <div class="accordion faq-accordion mb-3" id="spAccordion">
 
-              <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button>
+                  <!-- PERSONAL (open) -->
+                  <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="spPersonalHead">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#spPersonal" aria-expanded="true" aria-controls="spPersonal">
+                        Personal details
+                      </button>
+                    </h2>
+                    <div id="spPersonal" class="accordion-collapse collapse show" aria-labelledby="spPersonalHead"
+                      data-bs-parent="#spAccordion">
+                      <div class="accordion-body">
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Full Name</label> -->
+                            <input type="text" class="form-control" data-role="sp_name" placeholder="Your full name"
+                              required>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Email</label> -->
+                            <input type="email" class="form-control" data-role="sp_email" placeholder="Email" required>
+                          </div>
+                        </div>
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Operating Locality / Area</label> -->
+                            <!-- validator expects data-role="location" -->
+                            <input type="text" class="form-control" data-role="location"
+                              placeholder="e.g., Borivali West" required>
+                            <div class="invalid-feedback">Locality</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- PROFILE & OFFERINGS (includes service) -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="spProHead">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#spPro" aria-expanded="false" aria-controls="spPro">
+                        Profile & offerings
+                      </button>
+                    </h2>
+                    <div id="spPro" class="accordion-collapse collapse" aria-labelledby="spProHead"
+                      data-bs-parent="#spAccordion">
+                      <div class="accordion-body">
+                        <div class="mb-3">
+                          <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
+                          <select class="form-select" data-role="service" required>
+                            <option value="" selected disabled>Choose a service</option>
+                            <option value="walking">Dog Walking</option>
+                            <option value="training">Training</option>
+                            <option value="grooming">Grooming</option>
+                          </select>
+                          <div class="invalid-feedback">Please choose a service.</div>
+                        </div>
+
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Experience Level</label> -->
+                            <select class="form-select" data-role="sp_experience" required>
+                              <option value="" selected disabled>Experience Level</option>
+                              <option>Beginner</option>
+                              <option>1–2 years</option>
+                              <option>3+ years</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Service Radius (km)</label> -->
+                            <input type="number" class="form-control" data-role="sp_radius"
+                              placeholder="Service Radius (km)" min="1" max="25">
+
+                          </div>
+                        </div>
+
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Availability Slots</label> -->
+                            <select class="form-select" data-role="sp_availability">
+                              <option value="" selected disabled>Availability Slots</option>
+                              <option>Morning</option>
+                              <option>Evening</option>
+                              <option>Flexible</option>
+                            </select>
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <!-- <label class="form-label fw-semibold">Rate per Session (₹)</label> -->
+                            <input type="number" class="form-control" data-role="sp_rate"
+                              placeholder="Rate per Session (₹)" min="0" required>
+
+                          </div>
+                        </div>
+
+                        <div class="row g-2">
+                          <div class="col-12 col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Certification (if any)</label>
+                            <input type="file" class="form-control" data-role="sp_cert_file"
+                              accept=".pdf,.jpg,.png,.jpeg">
+
+                          </div>
+                          <div class="col-12 col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Profile Photo &amp; ID Proof</label>
+                            <input type="file" class="form-control" data-role="sp_id_proof" multiple
+                              accept="image/*,.pdf">
+
+                          </div>
+                        </div>
+
+                        <div class="mb-3">
+                          <!-- <label class="form-label fw-semibold">Reviews / References</label> -->
+                          <textarea class="form-control" rows="2" data-role="sp_reviews"
+                            placeholder="Reviews / References"></textarea>
+                        </div>
+
+                        <!-- no date/time blocks needed here -->
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+              <!-- <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button> -->
               <input type="hidden" name="selectedRole" value="parent" data-role="selectedRole">
             </form>
           </div>
@@ -1200,320 +1241,332 @@
         <input type="radio" class="btn-check" name="roleMob" id="roleMobHost" autocomplete="off" value="host">
         <label class="btn btn-outline-secondary w-100" for="roleMobHost">Pet Host</label>
         <input type="radio" class="btn-check" name="roleMob" id="roleMobProvider" autocomplete="off" value="provider">
-        <label class="btn btn-outline-secondary w-100" for="roleMobProvider">Service Provider</label>
+        <label class="btn btn-outline-secondary w-100" for="roleMobProvider">Services</label>
       </div>
 
       <!-- panes (same fields for now) -->
-<!-- panes (same fields for now) -->
-<div class="role-pane active" data-pane="parent">
-  <!-- FAQ-style collapses just for PET PARENT -->
-  <div class="accordion faq-accordion mb-3" id="ppAccordionMob">
+      <!-- panes (same fields for now) -->
+      <div class="role-pane active" data-pane="parent">
+        <!-- FAQ-style collapses just for PET PARENT -->
+        <div class="accordion faq-accordion mb-3" id="ppAccordionMob">
 
-    <!-- PERSONAL -->
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="ppPersonalHeadMob">
-        <button class="accordion-button" type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#ppPersonalMob"
-          aria-expanded="true"
-          aria-controls="ppPersonalMob">
-          Personal details
-        </button>
-      </h2>
-      <div id="ppPersonalMob"
-           class="accordion-collapse collapse show"
-           aria-labelledby="ppPersonalHeadMob"
-           data-bs-parent="#ppAccordionMob">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <input type="text" class="form-control" data-role="pp_name" placeholder="Your full name" required>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <input type="email" class="form-control" data-role="pp_email" placeholder="Email" required>
-            </div>
-          </div>
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <input type="text" class="form-control" data-role="location" placeholder="Locality" required>
-              <div class="invalid-feedback">Enter a location.</div>
+          <!-- PERSONAL -->
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="ppPersonalHeadMob">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#ppPersonalMob"
+                aria-expanded="true" aria-controls="ppPersonalMob">
+                Personal details
+              </button>
+            </h2>
+            <div id="ppPersonalMob" class="accordion-collapse collapse show" aria-labelledby="ppPersonalHeadMob"
+              data-bs-parent="#ppAccordionMob">
+              <div class="accordion-body">
+                <div class="row g-2">
+                  <div class="col-12 col-md-6 mb-3">
+                    <input type="text" class="form-control" data-role="pp_name" placeholder="Your full name" required>
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <input type="email" class="form-control" data-role="pp_email" placeholder="Email" required>
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-12 col-md-6 mb-3">
+                    <input type="text" class="form-control" data-role="location" placeholder="Locality" required>
+                    <div class="invalid-feedback">Enter a location.</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+          <!-- PET & PREFERENCES -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="ppProHeadMob">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#ppProMob" aria-expanded="false" aria-controls="ppProMob">
+                Pet & preferences
+              </button>
+            </h2>
+            <div id="ppProMob" class="accordion-collapse collapse" aria-labelledby="ppProHeadMob"
+              data-bs-parent="#ppAccordionMob">
+              <div class="accordion-body">
+                <div class="row g-2">
+                  <div class="col-12 col-md-6 mb-3">
+                    <select class="form-select" data-role="pets" required>
+                      <option value="" selected disabled>Pet No.</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5+</option>
+                    </select>
+                  </div>
+                  <div class="col-12 col-md-6 mb-3">
+                    <select class="form-select" data-role="pp_type" required>
+                      <option value="" selected disabled>Pet type</option>
+                      <option>Dog</option>
+                      <option>Cat</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row g-2">
+                  <div class="col-12 col-md-6 mb-3">
+                    <input type="text" class="form-control" data-role="pp_breed" placeholder="Breed">
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <select class="form-select" data-role="service" required>
+                    <option value="" selected disabled>Choose a service</option>
+                    <option value="boarding">Boarding • in the sitter’s home</option>
+                    <option value="walking">Dog Walking</option>
+                    <option value="training">Training</option>
+                  </select>
+                  <div class="invalid-feedback">Please choose a service.</div>
+                </div>
+
+                <div class="mb-3" data-role="dateRange">
+                  <label class="form-label fw-semibold">Which dates do you need?</label>
+                  <div class="row g-2">
+                    <div class="col-6"><input type="date" class="form-control" data-role="from"></div>
+                    <div class="col-6"><input type="date" class="form-control" data-role="to"></div>
+                  </div>
+                </div>
+
+                <div class="row g-2 mb-3 d-none" data-role="timeBlock">
+                  <div class="col-6">
+                    <label class="form-label fw-semibold">Date</label>
+                    <input type="date" class="form-control" data-role="walkDate">
+                  </div>
+                  <div class="col-6">
+                    <label class="form-label fw-semibold">Time</label>
+                    <input type="time" class="form-control" data-role="walkTime">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /accordion -->
+         <button id="parentSubmitBtn"
+            class="btn btn-primary-color w-100 py-2 fw-bold"
+            type="submit">
+        Submit
+    </button>
       </div>
-    </div>
 
-    <!-- PET & PREFERENCES -->
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="ppProHeadMob">
-        <button class="accordion-button collapsed" type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#ppProMob"
-          aria-expanded="false"
-          aria-controls="ppProMob">
-          Pet & preferences
-        </button>
-      </h2>
-      <div id="ppProMob"
-           class="accordion-collapse collapse"
-           aria-labelledby="ppProHeadMob"
-           data-bs-parent="#ppAccordionMob">
-        <div class="accordion-body">
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <select class="form-select" data-role="pets" required>
-                <option value="" selected disabled>Pet No.</option>
-                <option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option>
-              </select>
-            </div>
-            <div class="col-12 col-md-6 mb-3">
-              <select class="form-select" data-role="pp_type" required>
-                <option value="" selected disabled>Pet type</option>
-                <option>Dog</option><option>Cat</option><option>Other</option>
-              </select>
+
+
+      <!-- PANE: Pet Host (accordion) -->
+      <div class="role-pane" data-pane="host">
+        <div class="accordion faq-accordion mb-3" id="hostAccordionMob">
+
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="hostPersonalHeadMob">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#hostPersonalMob"
+                aria-expanded="true" aria-controls="hostPersonalMob">
+                Personal details
+              </button>
+            </h2>
+            <div id="hostPersonalMob" class="accordion-collapse collapse show" aria-labelledby="hostPersonalHeadMob"
+              data-bs-parent="#hostAccordionMob">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Full Name</label> -->
+                  <input type="text" class="form-control" data-role="host_name" placeholder="Your full name" required>
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Email</label> -->
+                  <input type="email" class="form-control" data-role="host_email" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
+                  <input type="text" class="form-control" data-role="location" placeholder="Locality"
+                    oninput="this.nextElementSibling.value=this.value">
+                  <input type="hidden" data-role="host_locality">
+
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="row g-2">
-            <div class="col-12 col-md-6 mb-3">
-              <input type="text" class="form-control" data-role="pp_breed" placeholder="Breed">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="hostProfileHeadMob">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#hostProfileMob" aria-expanded="false" aria-controls="hostProfileMob">
+                Hosting profile & offerings
+              </button>
+            </h2>
+            <div id="hostProfileMob" class="accordion-collapse collapse" aria-labelledby="hostProfileHeadMob"
+              data-bs-parent="#hostAccordionMob">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Hosting Experience</label> -->
+                  <select class="form-select" data-role="host_experience" required>
+                    <option value="" selected disabled>Hosting experience</option>
+                    <option>Beginner</option>
+                    <option>1–2 years</option>
+                    <option>3+ years</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Pet Types You Host</label> -->
+                  <select class="form-select select2" multiple data-role="host_pet_types" required>
+                    <option value="" selected disabled>Pet Types You Host</option>
+                    <option>Dogs</option>
+                    <option>Cats</option>
+                    <option>Both</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
+                  <select class="form-select" data-role="service" required>
+                    <option value="" selected disabled>Choose a service</option>
+                    <option value="boarding">Boarding</option>
+                    <option value="daycare">Day Care</option>
+                    <option value="grooming">Grooming</option>
+                  </select>
+                  <div class="invalid-feedback">Please choose a service.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Home Photos Upload</label>
+                  <input type="file" class="form-control" placeholder="Home Photos Upload" data-role="host_photos"
+                    multiple accept="image/*">
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Daily Rate (₹)</label> -->
+                  <input type="number" class="form-control" data-role="host_rate" placeholder="Price per day/night"
+                    min="0" required>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="mb-3">
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="boarding">Boarding • in the sitter’s home</option>
-              <option value="walking">Dog Walking</option>
-              <option value="training">Training</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
-
-          <div class="mb-3" data-role="dateRange">
-            <label class="form-label fw-semibold">Which dates do you need?</label>
-            <div class="row g-2">
-              <div class="col-6"><input type="date" class="form-control" data-role="from"></div>
-              <div class="col-6"><input type="date" class="form-control" data-role="to"></div>
-            </div>
-          </div>
-
-          <div class="row g-2 mb-3 d-none" data-role="timeBlock">
-            <div class="col-6">
-              <label class="form-label fw-semibold">Date</label>
-              <input type="date" class="form-control" data-role="walkDate">
-            </div>
-            <div class="col-6">
-              <label class="form-label fw-semibold">Time</label>
-              <input type="time" class="form-control" data-role="walkTime">
-            </div>
-          </div>
         </div>
+        <button id="hostSubmitBtn"
+            class="btn btn-primary-color w-100 py-2 fw-bold"
+            type="submit">
+        Submit
+    </button>
       </div>
-    </div>
-
-  </div><!-- /accordion -->
-</div>
 
 
+      <div class="role-pane" data-pane="provider">
+        <div class="accordion faq-accordion mb-3" id="spAccordionMob">
 
-<!-- PANE: Pet Host (accordion) -->
-<div class="role-pane" data-pane="host">
-  <div class="accordion faq-accordion mb-3" id="hostAccordionMob">
-
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="hostPersonalHeadMob">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#hostPersonalMob" aria-expanded="true" aria-controls="hostPersonalMob">
-          Personal details
-        </button>
-      </h2>
-      <div id="hostPersonalMob" class="accordion-collapse collapse show" aria-labelledby="hostPersonalHeadMob"
-        data-bs-parent="#hostAccordionMob">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Full Name</label> -->
-            <input type="text" class="form-control" data-role="host_name" placeholder="Your full name" required>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="spPersonalHeadMob">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#spPersonalMob"
+                aria-expanded="true" aria-controls="spPersonalMob">
+                Personal details
+              </button>
+            </h2>
+            <div id="spPersonalMob" class="accordion-collapse collapse show" aria-labelledby="spPersonalHeadMob"
+              data-bs-parent="#spAccordionMob">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Full Name</label> -->
+                  <input type="text" class="form-control" data-role="sp_name" placeholder="Your full name" required>
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Email</label> -->
+                  <input type="email" class="form-control" data-role="sp_email" placeholder="Email" required>
+                </div>
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Operating Locality / Area</label> -->
+                  <input type="text" class="form-control" data-role="location" placeholder="Locality" required>
+                  <div class="invalid-feedback">Enter a location.</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Email</label> -->
-            <input type="email" class="form-control" data-role="host_email" placeholder="Email" required>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="spProHeadMob">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#spProMob" aria-expanded="false" aria-controls="spProMob">
+                Profile & offerings
+              </button>
+            </h2>
+            <div id="spProMob" class="accordion-collapse collapse" aria-labelledby="spProHeadMob"
+              data-bs-parent="#spAccordionMob">
+              <div class="accordion-body">
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
+                  <select class="form-select" data-role="service" required>
+                    <option value="" selected disabled>Choose a service</option>
+                    <option value="walking">Dog Walking</option>
+                    <option value="training">Training</option>
+                    <option value="grooming">Grooming</option>
+                  </select>
+                  <div class="invalid-feedback">Please choose a service.</div>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Experience Level</label> -->
+                  <select class="form-select" data-role="sp_experience" required>
+                    <option value="" selected disabled>Experience level</option>
+                    <option>Beginner</option>
+                    <option>1–2 years</option>
+                    <option>3+ years</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Service Radius (km)</label> -->
+                  <input type="number" class="form-control" data-role="sp_radius" placeholder="Service Radius (km)"
+                    min="1" max="25">
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Availability Slots</label> -->
+                  <select class="form-select" data-role="sp_availability">
+                    <option value="" selected disabled>Availability slot</option>
+                    <option>Morning</option>
+                    <option>Evening</option>
+                    <option>Flexible</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Rate per Session (₹)</label> -->
+                  <input type="number" class="form-control" data-role="sp_rate" placeholder="Rate per Session (₹)"
+                    min="0" required>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Certification (if any)</label>
+                  <input type="file" class="form-control" data-role="sp_cert_file" accept=".pdf,.jpg,.png,.jpeg"
+                    placeholder="Certification (if any)">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label fw-semibold">Profile Photo &amp; ID Proof</label>
+                  <input type="file" class="form-control" placeholder="Profile Photo &amp; ID Proof"
+                    data-role="sp_id_proof" multiple accept="image/*,.pdf">
+                </div>
+
+                <div class="mb-3">
+                  <!-- <label class="form-label fw-semibold">Reviews / References</label> -->
+                  <textarea class="form-control" rows="2" data-role="sp_reviews"
+                    placeholder="Reviews / References"></textarea>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Locality / Area</label> -->
-            <input type="text" class="form-control" data-role="location"
-                   placeholder="Locality"
-                   oninput="this.nextElementSibling.value=this.value">
-            <input type="hidden" data-role="host_locality">
-            
-          </div>
+
         </div>
+        <button id="providerSubmitBtn"
+            class="btn btn-primary-color w-100 py-2 fw-bold"
+            type="submit">
+        Submit
+    </button>
       </div>
-    </div>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="hostProfileHeadMob">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#hostProfileMob" aria-expanded="false" aria-controls="hostProfileMob">
-          Hosting profile & offerings
-        </button>
-      </h2>
-      <div id="hostProfileMob" class="accordion-collapse collapse" aria-labelledby="hostProfileHeadMob"
-        data-bs-parent="#hostAccordionMob">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Hosting Experience</label> -->
-            <select class="form-select" data-role="host_experience" required>
-              <option value="" selected disabled>Hosting experience</option>
-              <option>Beginner</option>
-              <option>1–2 years</option>
-              <option>3+ years</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Pet Types You Host</label> -->
-            <select class="form-select select2" multiple data-role="host_pet_types" required>
-              <option value="" selected disabled>Pet Types You Host</option>
-              <option>Dogs</option>
-              <option>Cats</option>
-              <option>Both</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="boarding">Boarding</option>
-              <option value="daycare">Day Care</option>
-              <option value="grooming">Grooming</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Home Photos Upload</label>
-            <input type="file" class="form-control" placeholder="Home Photos Upload" data-role="host_photos" multiple accept="image/*">
-          </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Daily Rate (₹)</label> -->
-            <input type="number" class="form-control" data-role="host_rate" placeholder="Price per day/night" min="0" required>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class="role-pane" data-pane="provider">
-  <div class="accordion faq-accordion mb-3" id="spAccordionMob">
-
-    <div class="accordion-item mb-2">
-      <h2 class="accordion-header" id="spPersonalHeadMob">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-          data-bs-target="#spPersonalMob" aria-expanded="true" aria-controls="spPersonalMob">
-          Personal details
-        </button>
-      </h2>
-      <div id="spPersonalMob" class="accordion-collapse collapse show" aria-labelledby="spPersonalHeadMob"
-        data-bs-parent="#spAccordionMob">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Full Name</label> -->
-            <input type="text" class="form-control" data-role="sp_name" placeholder="Your full name" required>
-          </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Email</label> -->
-            <input type="email" class="form-control" data-role="sp_email" placeholder="Email" required>
-          </div>
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Operating Locality / Area</label> -->
-            <input type="text" class="form-control" data-role="location" placeholder="Locality" required>
-            <div class="invalid-feedback">Enter a location.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="spProHeadMob">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          data-bs-target="#spProMob" aria-expanded="false" aria-controls="spProMob">
-          Profile & offerings
-        </button>
-      </h2>
-      <div id="spProMob" class="accordion-collapse collapse" aria-labelledby="spProHeadMob"
-        data-bs-parent="#spAccordionMob">
-        <div class="accordion-body">
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
-            <select class="form-select" data-role="service" required>
-              <option value="" selected disabled>Choose a service</option>
-              <option value="walking">Dog Walking</option>
-              <option value="training">Training</option>
-              <option value="grooming">Grooming</option>
-            </select>
-            <div class="invalid-feedback">Please choose a service.</div>
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Experience Level</label> -->
-            <select class="form-select" data-role="sp_experience" required>
-              <option value="" selected disabled>Experience level</option>
-              <option>Beginner</option>
-              <option>1–2 years</option>
-              <option>3+ years</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Service Radius (km)</label> -->
-            <input type="number" class="form-control" data-role="sp_radius" placeholder="Service Radius (km)" min="1" max="25">
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Availability Slots</label> -->
-            <select class="form-select" data-role="sp_availability">
-              <option value="" selected disabled>Availability slot</option>
-              <option>Morning</option>
-              <option>Evening</option>
-              <option>Flexible</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Rate per Session (₹)</label> -->
-            <input type="number" class="form-control" data-role="sp_rate" placeholder="Rate per Session (₹)" min="0" required>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Certification (if any)</label>
-            <input type="file" class="form-control" data-role="sp_cert_file" accept=".pdf,.jpg,.png,.jpeg" placeholder="Certification (if any)">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label fw-semibold">Profile Photo &amp; ID Proof</label>
-            <input type="file" class="form-control" placeholder="Profile Photo &amp; ID Proof" data-role="sp_id_proof" multiple accept="image/*,.pdf">
-          </div>
-
-          <div class="mb-3">
-            <!-- <label class="form-label fw-semibold">Reviews / References</label> -->
-            <textarea class="form-control" rows="2" data-role="sp_reviews"
-              placeholder="Reviews / References"></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-      <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button>
       <input type="hidden" name="selectedRole" value="parent" data-role="selectedRole">
     </form>
   </div>
@@ -1555,14 +1608,17 @@
           </div>
           <div class="boarding-content col-md-6">
             <h3 class="head-text">Boarding</h3>
-            <p>With MyPetBnB, dog boarding is no longer about cages or kennels, it’s about comfort and care. When you book through our platform, you’re directly connected to trusted dog sitters in your neighbourhood who welcome pups into their own homes.</p>
-            <p>Your dog enjoys a safe environment with their own comfortable spot, daily walks, playtime and the warmth of a family setting. Whether you’re away for a few days or an extended holiday, you can travel worry-free knowing your furry friend is in loving hands.</p>
+            <p>With MyPetBnB, dog boarding is no longer about cages or kennels, it’s about comfort and care. When you
+              book through our platform, you’re directly connected to trusted dog sitters in your neighbourhood who
+              welcome pups into their own homes.</p>
+            <p>Your dog enjoys a safe environment with their own comfortable spot, daily walks, playtime and the warmth
+              of a family setting. Whether you’re away for a few days or an extended holiday, you can travel worry-free
+              knowing your furry friend is in loving hands.</p>
             <div class="nav-cta-wrap ms-lg-0">
-          <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
-   href="#"
-   data-go-role="host">Register</a>
-          
-        </div>
+              <a class="track-boarding btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
+                data-go-role="host">Register</a>
+
+            </div>
           </div>
         </div>
 
@@ -1572,14 +1628,17 @@
           </div>
           <div class="walking-content col-md-6">
             <h3 class="head-text">Walking</h3>
-            <p>Daily walks are essential for a dog’s health and happiness but city life doesn’t always leave time for them. That’s why we connect you with compassionate, experienced dog walkers nearby who make every stroll safe, fun and engaging.</p>
-            <p>From quick neighbourhood rounds to long park strolls, your pup will enjoy exercise, stimulation and socialisation. With GPS tracking and live updates, you’ll always know your dog is getting the care and activity they deserve.</p>
+            <p>Daily walks are essential for a dog’s health and happiness but city life doesn’t always leave time for
+              them. That’s why we connect you with compassionate, experienced dog walkers nearby who make every stroll
+              safe, fun and engaging.</p>
+            <p>From quick neighbourhood rounds to long park strolls, your pup will enjoy exercise, stimulation and
+              socialisation. With GPS tracking and live updates, you’ll always know your dog is getting the care and
+              activity they deserve.</p>
             <div class="nav-cta-wrap ms-lg-0">
-          <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
-   href="#"
-   data-go-role="provider">Register</a>
-          
-        </div>
+              <a class="track-walking btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
+                data-go-role="provider">Register</a>
+
+            </div>
           </div>
         </div>
 
@@ -1589,14 +1648,16 @@
           </div>
           <div class="sitting-content col-md-6">
             <h3 class="head-text">Sitting</h3>
-            <p>Some dogs feel most comfortable in their own space. Our dog sitting service ensures they’re cared for right at home. Whether you’re working late, out for dinner or away for the weekend, a trusted sitter comes to your home to feed, walk, play and comfort your pup.</p>
-            <p>Regular photo and video updates keep you connected, while sitters follow your instructions to the last detail; ensuring safety, consistency and peace of mind.</p>
+            <p>Some dogs feel most comfortable in their own space. Our dog sitting service ensures they’re cared for
+              right at home. Whether you’re working late, out for dinner or away for the weekend, a trusted sitter comes
+              to your home to feed, walk, play and comfort your pup.</p>
+            <p>Regular photo and video updates keep you connected, while sitters follow your instructions to the last
+              detail; ensuring safety, consistency and peace of mind.</p>
             <div class="nav-cta-wrap ms-lg-0">
-          <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
-   href="#"
-   data-go-role="provider">Register</a>
-          
-        </div>
+              <a class="track-sitting btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
+                data-go-role="provider">Register</a>
+
+            </div>
           </div>
         </div>
 
@@ -1606,15 +1667,18 @@
           </div>
           <div class="Training-content col-md-6">
             <h3 class="head-text">Training</h3>
-            <p>Good behaviour makes life easier for both dogs and parents. Through MyPetBnB, you can connect with experienced trainers who use positive reinforcement to teach obedience, leash manners and social skills.</p>
-            <p>Whether it’s basic puppy training, correcting habits or addressing specific challenges, our trainers help your dog learn in a safe and supportive way. With regular progress updates, you’ll see your pup grow into their best self.</p>
+            <p>Good behaviour makes life easier for both dogs and parents. Through MyPetBnB, you can connect with
+              experienced trainers who use positive reinforcement to teach obedience, leash manners and social skills.
+            </p>
+            <p>Whether it’s basic puppy training, correcting habits or addressing specific challenges, our trainers help
+              your dog learn in a safe and supportive way. With regular progress updates, you’ll see your pup grow into
+              their best self.</p>
             <div class="nav-cta-wrap ms-lg-0">
-          <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
-   href="#"
-   data-go-role="provider">Register</a>
+              <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
+                data-go-role="provider">Register</a>
 
-          
-        </div>
+
+            </div>
           </div>
         </div>
       </div>
@@ -1754,332 +1818,332 @@
 
     // ---------------- Unified form wiring (desktop + mobile) ----------------
 
-function wireUnifiedForm(formId) {
-  const form = document.getElementById(formId); if (!form) return;
+    function wireUnifiedForm(formId) {
+      const form = document.getElementById(formId); if (!form) return;
 
-  // ----- Helpers -----
-  const panes = Array.from(form.querySelectorAll('.role-pane'));
-  const hiddenRole = form.querySelector('[data-role="selectedRole"]');
+      // ----- Helpers -----
+      const panes = Array.from(form.querySelectorAll('.role-pane'));
+      const hiddenRole = form.querySelector('[data-role="selectedRole"]');
 
-  const desktopTabs = form.querySelector('[data-tabs]');
-  const desktopBtns = desktopTabs ? Array.from(desktopTabs.querySelectorAll('[data-role-btn]')) : [];
-  let moveIndicator = () => {};
-  if (desktopTabs && desktopBtns.length) {
-    moveIndicator = setupSlidingTabs(
-      desktopTabs,
-      desktopBtns,
-      () => Math.max(0, desktopBtns.findIndex(b => b.classList.contains('active')))
-    );
-  }
+      const desktopTabs = form.querySelector('[data-tabs]');
+      const desktopBtns = desktopTabs ? Array.from(desktopTabs.querySelectorAll('[data-role-btn]')) : [];
+      let moveIndicator = () => { };
+      if (desktopTabs && desktopBtns.length) {
+        moveIndicator = setupSlidingTabs(
+          desktopTabs,
+          desktopBtns,
+          () => Math.max(0, desktopBtns.findIndex(b => b.classList.contains('active')))
+        );
+      }
 
-  const radios = Array.from(form.querySelectorAll('.btn-check[name^="role"]'));
-  const labels = radios.map(r => form.querySelector(`label[for="${r.id}"]`)).filter(Boolean);
+      const radios = Array.from(form.querySelectorAll('.btn-check[name^="role"]'));
+      const labels = radios.map(r => form.querySelector(`label[for="${r.id}"]`)).filter(Boolean);
 
-  function getActivePane() { return form.querySelector('.role-pane.active') || form; }
-  function $inPane(sel) {
-    const pane = getActivePane();
-    return pane ? pane.querySelector(sel) : form.querySelector(sel);
-  }
+      function getActivePane() { return form.querySelector('.role-pane.active') || form; }
+      function $inPane(sel) {
+        const pane = getActivePane();
+        return pane ? pane.querySelector(sel) : form.querySelector(sel);
+      }
 
-  function openAccordionFor(el) {
-    const panel = el?.closest('.accordion-collapse');
-    if (panel) {
-      const inst = bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false });
-      inst.show();
-    }
-  }
-
-  function scrollToEl(el, offset = 88) {
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-
-  function setRole(role) {
-    panes.forEach(p => p.classList.toggle('active', p.getAttribute('data-pane') === role));
-    if (hiddenRole) hiddenRole.value = role;
-    desktopBtns.forEach(btn => btn.classList.toggle('active', btn.value === role));
-    const activeBtn = desktopBtns.find(b => b.value === role);
-    if (activeBtn) moveIndicator(activeBtn);
-    radios.forEach((r, i) => {
-      if (r.value === role) r.checked = true;
-      if (labels[i]) labels[i].classList.toggle('active', radios[i].checked);
-    });
-    updateFields();
-  }
-
-  // Expose to other scripts (you already use these)
-  form._setUnifiedRole = setRole;
-  form._selectService = (serviceValue) => {
-    const pane = form.querySelector('.role-pane.active');
-    if (!pane) return;
-    const sel = pane.querySelector('[data-role="service"]');
-    if (sel && serviceValue) {
-      sel.value = serviceValue;
-      sel.dispatchEvent(new Event('change', { bubbles: true }));
-    }
-  };
-
-  // Show Date vs Time depending on service
-  function updateFields() {
-    const service = $inPane('[data-role="service"]');
-    const dateRange = $inPane('[data-role="dateRange"]');
-    const timeBlock = $inPane('[data-role="timeBlock"]');
-    if (!service) return;
-    if (service.value === 'walking') {
-      if (dateRange) dateRange.classList.add('d-none');
-      if (timeBlock) timeBlock.classList.remove('d-none');
-    } else {
-      if (timeBlock) timeBlock.classList.add('d-none');
-      if (dateRange) dateRange.classList.remove('d-none');
-    }
-  }
-
-  function setDateDefaults() {
-    const fromI = $inPane('[data-role="from"]');
-    const toI = $inPane('[data-role="to"]');
-    const walkDate = $inPane('[data-role="walkDate"]');
-    const todayISO = new Date().toISOString().split('T')[0];
-    const tomorrowISO = new Date(Date.now() + 86400000).toISOString().split('T')[0];
-    if (fromI && !fromI.value) fromI.value = todayISO;
-    if (toI && !toI.value) toI.value = tomorrowISO;
-    if (walkDate && !walkDate.value) walkDate.value = todayISO;
-  }
-
-  // ----- Validation helpers -----
-  function markInvalid(input, message) {
-    if (!input) return;
-    // Native validity message if present
-    if (typeof input.setCustomValidity === 'function') {
-      input.setCustomValidity(message || 'Invalid');
-    }
-    input.classList.add('is-invalid');
-
-    // Select2: add invalid to its visible selection too
-    if (window.jQuery && jQuery(input).hasClass('select2')) {
-      const $sel = jQuery(input).siblings('.select2').find('.select2-selection');
-      $sel.addClass('is-invalid');
-    }
-
-    // Attach/update feedback text if .invalid-feedback sibling exists
-    const fb = input.parentElement?.querySelector('.invalid-feedback');
-    if (fb && message) fb.textContent = message;
-  }
-
-  function clearInvalid(input) {
-    if (!input) return;
-    if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
-    input.classList.remove('is-invalid');
-
-    if (window.jQuery && jQuery(input).hasClass('select2')) {
-      const $sel = jQuery(input).siblings('.select2').find('.select2-selection');
-      $sel.removeClass('is-invalid');
-    }
-  }
-
-  function firstInvalidWithin(container) {
-    return container.querySelector('.is-invalid, :invalid');
-  }
-
-  function validEmail(value) {
-    if (!value) return false;
-    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
-  }
-
-  function validateActivePane() {
-    const pane = getActivePane();
-    const role = hiddenRole?.value || 'parent';
-    let ok = true;
-
-    // Common fields by role
-    const svc = pane.querySelector('[data-role="service"]');
-    const loc = pane.querySelector('[data-role="location"]');
-
-    // Reset previous errors
-    pane.querySelectorAll('.is-invalid').forEach(el => clearInvalid(el));
-
-    // Role-specific blocks
-    if (role === 'parent') {
-      const name = pane.querySelector('[data-role="pp_name"]');
-      const email = pane.querySelector('[data-role="pp_email"]');
-      const pets = pane.querySelector('[data-role="pets"]');
-      const type = pane.querySelector('[data-role="pp_type"]');
-
-      if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
-      if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
-      if (!loc?.value.trim()) { ok = false; markInvalid(loc, 'Enter a location.'); }
-      if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a service.'); }
-      if (!pets?.value) { ok = false; markInvalid(pets, 'Select number of pets.'); }
-      if (!type?.value) { ok = false; markInvalid(type, 'Select pet type.'); }
-
-      if (svc?.value === 'walking') {
-        const d = pane.querySelector('[data-role="walkDate"]');
-        const t = pane.querySelector('[data-role="walkTime"]');
-        if (!d?.value) { ok = false; markInvalid(d, 'Select a date.'); }
-        if (!t?.value) { ok = false; markInvalid(t, 'Select a time.'); }
-      } else {
-        const fromI = pane.querySelector('[data-role="from"]');
-        const toI   = pane.querySelector('[data-role="to"]');
-        if (!fromI?.value) { ok = false; markInvalid(fromI, 'Pick a start date.'); }
-        if (!toI?.value)   { ok = false; markInvalid(toI, 'Pick an end date.'); }
-        if (fromI?.value && toI?.value && toI.value < fromI.value) {
-          ok = false; markInvalid(toI, 'End date must be after start date.');
+      function openAccordionFor(el) {
+        const panel = el?.closest('.accordion-collapse');
+        if (panel) {
+          const inst = bootstrap.Collapse.getOrCreateInstance(panel, { toggle: false });
+          inst.show();
         }
       }
-    }
 
-    if (role === 'host') {
-      const name = pane.querySelector('[data-role="host_name"]');
-      const email = pane.querySelector('[data-role="host_email"]');
-      const exp = pane.querySelector('[data-role="host_experience"]');
-      const rate = pane.querySelector('[data-role="host_rate"]');
-      const petTypes = pane.querySelector('[data-role="host_pet_types"]');
-
-      if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
-      if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
-      // location is optional in your HTML for host but we treat it as required UX-wise:
-      const locVisible = pane.querySelector('input[data-role="location"]');
-      if (!locVisible?.value.trim()) { ok = false; markInvalid(locVisible, 'Enter your locality.'); }
-
-      if (!exp?.value) { ok = false; markInvalid(exp, 'Select hosting experience.'); }
-      if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a primary service.'); }
-
-      // Select2 multiple must have at least one
-      if (petTypes) {
-        const hasAny = petTypes.selectedOptions && petTypes.selectedOptions.length > 0;
-        if (!hasAny) { ok = false; markInvalid(petTypes, 'Select pet types you host.'); }
+      function scrollToEl(el, offset = 88) {
+        if (!el) return;
+        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
 
-      if (!rate?.value || Number(rate.value) <= 0) {
-        ok = false; markInvalid(rate, 'Enter a valid positive price.');
+      function setRole(role) {
+        panes.forEach(p => p.classList.toggle('active', p.getAttribute('data-pane') === role));
+        if (hiddenRole) hiddenRole.value = role;
+        desktopBtns.forEach(btn => btn.classList.toggle('active', btn.value === role));
+        const activeBtn = desktopBtns.find(b => b.value === role);
+        if (activeBtn) moveIndicator(activeBtn);
+        radios.forEach((r, i) => {
+          if (r.value === role) r.checked = true;
+          if (labels[i]) labels[i].classList.toggle('active', radios[i].checked);
+        });
+        updateFields();
       }
-    }
 
-    if (role === 'provider') {
-      const name = pane.querySelector('[data-role="sp_name"]');
-      const email = pane.querySelector('[data-role="sp_email"]');
-      const exp = pane.querySelector('[data-role="sp_experience"]');
-      const rate = pane.querySelector('[data-role="sp_rate"]');
-      const radius = pane.querySelector('[data-role="sp_radius"]');
+      // Expose to other scripts (you already use these)
+      form._setUnifiedRole = setRole;
+      form._selectService = (serviceValue) => {
+        const pane = form.querySelector('.role-pane.active');
+        if (!pane) return;
+        const sel = pane.querySelector('[data-role="service"]');
+        if (sel && serviceValue) {
+          sel.value = serviceValue;
+          sel.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      };
 
-      if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
-      if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
-      if (!loc?.value.trim()) { ok = false; markInvalid(loc, 'Enter your operating locality.'); }
-      if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a service.'); }
-      if (!exp?.value) { ok = false; markInvalid(exp, 'Select experience level.'); }
-      if (!rate?.value || Number(rate.value) < 0) { ok = false; markInvalid(rate, 'Enter a valid rate.'); }
-      if (radius?.value && (Number(radius.value) < 1 || Number(radius.value) > 25)) {
-        ok = false; markInvalid(radius, 'Radius must be between 1–25 km.');
+      // Show Date vs Time depending on service
+      function updateFields() {
+        const service = $inPane('[data-role="service"]');
+        const dateRange = $inPane('[data-role="dateRange"]');
+        const timeBlock = $inPane('[data-role="timeBlock"]');
+        if (!service) return;
+        if (service.value === 'walking') {
+          if (dateRange) dateRange.classList.add('d-none');
+          if (timeBlock) timeBlock.classList.remove('d-none');
+        } else {
+          if (timeBlock) timeBlock.classList.add('d-none');
+          if (dateRange) dateRange.classList.remove('d-none');
+        }
       }
-    }
 
-    // If any invalid, open its accordion and scroll to it
-    if (!ok) {
-      const firstBad = firstInvalidWithin(pane) || pane.querySelector('.is-invalid');
-      if (firstBad) {
-        openAccordionFor(firstBad);
-        setTimeout(() => scrollToEl(firstBad, 88), 60);
+      function setDateDefaults() {
+        const fromI = $inPane('[data-role="from"]');
+        const toI = $inPane('[data-role="to"]');
+        const walkDate = $inPane('[data-role="walkDate"]');
+        const todayISO = new Date().toISOString().split('T')[0];
+        const tomorrowISO = new Date(Date.now() + 86400000).toISOString().split('T')[0];
+        if (fromI && !fromI.value) fromI.value = todayISO;
+        if (toI && !toI.value) toI.value = tomorrowISO;
+        if (walkDate && !walkDate.value) walkDate.value = todayISO;
       }
+
+      // ----- Validation helpers -----
+      function markInvalid(input, message) {
+        if (!input) return;
+        // Native validity message if present
+        if (typeof input.setCustomValidity === 'function') {
+          input.setCustomValidity(message || 'Invalid');
+        }
+        input.classList.add('is-invalid');
+
+        // Select2: add invalid to its visible selection too
+        if (window.jQuery && jQuery(input).hasClass('select2')) {
+          const $sel = jQuery(input).siblings('.select2').find('.select2-selection');
+          $sel.addClass('is-invalid');
+        }
+
+        // Attach/update feedback text if .invalid-feedback sibling exists
+        const fb = input.parentElement?.querySelector('.invalid-feedback');
+        if (fb && message) fb.textContent = message;
+      }
+
+      function clearInvalid(input) {
+        if (!input) return;
+        if (typeof input.setCustomValidity === 'function') input.setCustomValidity('');
+        input.classList.remove('is-invalid');
+
+        if (window.jQuery && jQuery(input).hasClass('select2')) {
+          const $sel = jQuery(input).siblings('.select2').find('.select2-selection');
+          $sel.removeClass('is-invalid');
+        }
+      }
+
+      function firstInvalidWithin(container) {
+        return container.querySelector('.is-invalid, :invalid');
+      }
+
+      function validEmail(value) {
+        if (!value) return false;
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
+      }
+
+      function validateActivePane() {
+        const pane = getActivePane();
+        const role = hiddenRole?.value || 'parent';
+        let ok = true;
+
+        // Common fields by role
+        const svc = pane.querySelector('[data-role="service"]');
+        const loc = pane.querySelector('[data-role="location"]');
+
+        // Reset previous errors
+        pane.querySelectorAll('.is-invalid').forEach(el => clearInvalid(el));
+
+        // Role-specific blocks
+        if (role === 'parent') {
+          const name = pane.querySelector('[data-role="pp_name"]');
+          const email = pane.querySelector('[data-role="pp_email"]');
+          const pets = pane.querySelector('[data-role="pets"]');
+          const type = pane.querySelector('[data-role="pp_type"]');
+
+          if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
+          if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
+          if (!loc?.value.trim()) { ok = false; markInvalid(loc, 'Enter a location.'); }
+          if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a service.'); }
+          if (!pets?.value) { ok = false; markInvalid(pets, 'Select number of pets.'); }
+          if (!type?.value) { ok = false; markInvalid(type, 'Select pet type.'); }
+
+          if (svc?.value === 'walking') {
+            const d = pane.querySelector('[data-role="walkDate"]');
+            const t = pane.querySelector('[data-role="walkTime"]');
+            if (!d?.value) { ok = false; markInvalid(d, 'Select a date.'); }
+            if (!t?.value) { ok = false; markInvalid(t, 'Select a time.'); }
+          } else {
+            const fromI = pane.querySelector('[data-role="from"]');
+            const toI = pane.querySelector('[data-role="to"]');
+            if (!fromI?.value) { ok = false; markInvalid(fromI, 'Pick a start date.'); }
+            if (!toI?.value) { ok = false; markInvalid(toI, 'Pick an end date.'); }
+            if (fromI?.value && toI?.value && toI.value < fromI.value) {
+              ok = false; markInvalid(toI, 'End date must be after start date.');
+            }
+          }
+        }
+
+        if (role === 'host') {
+          const name = pane.querySelector('[data-role="host_name"]');
+          const email = pane.querySelector('[data-role="host_email"]');
+          const exp = pane.querySelector('[data-role="host_experience"]');
+          const rate = pane.querySelector('[data-role="host_rate"]');
+          const petTypes = pane.querySelector('[data-role="host_pet_types"]');
+
+          if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
+          if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
+          // location is optional in your HTML for host but we treat it as required UX-wise:
+          const locVisible = pane.querySelector('input[data-role="location"]');
+          if (!locVisible?.value.trim()) { ok = false; markInvalid(locVisible, 'Enter your locality.'); }
+
+          if (!exp?.value) { ok = false; markInvalid(exp, 'Select hosting experience.'); }
+          if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a primary service.'); }
+
+          // Select2 multiple must have at least one
+          if (petTypes) {
+            const hasAny = petTypes.selectedOptions && petTypes.selectedOptions.length > 0;
+            if (!hasAny) { ok = false; markInvalid(petTypes, 'Select pet types you host.'); }
+          }
+
+          if (!rate?.value || Number(rate.value) <= 0) {
+            ok = false; markInvalid(rate, 'Enter a valid positive price.');
+          }
+        }
+
+        if (role === 'provider') {
+          const name = pane.querySelector('[data-role="sp_name"]');
+          const email = pane.querySelector('[data-role="sp_email"]');
+          const exp = pane.querySelector('[data-role="sp_experience"]');
+          const rate = pane.querySelector('[data-role="sp_rate"]');
+          const radius = pane.querySelector('[data-role="sp_radius"]');
+
+          if (!name?.value.trim()) { ok = false; markInvalid(name, 'Your full name is required.'); }
+          if (!email?.value.trim() || !validEmail(email.value.trim())) { ok = false; markInvalid(email, 'Enter a valid email.'); }
+          if (!loc?.value.trim()) { ok = false; markInvalid(loc, 'Enter your operating locality.'); }
+          if (!svc?.value) { ok = false; markInvalid(svc, 'Please choose a service.'); }
+          if (!exp?.value) { ok = false; markInvalid(exp, 'Select experience level.'); }
+          if (!rate?.value || Number(rate.value) < 0) { ok = false; markInvalid(rate, 'Enter a valid rate.'); }
+          if (radius?.value && (Number(radius.value) < 1 || Number(radius.value) > 25)) {
+            ok = false; markInvalid(radius, 'Radius must be between 1–25 km.');
+          }
+        }
+
+        // If any invalid, open its accordion and scroll to it
+        if (!ok) {
+          const firstBad = firstInvalidWithin(pane) || pane.querySelector('.is-invalid');
+          if (firstBad) {
+            openAccordionFor(firstBad);
+            setTimeout(() => scrollToEl(firstBad, 88), 60);
+          }
+        }
+        return ok;
+      }
+
+      // Event wiring
+      desktopBtns.forEach(btn => btn.addEventListener('click', () => setRole(btn.value)));
+      radios.forEach(r => r.addEventListener('change', () => setRole(r.value)));
+
+      form.addEventListener('change', (e) => {
+        if (e.target && e.target.matches('[data-role="service"]')) updateFields();
+        if (e.target && e.target.classList.contains('btn-check') && e.target.name.startsWith('role')) {
+          setDateDefaults(); updateFields();
+        }
+        // Live clear invalid on input/change
+        if (e.target && (e.target.matches('input,select,textarea'))) {
+          clearInvalid(e.target);
+        }
+      });
+
+      const defaultRole = (radios.find(r => r.checked)?.value) || 'parent';
+      setRole(defaultRole);
+      setDateDefaults();
+      updateFields();
+
+      // ----- Enhanced submit: validate, then route -----
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validateActivePane()) return;
+
+        // Build querystring (unchanged from your logic)
+        const pane = getActivePane();
+        const role = form.querySelector('[data-role="selectedRole"]')?.value || 'parent';
+        const service = pane.querySelector('[data-role="service"]');
+        const locationI = pane.querySelector('[data-role="location"]');
+        const fromI = pane.querySelector('[data-role="from"]');
+        const toI = pane.querySelector('[data-role="to"]');
+        const walkDate = pane.querySelector('[data-role="walkDate"]');
+        const walkTime = pane.querySelector('[data-role="walkTime"]');
+        const pets = pane.querySelector('[data-role="pets"]');
+
+        const ROUTES = { boarding: 'search_sitter_2.html', walking: 'search_walkers_2.html', training: 'search_training.html' };
+        const base = ROUTES[service.value] || 'search.html';
+        const params = new URLSearchParams();
+        params.set('role', role);
+        params.set('location', (locationI?.value || '').trim());
+        if (pets?.value) params.set('pets', pets.value);
+
+        // Parent fields
+        const nameI = pane.querySelector('[data-role="pp_name"]');
+        const emailI = pane.querySelector('[data-role="pp_email"]');
+        const typeI = pane.querySelector('[data-role="pp_type"]');
+        const breedI = pane.querySelector('[data-role="pp_breed"]');
+        if (nameI?.value) params.set('name', nameI.value.trim());
+        if (emailI?.value) params.set('email', emailI.value.trim());
+        if (typeI?.value) params.set('petType', typeI.value);
+        if (breedI?.value) params.set('breed', breedI.value.trim());
+
+        // Host fields
+        const hostName = pane.querySelector('[data-role="host_name"]');
+        const hostEmail = pane.querySelector('[data-role="host_email"]');
+        const hostLocal = pane.querySelector('[data-role="host_locality"]');
+        const hostExp = pane.querySelector('[data-role="host_experience"]');
+        const hostTypes = pane.querySelector('[data-role="host_pet_types"]');
+        const hostServ = pane.querySelector('[data-role="host_services"]');
+        const hostRate = pane.querySelector('[data-role="host_rate"]');
+        if (hostName?.value) params.set('name', hostName.value.trim());
+        if (hostEmail?.value) params.set('email', hostEmail.value.trim());
+        if (hostLocal?.value) params.set('locality', hostLocal.value.trim());
+        if (hostExp?.value) params.set('experience', hostExp.value);
+        if (hostTypes && hostTypes.selectedOptions?.length)
+          params.set('petTypes', Array.from(hostTypes.selectedOptions).map(o => o.value).join(','));
+        if (hostServ && hostServ.selectedOptions?.length)
+          params.set('services', Array.from(hostServ.selectedOptions).map(o => o.value).join(','));
+        if (hostRate?.value) params.set('rate', hostRate.value);
+
+        // Provider fields
+        const spRate = pane.querySelector('[data-role="sp_rate"]');
+        const spRadius = pane.querySelector('[data-role="sp_radius"]');
+        const spExp = pane.querySelector('[data-role="sp_experience"]');
+        if (spRate?.value) params.set('sp_rate', spRate.value);
+        if (spRadius?.value) params.set('sp_radius', spRadius.value);
+        if (spExp?.value) params.set('sp_experience', spExp.value);
+
+        if (service.value === 'walking') {
+          if (walkDate?.value) params.set('date', walkDate.value);
+          if (walkTime?.value) params.set('time', walkTime.value);
+        } else {
+          if (fromI?.value) params.set('from', fromI.value);
+          if (toI?.value) params.set('to', toI.value);
+        }
+
+        window.location.href = `${base}?${params.toString()}`;
+      });
     }
-    return ok;
-  }
-
-  // Event wiring
-  desktopBtns.forEach(btn => btn.addEventListener('click', () => setRole(btn.value)));
-  radios.forEach(r => r.addEventListener('change', () => setRole(r.value)));
-
-  form.addEventListener('change', (e) => {
-    if (e.target && e.target.matches('[data-role="service"]')) updateFields();
-    if (e.target && e.target.classList.contains('btn-check') && e.target.name.startsWith('role')) {
-      setDateDefaults(); updateFields();
-    }
-    // Live clear invalid on input/change
-    if (e.target && (e.target.matches('input,select,textarea'))) {
-      clearInvalid(e.target);
-    }
-  });
-
-  const defaultRole = (radios.find(r => r.checked)?.value) || 'parent';
-  setRole(defaultRole);
-  setDateDefaults();
-  updateFields();
-
-  // ----- Enhanced submit: validate, then route -----
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!validateActivePane()) return;
-
-    // Build querystring (unchanged from your logic)
-    const pane = getActivePane();
-    const role = form.querySelector('[data-role="selectedRole"]')?.value || 'parent';
-    const service = pane.querySelector('[data-role="service"]');
-    const locationI = pane.querySelector('[data-role="location"]');
-    const fromI = pane.querySelector('[data-role="from"]');
-    const toI = pane.querySelector('[data-role="to"]');
-    const walkDate = pane.querySelector('[data-role="walkDate"]');
-    const walkTime = pane.querySelector('[data-role="walkTime"]');
-    const pets = pane.querySelector('[data-role="pets"]');
-
-    const ROUTES = { boarding: 'search_sitter_2.html', walking: 'search_walkers_2.html', training: 'search_training.html' };
-    const base = ROUTES[service.value] || 'search.html';
-    const params = new URLSearchParams();
-    params.set('role', role);
-    params.set('location', (locationI?.value || '').trim());
-    if (pets?.value) params.set('pets', pets.value);
-
-    // Parent fields
-    const nameI = pane.querySelector('[data-role="pp_name"]');
-    const emailI = pane.querySelector('[data-role="pp_email"]');
-    const typeI = pane.querySelector('[data-role="pp_type"]');
-    const breedI = pane.querySelector('[data-role="pp_breed"]');
-    if (nameI?.value) params.set('name', nameI.value.trim());
-    if (emailI?.value) params.set('email', emailI.value.trim());
-    if (typeI?.value) params.set('petType', typeI.value);
-    if (breedI?.value) params.set('breed', breedI.value.trim());
-
-    // Host fields
-    const hostName = pane.querySelector('[data-role="host_name"]');
-    const hostEmail = pane.querySelector('[data-role="host_email"]');
-    const hostLocal = pane.querySelector('[data-role="host_locality"]');
-    const hostExp = pane.querySelector('[data-role="host_experience"]');
-    const hostTypes = pane.querySelector('[data-role="host_pet_types"]');
-    const hostServ = pane.querySelector('[data-role="host_services"]');
-    const hostRate = pane.querySelector('[data-role="host_rate"]');
-    if (hostName?.value) params.set('name', hostName.value.trim());
-    if (hostEmail?.value) params.set('email', hostEmail.value.trim());
-    if (hostLocal?.value) params.set('locality', hostLocal.value.trim());
-    if (hostExp?.value) params.set('experience', hostExp.value);
-    if (hostTypes && hostTypes.selectedOptions?.length)
-      params.set('petTypes', Array.from(hostTypes.selectedOptions).map(o => o.value).join(','));
-    if (hostServ && hostServ.selectedOptions?.length)
-      params.set('services', Array.from(hostServ.selectedOptions).map(o => o.value).join(','));
-    if (hostRate?.value) params.set('rate', hostRate.value);
-
-    // Provider fields
-    const spRate = pane.querySelector('[data-role="sp_rate"]');
-    const spRadius = pane.querySelector('[data-role="sp_radius"]');
-    const spExp = pane.querySelector('[data-role="sp_experience"]');
-    if (spRate?.value) params.set('sp_rate', spRate.value);
-    if (spRadius?.value) params.set('sp_radius', spRadius.value);
-    if (spExp?.value) params.set('sp_experience', spExp.value);
-
-    if (service.value === 'walking') {
-      if (walkDate?.value) params.set('date', walkDate.value);
-      if (walkTime?.value) params.set('time', walkTime.value);
-    } else {
-      if (fromI?.value) params.set('from', fromI.value);
-      if (toI?.value) params.set('to', toI.value);
-    }
-
-    window.location.href = `${base}?${params.toString()}`;
-  });
-}
 
 
-  document.addEventListener('DOMContentLoaded', () => {
-    wireUnifiedForm('unifiedSearchFormDesktop');
-    wireUnifiedForm('unifiedSearchFormMobile');
-  });
+    document.addEventListener('DOMContentLoaded', () => {
+      wireUnifiedForm('unifiedSearchFormDesktop');
+      wireUnifiedForm('unifiedSearchFormMobile');
+    });
 
     // Wire both forms
     document.addEventListener('DOMContentLoaded', () => {
@@ -2181,314 +2245,500 @@ function wireUnifiedForm(formId) {
   </script>
 
 
-<script>
-  (function () {
-    // current file (e.g., "about-us.html"), ignoring query/hash
-    const path = location.pathname.split("/").pop() || "index.html";
-    const clean = (href) => (href || "").split("#")[0].split("?")[0].split("/").pop();
+  <script>
+    (function () {
+      // current file (e.g., "about-us.html"), ignoring query/hash
+      const path = location.pathname.split("/").pop() || "index.html";
+      const clean = (href) => (href || "").split("#")[0].split("?")[0].split("/").pop();
 
-    document.querySelectorAll(".navbar .nav-link").forEach((a) => {
-      const hrefFile = clean(a.getAttribute("href"));
-      // Match exact file OR match base file when current has a hash
-      if (hrefFile && (hrefFile === path || (path === "" && hrefFile === "index.html"))) {
-        a.classList.add("active");
-        a.setAttribute("aria-current", "page");
-      }
-      // Special case: links like contact-us.html#FAQs should still light up on contact-us.html
-      if (!a.classList.contains("active") && path && hrefFile && path.startsWith(hrefFile)) {
-        a.classList.add("active");
-        a.setAttribute("aria-current", "page");
+      document.querySelectorAll(".navbar .nav-link").forEach((a) => {
+        const hrefFile = clean(a.getAttribute("href"));
+        // Match exact file OR match base file when current has a hash
+        if (hrefFile && (hrefFile === path || (path === "" && hrefFile === "index.html"))) {
+          a.classList.add("active");
+          a.setAttribute("aria-current", "page");
+        }
+        // Special case: links like contact-us.html#FAQs should still light up on contact-us.html
+        if (!a.classList.contains("active") && path && hrefFile && path.startsWith(hrefFile)) {
+          a.classList.add("active");
+          a.setAttribute("aria-current", "page");
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    /* ===== Keep-one-open + auto-advance logic for all accordions ===== */
+    document.addEventListener('DOMContentLoaded', () => {
+      const ACCORDION_IDS = [
+        'ppAccordion', 'hostAccordion', 'spAccordion',
+        'ppAccordionMob', 'hostAccordionMob', 'spAccordionMob'
+      ];
+
+      ACCORDION_IDS.forEach(wireAccordion);
+
+      function wireAccordion(accId) {
+        const acc = document.getElementById(accId);
+        if (!acc) return;
+
+        const items = Array.from(acc.querySelectorAll('.accordion-item'));
+        const collapses = Array.from(acc.querySelectorAll('.accordion-collapse'));
+
+        // Ensure only one is open at a time via data-bs-parent (already in your HTML)
+        // Add "keep one open": when any panel hides, if none is open, open its sibling.
+        collapses.forEach(col => {
+          col.addEventListener('hide.bs.collapse', () => {
+            // Let Bootstrap apply the hide first, then inspect
+            setTimeout(() => {
+              const anyShown = collapses.some(c => c.classList.contains('show'));
+              if (!anyShown) {
+                // Prefer the adjacent item; else fallback to the first available
+                const item = col.closest('.accordion-item');
+                const nextCol = item?.nextElementSibling?.querySelector('.accordion-collapse');
+                const prevCol = item?.previousElementSibling?.querySelector('.accordion-collapse');
+                const targetCol = nextCol || prevCol || collapses.find(c => c !== col);
+                if (targetCol) bootstrap.Collapse.getOrCreateInstance(targetCol, { toggle: false }).show();
+              }
+            }, 0);
+          });
+        });
+
+        // Auto-advance from first ("Personal details") to next when:
+        // a) All required fields filled/valid, OR
+        // b) User presses Enter inside the Locality input.
+        const firstItem = items[0];
+        const firstCollapse = firstItem?.querySelector('.accordion-collapse');
+        const nextCollapse = items[1]?.querySelector('.accordion-collapse');
+
+        if (firstCollapse && nextCollapse) {
+          const personalInputs = firstCollapse.querySelectorAll('input,select,textarea');
+
+          const isFulfilled = (el) => {
+            // Treat data-role="location" as required, even if 'required' missing
+            const must = el.hasAttribute('required') || el.matches('[data-role="location"]');
+            if (!must) return true;
+            const val = (el.value || '').trim();
+            if (!val) return false;
+            return typeof el.checkValidity === 'function' ? el.checkValidity() : true;
+          };
+
+          const openNext = () => {
+            const inst = bootstrap.Collapse.getOrCreateInstance(nextCollapse, { toggle: false });
+            inst.show();
+
+          };
+
+          // a) When all fields valid -> open next
+          const maybeOpenNext = () => {
+            const ok = Array.from(personalInputs).every(isFulfilled);
+            if (ok) openNext();
+          };
+          personalInputs.forEach(el => {
+            ['input', 'change', 'blur'].forEach(evt => el.addEventListener(evt, maybeOpenNext));
+          });
+
+          // b) Pressing Enter in Locality -> open next immediately (if non-empty)
+          const locality = firstCollapse.querySelector('input[data-role="location"]');
+          if (locality) {
+            locality.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                if ((locality.value || '').trim()) openNext();
+              }
+            });
+          }
+        }
       }
     });
-  })();
-</script>
+  </script>
 
-<script>
-/* ===== Keep-one-open + auto-advance logic for all accordions ===== */
-document.addEventListener('DOMContentLoaded', () => {
-  const ACCORDION_IDS = [
-    'ppAccordion','hostAccordion','spAccordion',
-    'ppAccordionMob','hostAccordionMob','spAccordionMob'
-  ];
+  <script>
+    // Switch both forms to a given role and scroll to the visible one
+    function switchUnifiedRole(role) {
+      const forms = document.querySelectorAll('#unifiedSearchFormDesktop, #unifiedSearchFormMobile');
+      forms.forEach(f => f._setUnifiedRole && f._setUnifiedRole(role));
 
-  ACCORDION_IDS.forEach(wireAccordion);
+      // pick which form is visible (desktop vs mobile)
+      const target =
+        document.querySelector('.d-desktop-card .hero-form-card:visible') ||
+        document.querySelector('#unifiedSearchFormDesktop') ||
+        document.querySelector('#unifiedSearchFormMobile');
 
-  function wireAccordion(accId) {
-    const acc = document.getElementById(accId);
-    if (!acc) return;
+      // Smooth scroll to the form container
+      const el = document.querySelector('.d-desktop-card .hero-form-card') ||
+        document.getElementById('unifiedSearchFormDesktop') ||
+        document.getElementById('unifiedSearchFormMobile');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-    const items     = Array.from(acc.querySelectorAll('.accordion-item'));
-    const collapses = Array.from(acc.querySelectorAll('.accordion-collapse'));
+    // Wire all service CTAs
+    document.addEventListener('click', function (e) {
+      const t = e.target.closest('[data-go-role]');
+      if (!t) return;
+      e.preventDefault();
+      const role = t.getAttribute('data-go-role'); // "host" or "provider"
+      switchUnifiedRole(role);
 
-    // Ensure only one is open at a time via data-bs-parent (already in your HTML)
-    // Add "keep one open": when any panel hides, if none is open, open its sibling.
-    collapses.forEach(col => {
-      col.addEventListener('hide.bs.collapse', () => {
-        // Let Bootstrap apply the hide first, then inspect
-        setTimeout(() => {
-          const anyShown = collapses.some(c => c.classList.contains('show'));
-          if (!anyShown) {
-            // Prefer the adjacent item; else fallback to the first available
-            const item      = col.closest('.accordion-item');
-            const nextCol   = item?.nextElementSibling?.querySelector('.accordion-collapse');
-            const prevCol   = item?.previousElementSibling?.querySelector('.accordion-collapse');
-            const targetCol = nextCol || prevCol || collapses.find(c => c !== col);
-            if (targetCol) bootstrap.Collapse.getOrCreateInstance(targetCol, { toggle: false }).show();
-          }
-        }, 0);
-      });
+      // Optional: if they clicked "Walking" or "Training", pre-select on provider pane
+      // (Only does something if Services pane is active and the select exists.)
+      const text = (t.closest('.services-section')?.querySelector('h3')?.textContent || '').toLowerCase();
+      let desiredService = null;
+      if (role === 'provider') {
+        if (text.includes('walking')) desiredService = 'walking';
+        else if (text.includes('training')) desiredService = 'training';
+      }
+      if (desiredService) {
+        document.querySelectorAll('#unifiedSearchFormDesktop, #unifiedSearchFormMobile')
+          .forEach(f => f._selectService && f._selectService(desiredService));
+      }
     });
+  </script>
 
-    // Auto-advance from first ("Personal details") to next when:
-    // a) All required fields filled/valid, OR
-    // b) User presses Enter inside the Locality input.
-    const firstItem     = items[0];
-    const firstCollapse = firstItem?.querySelector('.accordion-collapse');
-    const nextCollapse  = items[1]?.querySelector('.accordion-collapse');
+  <script>
+    // Which unified form is currently visible based on breakpoint
+    function getVisibleFormEl() {
+      // Bootstrap lg breakpoint (same you used)
+      return window.matchMedia("(min-width: 992px)").matches
+        ? document.getElementById("unifiedSearchFormDesktop")
+        : document.getElementById("unifiedSearchFormMobile");
+    }
 
-    if (firstCollapse && nextCollapse) {
-      const personalInputs = firstCollapse.querySelectorAll('input,select,textarea');
+    // Smooth scroll with sticky navbar offset
+    function smoothScrollTo(el, offset = 88) {
+      if (!el) return;
+      const target = el.closest('.hero-form-card') || el;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
 
-      const isFulfilled = (el) => {
-        // Treat data-role="location" as required, even if 'required' missing
-        const must = el.hasAttribute('required') || el.matches('[data-role="location"]');
-        if (!must) return true;
-        const val = (el.value || '').trim();
-        if (!val) return false;
-        return typeof el.checkValidity === 'function' ? el.checkValidity() : true;
-      };
+    // Switch panes and optionally preselect a service, then scroll to the form
+    function switchUnifiedRole(role, presetService) {
+      const forms = document.querySelectorAll("#unifiedSearchFormDesktop, #unifiedSearchFormMobile");
+      forms.forEach(f => f._setUnifiedRole && f._setUnifiedRole(role));
 
-      const openNext = () => {
-        const inst = bootstrap.Collapse.getOrCreateInstance(nextCollapse, { toggle: false });
-        inst.show();
-        
-      };
+      const activeForm = getVisibleFormEl();
+      if (presetService && activeForm && activeForm._selectService) {
+        activeForm._selectService(presetService);
+      }
 
-      // a) When all fields valid -> open next
-      const maybeOpenNext = () => {
-        const ok = Array.from(personalInputs).every(isFulfilled);
-        if (ok) openNext();
-      };
-      personalInputs.forEach(el => {
-        ['input','change','blur'].forEach(evt => el.addEventListener(evt, maybeOpenNext));
-      });
+      // Wait a tick so layout/accordion updates settle, then scroll
+      setTimeout(() => smoothScrollTo(activeForm, 88), 10);
+    }
 
-      // b) Pressing Enter in Locality -> open next immediately (if non-empty)
-      const locality = firstCollapse.querySelector('input[data-role="location"]');
-      if (locality) {
-        locality.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            if ((locality.value || '').trim()) openNext();
+    // Helper to infer service from the Services section title, if needed
+    function inferServiceFromCard(el) {
+      const title = (el.closest('.services-section')?.querySelector('h3')?.textContent || '').toLowerCase();
+      if (title.includes('walking')) return 'walking';
+      if (title.includes('training')) return 'training';
+      // Sitting uses provider form but no specific preset
+      return null;
+    }
+
+    // Click handler for all Register CTAs
+    document.addEventListener("click", function (e) {
+      const btn = e.target.closest("[data-go-role]");
+      if (!btn) return;
+
+      e.preventDefault();
+
+      const role = btn.getAttribute("data-go-role");      // "host" or "provider"
+      // Optional explicit service: add data-go-service="walking" / "training" on buttons if you want
+      const explicitService = btn.getAttribute("data-go-service");
+      const inferredService = explicitService || inferServiceFromCard(btn);
+
+      switchUnifiedRole(role, inferredService);
+    });
+  </script>
+
+  <script>
+    /**
+     * Advance to the next accordion panel ONLY when user presses Enter
+     * inside the first ("Personal details") panel and it's valid.
+     * Works for: desktop & mobile, Parent/Host/Provider.
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      const ACCORDION_IDS = [
+        'ppAccordion', 'hostAccordion', 'spAccordion',
+        'ppAccordionMob', 'hostAccordionMob', 'spAccordionMob'
+      ];
+
+      ACCORDION_IDS.forEach(wireEnterToAdvance);
+
+      function wireEnterToAdvance(accId) {
+        const acc = document.getElementById(accId);
+        if (!acc) return;
+
+        const items = Array.from(acc.querySelectorAll('.accordion-item'));
+        if (!items.length) return;
+
+        const firstItem = items[0];
+        const firstCollapse = firstItem.querySelector('.accordion-collapse');
+        const firstHeaderBtn = firstItem.querySelector('.accordion-button');
+        const nextCollapse = (items[1] && items[1].querySelector('.accordion-collapse')) || null;
+
+        if (!firstCollapse || !firstHeaderBtn || !nextCollapse) return;
+
+        // 1) Stop ANY accidental auto-close of "Personal details"
+        //    unless (a) user clicked its own header, or (b) we set a one-time flag.
+        firstCollapse.addEventListener('hide.bs.collapse', (ev) => {
+          const userClickedHeader =
+            document.activeElement && firstHeaderBtn.contains(document.activeElement);
+
+          // Allow manual header toggle
+          if (userClickedHeader) return;
+
+          // Allow a single auto-hide when we advance via Enter
+          if (firstCollapse.dataset.allowHideOnce === 'true') {
+            delete firstCollapse.dataset.allowHideOnce;
+            return;
           }
+
+          // Otherwise: keep it open
+          ev.preventDefault();
+          ev.stopPropagation();
+        });
+
+        // 2) Capture Enter inside the first panel
+        firstCollapse.addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter' || e.shiftKey) return;
+
+          // Prevent form submit and inline "click" side effects
+          e.preventDefault();
+          e.stopPropagation();
+
+          const invalid = getFirstInvalid(firstCollapse);
+          if (invalid) {
+            markInvalid(invalid);
+            invalid.focus();
+            return;
+          }
+
+          // Mark that we’re intentionally advancing; allow the first panel to close once.
+          firstCollapse.dataset.allowHideOnce = 'true';
+
+          // Open next panel (Bootstrap closes the first because of data-bs-parent)
+          const inst = bootstrap.Collapse.getOrCreateInstance(nextCollapse, { toggle: false });
+          inst.show();
+
+          // Scroll the newly opened panel nicely into view (account for sticky header)
+          setTimeout(() => {
+            const y = nextCollapse.getBoundingClientRect().top
+          }, 50);
         });
       }
+
+      // ----- Helpers -----
+      function getFirstInvalid(scope) {
+        // Treat [data-role="location"] as required even if not marked
+        const required = scope.querySelectorAll(
+          'input[required], select[required], textarea[required], [data-role="location"]'
+        );
+
+        for (const el of required) {
+          const val = (el.value || '').trim();
+          const ok = val && (typeof el.checkValidity === 'function' ? el.checkValidity() : true);
+          if (!ok) return el;
+        }
+        return null;
+      }
+
+      function markInvalid(el) {
+        // Bootstrap invalid styles
+        el.classList.add('is-invalid');
+        // Clean up after a moment
+        setTimeout(() => el.classList.remove('is-invalid'), 1200);
+      }
+    });
+  </script>
+
+ 
+
+<script>
+// Small helper to safely get value
+function getVal(pane, selector) {
+  const el = pane.querySelector(selector);
+  return el ? el.value.trim() : "";
+}
+
+// Generic POST helper
+function submitFormData(url, data, submitBtn) {
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+  }
+
+  fetch(url, {
+    method: "POST",
+    body: data
+  })
+    .then(() => {
+      // We redirect manually; fetch won't change page on its own
+      window.location.href = "thank-you.html";
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    })
+    .finally(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit";
+      }
+    });
+}
+
+// =============== PET PARENT ===============
+function handleParentSubmit(e) {
+  e.preventDefault();
+  const btn = e.currentTarget;
+  const pane =
+    btn.closest('.role-pane[data-pane="parent"]') ||
+    document.querySelector('.role-pane[data-pane="parent"].active');
+
+  if (!pane) return;
+
+  const data = new FormData();
+  const name      = getVal(pane, '[data-role="pp_name"]');
+  const email     = getVal(pane, '[data-role="pp_email"]');
+  const location  = getVal(pane, '[data-role="location"]');
+  const pets      = getVal(pane, '[data-role="pets"]');
+  const petType   = getVal(pane, '[data-role="pp_type"]');
+  const breed     = getVal(pane, '[data-role="pp_breed"]');
+  const service   = getVal(pane, '[data-role="service"]');
+  const fromDate  = getVal(pane, '[data-role="from"]');
+  const toDate    = getVal(pane, '[data-role="to"]');
+  const walkDate  = getVal(pane, '[data-role="walkDate"]');
+  const walkTime  = getVal(pane, '[data-role="walkTime"]');
+
+  // Simple front-end validation (mirrors PHP)
+  if (!name || !email || !location || !pets || !petType || !service) {
+    alert("Please fill all required fields in the Pet Parent form.");
+    return;
+  }
+
+  data.append("pp_name", name);
+  data.append("pp_email", email);
+  data.append("location", location);
+  data.append("pets", pets);
+  data.append("pp_type", petType);
+  data.append("pp_breed", breed);
+  data.append("service", service);
+  data.append("from", fromDate);
+  data.append("to", toDate);
+  data.append("walkDate", walkDate);
+  data.append("walkTime", walkTime);
+
+  submitFormData("pet-parent.php", data, btn);
+}
+
+// =============== PET HOST ===============
+function handleHostSubmit(e) {
+  e.preventDefault();
+  const btn = e.currentTarget;
+  const pane =
+    btn.closest('.role-pane[data-pane="host"]') ||
+    document.querySelector('.role-pane[data-pane="host"].active');
+
+  if (!pane) return;
+
+  const data = new FormData();
+  const name      = getVal(pane, '[data-role="host_name"]');
+  const email     = getVal(pane, '[data-role="host_email"]');
+  const location  = getVal(pane, '[data-role="location"]');
+  const exp       = getVal(pane, '[data-role="host_experience"]');
+  const rate      = getVal(pane, '[data-role="host_rate"]');
+  const service   = getVal(pane, '[data-role="service"]');
+  const petTypesEl = pane.querySelector('[data-role="host_pet_types"]');
+
+  if (!name || !email || !location || !exp || !rate || !service) {
+    alert("Please fill all required fields in the Pet Host form.");
+    return;
+  }
+
+  data.append("host_name", name);
+  data.append("host_email", email);
+  data.append("location", location);
+  data.append("host_experience", exp);
+  data.append("host_rate", rate);
+  data.append("service", service);
+
+  if (petTypesEl && petTypesEl.selectedOptions) {
+    for (const opt of petTypesEl.selectedOptions) {
+      data.append("host_pet_types[]", opt.value);
     }
   }
+
+  submitFormData("pet-host.php", data, btn);
+}
+
+// =============== SERVICE PROVIDER ===============
+function handleProviderSubmit(e) {
+  e.preventDefault();
+  const btn = e.currentTarget;
+  const pane =
+    btn.closest('.role-pane[data-pane="provider"]') ||
+    document.querySelector('.role-pane[data-pane="provider"].active');
+
+  if (!pane) return;
+
+  const data = new FormData();
+  const name         = getVal(pane, '[data-role="sp_name"]');
+  const email        = getVal(pane, '[data-role="sp_email"]');
+  const location     = getVal(pane, '[data-role="location"]');
+  const service      = getVal(pane, '[data-role="service"]');
+  const experience   = getVal(pane, '[data-role="sp_experience"]');
+  const radius       = getVal(pane, '[data-role="sp_radius"]');
+  const availability = getVal(pane, '[data-role="sp_availability"]');
+  const rate         = getVal(pane, '[data-role="sp_rate"]');
+  const reviews      = getVal(pane, '[data-role="sp_reviews"]');
+
+  if (!name || !email || !location || !service || !experience || !rate) {
+    alert("Please fill all required fields in the Service Provider form.");
+    return;
+  }
+
+  data.append("sp_name", name);
+  data.append("sp_email", email);
+  data.append("location", location);
+  data.append("service", service);
+  data.append("sp_experience", experience);
+  data.append("sp_radius", radius);
+  data.append("sp_availability", availability);
+  data.append("sp_rate", rate);
+  data.append("sp_reviews", reviews);
+
+  // Files: Certification (single)
+  const certInput = pane.querySelector('[data-role="sp_cert_file"]');
+  if (certInput && certInput.files && certInput.files[0]) {
+    data.append("sp_cert_file", certInput.files[0]);
+  }
+
+  // Files: ID Proof (multiple)
+  const idInput = pane.querySelector('[data-role="sp_id_proof"]');
+  if (idInput && idInput.files && idInput.files.length > 0) {
+    Array.from(idInput.files).forEach(file => {
+      data.append("sp_id_proof[]", file);
+    });
+  }
+
+  submitFormData("service-provider.php", data, btn);
+}
+
+// =============== WIRE ALL BUTTONS ===============
+document.addEventListener("DOMContentLoaded", () => {
+  const parentBtn   = document.getElementById("parentSubmitBtn");
+  const hostBtn     = document.getElementById("hostSubmitBtn");
+  const providerBtn = document.getElementById("providerSubmitBtn");
+
+  if (parentBtn)   parentBtn.addEventListener("click", handleParentSubmit);
+  if (hostBtn)     hostBtn.addEventListener("click", handleHostSubmit);
+  if (providerBtn) providerBtn.addEventListener("click", handleProviderSubmit);
 });
 </script>
 
-<script>
-  // Switch both forms to a given role and scroll to the visible one
-  function switchUnifiedRole(role) {
-    const forms = document.querySelectorAll('#unifiedSearchFormDesktop, #unifiedSearchFormMobile');
-    forms.forEach(f => f._setUnifiedRole && f._setUnifiedRole(role));
-
-    // pick which form is visible (desktop vs mobile)
-    const target =
-      document.querySelector('.d-desktop-card .hero-form-card:visible') ||
-      document.querySelector('#unifiedSearchFormDesktop') ||
-      document.querySelector('#unifiedSearchFormMobile');
-
-    // Smooth scroll to the form container
-    const el = document.querySelector('.d-desktop-card .hero-form-card') ||
-               document.getElementById('unifiedSearchFormDesktop') ||
-               document.getElementById('unifiedSearchFormMobile');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // Wire all service CTAs
-  document.addEventListener('click', function (e) {
-    const t = e.target.closest('[data-go-role]');
-    if (!t) return;
-    e.preventDefault();
-    const role = t.getAttribute('data-go-role'); // "host" or "provider"
-    switchUnifiedRole(role);
-
-    // Optional: if they clicked "Walking" or "Training", pre-select on provider pane
-    // (Only does something if Services pane is active and the select exists.)
-    const text = (t.closest('.services-section')?.querySelector('h3')?.textContent || '').toLowerCase();
-    let desiredService = null;
-    if (role === 'provider') {
-      if (text.includes('walking')) desiredService = 'walking';
-      else if (text.includes('training')) desiredService = 'training';
-    }
-    if (desiredService) {
-      document.querySelectorAll('#unifiedSearchFormDesktop, #unifiedSearchFormMobile')
-        .forEach(f => f._selectService && f._selectService(desiredService));
-    }
-  });
-</script>
-
-<script>
-  // Which unified form is currently visible based on breakpoint
-  function getVisibleFormEl() {
-    // Bootstrap lg breakpoint (same you used)
-    return window.matchMedia("(min-width: 992px)").matches
-      ? document.getElementById("unifiedSearchFormDesktop")
-      : document.getElementById("unifiedSearchFormMobile");
-  }
-
-  // Smooth scroll with sticky navbar offset
-  function smoothScrollTo(el, offset = 88) {
-    if (!el) return;
-    const target = el.closest('.hero-form-card') || el;
-    const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }
-
-  // Switch panes and optionally preselect a service, then scroll to the form
-  function switchUnifiedRole(role, presetService) {
-    const forms = document.querySelectorAll("#unifiedSearchFormDesktop, #unifiedSearchFormMobile");
-    forms.forEach(f => f._setUnifiedRole && f._setUnifiedRole(role));
-
-    const activeForm = getVisibleFormEl();
-    if (presetService && activeForm && activeForm._selectService) {
-      activeForm._selectService(presetService);
-    }
-
-    // Wait a tick so layout/accordion updates settle, then scroll
-    setTimeout(() => smoothScrollTo(activeForm, 88), 10);
-  }
-
-  // Helper to infer service from the Services section title, if needed
-  function inferServiceFromCard(el) {
-    const title = (el.closest('.services-section')?.querySelector('h3')?.textContent || '').toLowerCase();
-    if (title.includes('walking')) return 'walking';
-    if (title.includes('training')) return 'training';
-    // Sitting uses provider form but no specific preset
-    return null;
-  }
-
-  // Click handler for all Register CTAs
-  document.addEventListener("click", function (e) {
-    const btn = e.target.closest("[data-go-role]");
-    if (!btn) return;
-
-    e.preventDefault();
-
-    const role = btn.getAttribute("data-go-role");      // "host" or "provider"
-    // Optional explicit service: add data-go-service="walking" / "training" on buttons if you want
-    const explicitService = btn.getAttribute("data-go-service");
-    const inferredService = explicitService || inferServiceFromCard(btn);
-
-    switchUnifiedRole(role, inferredService);
-  });
-</script>
-
-<script>
-/**
- * Advance to the next accordion panel ONLY when user presses Enter
- * inside the first ("Personal details") panel and it's valid.
- * Works for: desktop & mobile, Parent/Host/Provider.
- */
-document.addEventListener('DOMContentLoaded', () => {
-  const ACCORDION_IDS = [
-    'ppAccordion','hostAccordion','spAccordion',
-    'ppAccordionMob','hostAccordionMob','spAccordionMob'
-  ];
-
-  ACCORDION_IDS.forEach(wireEnterToAdvance);
-
-  function wireEnterToAdvance(accId) {
-    const acc = document.getElementById(accId);
-    if (!acc) return;
-
-    const items = Array.from(acc.querySelectorAll('.accordion-item'));
-    if (!items.length) return;
-
-    const firstItem      = items[0];
-    const firstCollapse  = firstItem.querySelector('.accordion-collapse');
-    const firstHeaderBtn = firstItem.querySelector('.accordion-button');
-    const nextCollapse   = (items[1] && items[1].querySelector('.accordion-collapse')) || null;
-
-    if (!firstCollapse || !firstHeaderBtn || !nextCollapse) return;
-
-    // 1) Stop ANY accidental auto-close of "Personal details"
-    //    unless (a) user clicked its own header, or (b) we set a one-time flag.
-    firstCollapse.addEventListener('hide.bs.collapse', (ev) => {
-      const userClickedHeader =
-        document.activeElement && firstHeaderBtn.contains(document.activeElement);
-
-      // Allow manual header toggle
-      if (userClickedHeader) return;
-
-      // Allow a single auto-hide when we advance via Enter
-      if (firstCollapse.dataset.allowHideOnce === 'true') {
-        delete firstCollapse.dataset.allowHideOnce;
-        return;
-      }
-
-      // Otherwise: keep it open
-      ev.preventDefault();
-      ev.stopPropagation();
-    });
-
-    // 2) Capture Enter inside the first panel
-    firstCollapse.addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter' || e.shiftKey) return;
-
-      // Prevent form submit and inline "click" side effects
-      e.preventDefault();
-      e.stopPropagation();
-
-      const invalid = getFirstInvalid(firstCollapse);
-      if (invalid) {
-        markInvalid(invalid);
-        invalid.focus();
-        return;
-      }
-
-      // Mark that we’re intentionally advancing; allow the first panel to close once.
-      firstCollapse.dataset.allowHideOnce = 'true';
-
-      // Open next panel (Bootstrap closes the first because of data-bs-parent)
-      const inst = bootstrap.Collapse.getOrCreateInstance(nextCollapse, { toggle: false });
-      inst.show();
-
-      // Scroll the newly opened panel nicely into view (account for sticky header)
-      setTimeout(() => {
-        const y = nextCollapse.getBoundingClientRect().top
-      }, 50);
-    });
-  }
-
-  // ----- Helpers -----
-  function getFirstInvalid(scope) {
-    // Treat [data-role="location"] as required even if not marked
-    const required = scope.querySelectorAll(
-      'input[required], select[required], textarea[required], [data-role="location"]'
-    );
-
-    for (const el of required) {
-      const val = (el.value || '').trim();
-      const ok = val && (typeof el.checkValidity === 'function' ? el.checkValidity() : true);
-      if (!ok) return el;
-    }
-    return null;
-  }
-
-  function markInvalid(el) {
-    // Bootstrap invalid styles
-    el.classList.add('is-invalid');
-    // Clean up after a moment
-    setTimeout(() => el.classList.remove('is-invalid'), 1200);
-  }
-});
-</script>
 
 
-<!-- <script>
+  <!-- <script>
 /**
  * Auto-advance accordions:
  * - When the first ("Personal details") panel is complete, open the next panel.

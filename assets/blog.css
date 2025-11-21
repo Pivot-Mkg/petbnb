@@ -4,6 +4,11 @@
 } 
 }
 
+a{
+  text-decoration: none;
+  /* color: black; */
+}
+
 .toc-list {
   list-style-type: disc;
   padding-left: 1.25rem;
