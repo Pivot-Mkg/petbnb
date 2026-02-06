@@ -34,7 +34,7 @@
     }
 
     .navbar-brand img {
-      width: 115px;
+      width: 95px;
       height: 70px
     }
 
@@ -549,10 +549,44 @@
         z-index: 1;
       }
     }
+
+    .cta-wrap {
+      width: 100%;
+    }
+    
+    .notAvailableMsg {
+      font-size: 0.9rem;
+      color: red;
+      margin-top: 4px;
+    }
   </style>
 
 
+<style>
+  /* Popup modal styling to match your brand */
+.reg-modal{
+  border-radius: 18px;
+  border: 1px solid rgba(234, 98, 78, .18);
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
 
+#regPopupLabel{
+  color: #EA624E;
+}
+
+#regPopup .form-control,
+#regPopup .form-select{
+  height: 46px;
+  border-radius: 12px;
+}
+
+#regPopup .form-control:focus,
+#regPopup .form-select:focus{
+  border-color: rgba(234, 98, 78, .6);
+  box-shadow: 0 0 0 .2rem rgba(234, 98, 78, .18);
+}
+
+</style>
 
 
 
@@ -569,14 +603,14 @@
         <ul class="navbar-nav nav-links mb-2 mb-lg-0">
           <li class="nav-item d-flex align-items-center"><a class="nav-link" href="about-us.html">About Us</a></li>
           <li class="nav-item d-flex align-items-center"><a class="nav-link" href="contact-us.html">Contact</a></li>
-          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="./contact-us.html#FAQs">FAQ's</a>
-          </li>
-          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="blog.html">Blog</a></li>
+          <!-- <li class="nav-item d-flex align-items-center"><a class="nav-link" href="./contact-us.html#FAQs">FAQ's</a></li> -->
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="./index.html#about">Services</a></li>
+          <li class="nav-item d-flex align-items-center"><a class="nav-link" href="https://mypetbnb.in/blog/">Blog</a></li>
         </ul>
         <div class="nav-cta-wrap ms-lg-0">
           <a class="btn btn-primary-color rounded-pill fw-semibold d-none d-lg-inline-block px-4 py-3"
-            href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a>
-          <a class="nav-link d-lg-none" href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a>
+               href="#" id="openRegPopupBtn">Register</a>
+          <a class="nav-link d-lg-none" href="#" id="openRegPopupBtn">Register</a>
         </div>
       </div>
     </div>
@@ -598,11 +632,11 @@
               <h1 class="banner-head-title mb-2">Loving pet care in your neighborhood</h1>
               <h2 class="banner-head-title fw-normal mb-4">Book trusted pet sitters, walkers and trainers</h2>
               <!-- <a class="btn btn-outline-danger" href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a> -->
-              <div class="nav-cta-wrap ms-lg-0">
+              <!-- <div class="nav-cta-wrap ms-lg-0">
                 <a class="btn btn-primary-color rounded-pill fw-semibold px-3 py-2"
                   href="https://forms.gle/5aNmE97MRYUBZzqJ6">Register</a>
 
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -612,6 +646,8 @@
           <div class="col-lg-6 col-xl-5 d-desktop-card">
             <form id="unifiedSearchFormDesktop" class="hero-form-card" novalidate>
               <!-- Segmented Tabs -->
+              <h4 class="banner-head-title mb-2">Register for Free🐾</h4>
+
               <div class="seg-tabs" data-tabs>
                 <button type="button" class="btn active" data-role-btn value="parent">Pet Parent</button>
                 <button type="button" class="btn" data-role-btn value="host">Pet Host</button>
@@ -684,7 +720,7 @@
                             <!-- <label class="form-label fw-semibold">Pet Type</label> -->
                             <select class="form-select" data-role="pp_type" required>
                               <option value="" selected disabled>Pet type</option>
-                              <option>Dog</option>
+                              <option>pet</option>
                               <option>Cat</option>
                               <option>Other</option>
                             </select>
@@ -701,7 +737,7 @@
                             <select class="form-select" data-role="service" required>
                               <option value="" selected disabled>Choose a service</option>
                               <option value="boarding">Boarding • in the sitter’s home</option>
-                              <option value="walking">Dog Walking</option>
+                              <option value="walking">pet Walking</option>
                               <option value="training">Training</option>
                             </select>
                             <div class="invalid-feedback">Please choose a service.</div>
@@ -733,11 +769,12 @@
                     </div>
                   </div>
 
-                  
-<!-- <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button> -->
+
+                  <!-- <button class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Search</button> -->
 
                 </div><!-- /accordion -->
-              <button id="parentSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Submit</button>
+                <button id="parentSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Join the
+                  Pack</button>
               </div>
 
 
@@ -837,7 +874,7 @@
                             <label class="form-label fw-semibold">Pet Types You Host</label>
                             <select class="form-select select2" multiple data-role="host_pet_types" required>
                               <option value="" selected disabled>Pet Types You Host</option>
-                              <option>Dogs</option>
+                              <option>pets</option>
                               <option>Cats</option>
                               <option>Both</option>
                             </select>
@@ -850,7 +887,8 @@
                   </div>
 
                 </div>
-              <button id="hostSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Submit</button>
+                <button id="hostSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">Join the
+                  Pack</button>
 
               </div>
 
@@ -908,8 +946,8 @@
                         <div class="mb-3">
                           <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
                           <select class="form-select" data-role="service" required>
-                            <option value="" selected disabled>Choose a service</option>
-                            <option value="walking">Dog Walking</option>
+                            <option value="" selected>Choose a service</option>
+                            <option value="walking">pet Walking</option>
                             <option value="training">Training</option>
                             <option value="grooming">Grooming</option>
                           </select>
@@ -979,6 +1017,9 @@
                   </div>
 
                 </div>
+                <button id="providerSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">
+                  Join the Pack
+                </button>
               </div>
 
 
@@ -1010,7 +1051,7 @@
                     <option>Golden Retriever</option>
                     <option>Pug</option>
                     <option>Beagle</option>
-                    <option>Bulldog</option>
+                    <option>Bullpet</option>
                     <option>Dachshund</option>
                     <option>Rottweiler</option>
                     <option>Shih Tzu</option>
@@ -1078,7 +1119,7 @@
                   </div>
 
                   <div class="mb-3">
-                    <label for="boardingAge" class="form-label">Dog age</label>
+                    <label for="boardingAge" class="form-label">pet age</label>
                     <select id="boardingAge" class="form-select">
                       <option value="any">Any</option>
                       <option value="puppy">Puppy (&lt; 1 year)</option>
@@ -1088,10 +1129,10 @@
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">Dogs</label>
+                    <label class="form-label">pets</label>
                     <div class="d-flex align-items-center gap-2">
                       <button type="button" class="btn btn-light border px-3" onclick="decrementBoarding()">−</button>
-                      <span id="boardingDogCount" class="fw-semibold">0</span>
+                      <span id="boardingpetCount" class="fw-semibold">0</span>
                       <button type="button" class="incre-decre-btns px-3" onclick="incrementBoarding()">+</button>
                     </div>
                   </div>
@@ -1107,7 +1148,7 @@
             <!-- Walking card -->
             <div class="col-md-4">
               <div class="selection-section p-3 bg-white shadow rounded-4 h-100">
-                <h3 class="mb-3 text-success services-selection-section-title">Dog Walking</h3>
+                <h3 class="mb-3 text-success services-selection-section-title">pet Walking</h3>
 
                 <div class="mb-3">
                   <label for="breed-walking" class="form-label">Breed Name</label>
@@ -1118,7 +1159,7 @@
                     <option>Golden Retriever</option>
                     <option>Pug</option>
                     <option>Beagle</option>
-                    <option>Bulldog</option>
+                    <option>Bullpet</option>
                     <option>Dachshund</option>
                     <option>Rottweiler</option>
                     <option>Shih Tzu</option>
@@ -1166,10 +1207,10 @@
                   </div>
 
                   <div class="mb-3">
-                    <label class="form-label">No. of Dogs</label>
+                    <label class="form-label">No. of pets</label>
                     <div class="d-flex align-items-center gap-2">
                       <button type="button" class="btn btn-light border px-3" onclick="decrementWalking()">−</button>
-                      <span id="walkingDogCount" class="fw-semibold">0</span>
+                      <span id="walkingpetCount" class="fw-semibold">0</span>
                       <button type="button" class="px-3 incre-decre-btns" onclick="incrementWalking()">+</button>
                     </div>
                   </div>
@@ -1196,7 +1237,7 @@
                     <option>Golden Retriever</option>
                     <option>Pug</option>
                     <option>Beagle</option>
-                    <option>Bulldog</option>
+                    <option>Bullpet</option>
                     <option>Dachshund</option>
                     <option>Rottweiler</option>
                     <option>Shih Tzu</option>
@@ -1205,14 +1246,14 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="dogAge" class="form-label">Dog's Age</label>
-                  <input type="number" class="form-control progressive-trigger" id="dogAge"
+                  <label for="petAge" class="form-label">pet's Age</label>
+                  <input type="number" class="form-control progressive-trigger" id="petAge"
                     placeholder="In months or years">
                 </div>
 
                 <div class="progressive-extra">
                   <div class="mb-3">
-                    <label for="relationship" class="form-label">How long have you been with your dog?</label>
+                    <label for="relationship" class="form-label">How long have you been with your pet?</label>
                     <input type="text" class="form-control" id="relationship" placeholder="e.g. 1 year, 3 months">
                   </div>
                 </div>
@@ -1234,6 +1275,8 @@
   <div class="container d-mobile-card">
     <form id="unifiedSearchFormMobile" class="mobile-hero-form hero-form-card mt-3" novalidate>
       <!-- NEW: Role Toggle -->
+      <h4 class="banner-head-title mb-2 text-align-center text-center">Register for Free🐾</h4>
+
       <div class="role-toggle btn-group w-100" role="group" aria-label="Role toggle">
         <input type="radio" class="btn-check" name="roleMob" id="roleMobParent" autocomplete="off" value="parent"
           checked>
@@ -1304,7 +1347,7 @@
                   <div class="col-12 col-md-6 mb-3">
                     <select class="form-select" data-role="pp_type" required>
                       <option value="" selected disabled>Pet type</option>
-                      <option>Dog</option>
+                      <option>pet</option>
                       <option>Cat</option>
                       <option>Other</option>
                     </select>
@@ -1321,7 +1364,7 @@
                   <select class="form-select" data-role="service" required>
                     <option value="" selected disabled>Choose a service</option>
                     <option value="boarding">Boarding • in the sitter’s home</option>
-                    <option value="walking">Dog Walking</option>
+                    <option value="walking">pet Walking</option>
                     <option value="training">Training</option>
                   </select>
                   <div class="invalid-feedback">Please choose a service.</div>
@@ -1350,11 +1393,9 @@
           </div>
 
         </div><!-- /accordion -->
-         <button id="parentSubmitBtn"
-            class="btn btn-primary-color w-100 py-2 fw-bold"
-            type="submit">
-        Submit
-    </button>
+        <button id="parentSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">
+          Join the Pack
+        </button>
       </div>
 
 
@@ -1415,7 +1456,7 @@
                   <!-- <label class="form-label fw-semibold">Pet Types You Host</label> -->
                   <select class="form-select select2" multiple data-role="host_pet_types" required>
                     <option value="" selected disabled>Pet Types You Host</option>
-                    <option>Dogs</option>
+                    <option>pets</option>
                     <option>Cats</option>
                     <option>Both</option>
                   </select>
@@ -1447,11 +1488,9 @@
           </div>
 
         </div>
-        <button id="hostSubmitBtn"
-            class="btn btn-primary-color w-100 py-2 fw-bold"
-            type="submit">
-        Submit
-    </button>
+        <button id="hostSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">
+          Join the Pack
+        </button>
       </div>
 
 
@@ -1499,7 +1538,7 @@
                   <!-- <label class="form-label fw-semibold">Which service do you offer?</label> -->
                   <select class="form-select" data-role="service" required>
                     <option value="" selected disabled>Choose a service</option>
-                    <option value="walking">Dog Walking</option>
+                    <option value="walking">pet Walking</option>
                     <option value="training">Training</option>
                     <option value="grooming">Grooming</option>
                   </select>
@@ -1560,11 +1599,9 @@
           </div>
 
         </div>
-        <button id="providerSubmitBtn"
-            class="btn btn-primary-color w-100 py-2 fw-bold"
-            type="submit">
-        Submit
-    </button>
+        <button id="providerSubmitBtn" class="btn btn-primary-color w-100 py-2 fw-bold" type="submit">
+          Join the Pack
+        </button>
       </div>
 
       <input type="hidden" name="selectedRole" value="parent" data-role="selectedRole">
@@ -1583,7 +1620,8 @@
             transparent reviews, and secure bookings keep tails wagging.</p>
           <p class="text-muted fs-5 mb-4"><span class="fw-bold">You bring the cuddles</span> - we’ll handle the match,
             the safety checks, and the smooth bookings.</p>
-          <a href="contact-us.html" class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold">CONTACT US</a>
+          <a href="contact-us.html" class="btn btn-primary-color px-4 py-3 rounded-pill fw-semibold">Free
+            Registration</a>
         </div>
         <div class="col-lg-5">
           <div class="wwd-img-wrap">
@@ -1602,117 +1640,227 @@
       </div>
 
       <div class="services-for-you-section mt-5">
-        <div class="boarding-section services-section row">
+        <div class="boarding-section services-section row g-4 align-items-center mb-5">
           <div class="services-for-you-img-section col-md-6">
-            <img src="assets/images/dog-services-imgs/boarding-img.jpg" alt="Dog Boarding">
+            <img src="assets/images/dog-services-imgs/boarding-img.jpg" alt="pet Boarding">
           </div>
           <div class="boarding-content col-md-6">
             <h3 class="head-text">Boarding</h3>
-            <p>With MyPetBnB, dog boarding is no longer about cages or kennels, it’s about comfort and care. When you
-              book through our platform, you’re directly connected to trusted dog sitters in your neighbourhood who
+            <p>With MyPetBnB, pet boarding is no longer about cages or kennels, it’s about comfort and care. When you
+              book through our platform, you’re directly connected to trusted pet sitters in your neighbourhood who
               welcome pups into their own homes.</p>
-            <p>Your dog enjoys a safe environment with their own comfortable spot, daily walks, playtime and the warmth
+            <p>Your pet enjoys a safe environment with their own comfortable spot, daily walks, playtime and the warmth
               of a family setting. Whether you’re away for a few days or an extended holiday, you can travel worry-free
               knowing your furry friend is in loving hands.</p>
             <div class="nav-cta-wrap ms-lg-0">
-              <a class="track-boarding btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
-                data-go-role="host">Register</a>
-
+              <button type="button"
+                class="track-boarding btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta unavailable-btn"
+                data-go-role="parent" id="registerPetParentBtn">Register to be a Pet Parent
+              </button>
+              <!-- Second button: hide + msg (NEW uniform system) -->
+              <button type="button"
+                class="track-boarding btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta unavailable-btn"
+                data-unavailable="1" id="findPetParentBtn">Find a Pet Parent
+              </button>
             </div>
+            <p class="notAvailableMsg not-available" style="display:none;">Services currently not available in your
+              area.</p>
           </div>
+
+
+
+
+        </div>
+      
+
+      <div class="walking-section services-section row g-4 align-items-center mb-5">
+        <div class="services-for-you-img-section col-md-6">
+          <img src="assets/images/dog-services-imgs/walking-dog-img.jpg" alt="pet Walking">
+        </div>
+        <div class="walking-content col-md-6">
+          <h3 class="head-text">Walking</h3>
+          <p>Daily walks are essential for a pet’s health and happiness but city life doesn’t always leave time for
+            them. That’s why we connect you with compassionate, experienced pet walkers nearby who make every stroll
+            safe, fun and engaging.</p>
+          <p>From quick neighbourhood rounds to long park strolls, your pup will enjoy exercise, stimulation and
+            socialisation. With GPS tracking and live updates, you’ll always know your pet is getting the care and activity they deserve.</p>
+          <div class="nav-cta-wrap ms-lg-0">
+            <button type="button"
+              class="track-walking btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
+              data-go-role="parent" id="registerPetWalkerBtn">Register to be a Pet Walker</button>
+            <!-- Second button: hide + msg (like Boarding) -->
+            <button type="button"
+              class="track-walking btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta unavailable-btn"
+              data-unavailable="1" id="findPetParentWalkerBtn">Find a Pet Parent</button>
+          </div>
+          <p class="notAvailableMsg not-available" style="display:none;">Services currently not available in your
+              area.</p>
         </div>
 
-        <div class="walking-section services-section row">
-          <div class="services-for-you-img-section col-md-6">
-            <img src="assets/images/dog-services-imgs/walking-dog-img.jpg" alt="Dog Walking">
-          </div>
-          <div class="walking-content col-md-6">
-            <h3 class="head-text">Walking</h3>
-            <p>Daily walks are essential for a dog’s health and happiness but city life doesn’t always leave time for
-              them. That’s why we connect you with compassionate, experienced dog walkers nearby who make every stroll
-              safe, fun and engaging.</p>
-            <p>From quick neighbourhood rounds to long park strolls, your pup will enjoy exercise, stimulation and
-              socialisation. With GPS tracking and live updates, you’ll always know your dog is getting the care and
-              activity they deserve.</p>
-            <div class="nav-cta-wrap ms-lg-0">
-              <a class="track-walking btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
-                data-go-role="provider">Register</a>
+      </div>
+    
 
-            </div>
-          </div>
+    <div class="sitting-section services-section row g-4 align-items-center mb-5">
+      <div class="services-for-you-img-section col-md-6">
+        <img src="assets/images/dog-services-imgs/sitting-img.jpg" alt="pet Sitting">
+      </div>
+      <div class="sitting-content col-md-6">
+        <h3 class="head-text">Pet Grooming</h3>
+        <p>Finding the perfect stylist for your pet shouldn't be a chore. Our platform connects you with top-rated,
+          local groomers and entities who specialize in making your pet shine. Whether you need a mobile groomer to
+          visit your home or a local boutique experience, we aggregate the best talent in your neighborhood so you can
+          compare reviews, check availability, and book the perfect fit instantly.</p>
+        <p>From deep-cleansing baths to breed-specific cuts, you can choose a professional who matches your pet’s unique
+          personality.</p>
+        <div class="nav-cta-wrap ms-lg-0">
+          <button type="button"
+            class="track-sitting btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
+            data-go-role="provider" data-go-service="grooming" id="registerGroomerBtn">Register as Groomer</button>
+          <!-- Second button -->
+          <button type="button"
+            class="track-sitting btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta unavailable-btn"
+            data-unavailable="1" id="findGroomerBtn">Find a Groomer</button>
         </div>
-
-        <div class="sitting-section services-section row">
-          <div class="services-for-you-img-section col-md-6">
-            <img src="assets/images/dog-services-imgs/sitting-img.jpg" alt="Dog Sitting">
-          </div>
-          <div class="sitting-content col-md-6">
-            <h3 class="head-text">Sitting</h3>
-            <p>Some dogs feel most comfortable in their own space. Our dog sitting service ensures they’re cared for
-              right at home. Whether you’re working late, out for dinner or away for the weekend, a trusted sitter comes
-              to your home to feed, walk, play and comfort your pup.</p>
-            <p>Regular photo and video updates keep you connected, while sitters follow your instructions to the last
-              detail; ensuring safety, consistency and peace of mind.</p>
-            <div class="nav-cta-wrap ms-lg-0">
-              <a class="track-sitting btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
-                data-go-role="provider">Register</a>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="Training-section services-section row">
-          <div class="services-for-you-img-section col-md-6">
-            <img src="assets/images/dog-services-imgs/training.jpg" alt="Dog Training">
-          </div>
-          <div class="Training-content col-md-6">
-            <h3 class="head-text">Training</h3>
-            <p>Good behaviour makes life easier for both dogs and parents. Through MyPetBnB, you can connect with
-              experienced trainers who use positive reinforcement to teach obedience, leash manners and social skills.
-            </p>
-            <p>Whether it’s basic puppy training, correcting habits or addressing specific challenges, our trainers help
-              your dog learn in a safe and supportive way. With regular progress updates, you’ll see your pup grow into
-              their best self.</p>
-            <div class="nav-cta-wrap ms-lg-0">
-              <a class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta" href="#"
-                data-go-role="provider">Register</a>
-
-
-            </div>
-          </div>
-        </div>
+        <p class="notAvailableMsg not-available" style="display:none;">Services currently not available in your
+              area.</p>
       </div>
     </div>
+    
+
+    <div class="Training-section services-section row g-4 align-items-center mb-5">
+      <div class="services-for-you-img-section col-md-6">
+        <img src="assets/images/dog-services-imgs/training.jpg" alt="pet Training">
+      </div>
+      <div class="Training-content col-md-6">
+        <h3 class="head-text">Training</h3>
+        <p>Good behaviour makes life easier for both pets and parents. Through MyPetBnB, you can connect with experienced trainers who use positive reinforcement to teach obedience, leash manners and social skills.</p>
+        <p>Whether it’s basic pet training, correcting habits or addressing specific challenges, our trainers help your pet  learn in a safe and supportive way. With regular progress updates, you’ll see your pet grow into their best self.​</p>
+        <div class="nav-cta-wrap ms-lg-0">
+          <button type="button" class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta"
+            data-go-role="provider" data-go-service="training" id="registerTrainerBtn">Register to be a Pet Trainer </button>
+          <!-- Second button -->
+          <button type="button"
+            class="btn btn-primary-color rounded-pill fw-semibold px-4 py-3 service-cta unavailable-btn"
+            data-unavailable="1" id="findTrainerBtn">Find a Pet Trainer</button>
+        </div>
+        <p class="notAvailableMsg not-available" style="display:none;">Services currently not available in your
+              area.</p>
+      </div>
+
+    </div>
+    </div>
+    </div>
+    
   </section>
+
+  <!-- REGISTRATION POPUP MODAL -->
+<div class="modal fade" id="regPopup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content reg-modal">
+
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold" id="regPopupLabel">Register for Free 🐾</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body pt-2">
+        <p class="text-muted mb-3" style="font-size:.95rem;">
+          Get early access to trusted pet hosts, walkers, groomers & trainers in your neighborhood.
+        </p>
+
+        <form id="popupRegForm" novalidate>
+          <div class="row g-2">
+            <div class="col-12">
+              <input type="text" class="form-control" name="name" placeholder="Full name*" required>
+              <div class="invalid-feedback">Please enter your name.</div>
+            </div>
+
+            <div class="col-12">
+              <input type="email" class="form-control" name="email" placeholder="Email*" required>
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+
+            <div class="col-12">
+              <input type="tel" class="form-control" name="phone" placeholder="Phone number*" required>
+              <div class="invalid-feedback">Please enter your phone number.</div>
+            </div>
+
+            <div class="col-12">
+              <input type="text" class="form-control" name="locality" placeholder="Locality / Area (e.g., Borivali West)*" required>
+              <div class="invalid-feedback">Please enter your locality.</div>
+            </div>
+
+            <div class="col-12">
+              <select class="form-select" name="role" required>
+                <option value="" selected disabled>I’m here as*</option>
+                <option value="pet_parent">Pet Parent</option>
+                <option value="pet_host">Pet Host</option>
+                <option value="walker">Pet Walker</option>
+                <option value="groomer">Groomer</option>
+                <option value="trainer">Trainer</option>
+              </select>
+              <div class="invalid-feedback">Please select one option.</div>
+            </div>
+
+            <div class="col-12">
+              <select class="form-select" name="pet_type">
+                <option value="" selected>Pet type (optional)</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="col-12 mt-1">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="regConsent" required>
+                <label class="form-check-label small text-muted" for="regConsent">
+                  I agree to be contacted about MyPetBnB updates.
+                </label>
+                <div class="invalid-feedback">Please check this to continue.</div>
+              </div>
+            </div>
+
+            <div class="col-12 mt-2 d-grid">
+              <button type="submit" class="btn btn-primary-color rounded-pill fw-semibold py-2">
+                Join the Pack
+              </button>
+            </div>
+
+            <div class="col-12 text-center mt-2">
+              <button type="button" class="btn btn-link text-muted small" data-bs-dismiss="modal">
+                Not now
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
 
   <!-- FOOTER (unchanged) -->
   <footer class="site-footer py-5">
     <div class="container">
       <div class="row gy-5">
         <div class="col-12 col-lg-5">
-          <div class="footer-title head-text">All the pet care tips you need—right to your inbox</div>
-          <p class="subtext">Receive the latest adorable pet photos, care tips, training advice, product
-            recommendations, and more.</p>
-          <form class="newsletter-wrap mt-2" action="#" method="post">
-            <div class="input-group">
-              <input type="email" class="form-control" placeholder="Your email…" aria-label="Your email" required>
-              <button class="btn btn-outline-dark" type="submit">Sign up</button>
-            </div>
-          </form>
-          <p class="smallprint mt-3 mb-0">
+          <div class="footer-title head-text">About My PetBnB​</div>
+          <p class="subtext">My PetBnB connects loving sitters with caring pet parents, right in the neighborhood.  Verified profiles, transparent reviews, and secure bookings keep tails wagging. We’ll handle the match, the safety checks, and the smooth bookings.​</p>
+          
+          <!-- <p class="smallprint mt-3 mb-0">
             By providing my email address, I consent to receive marketing communications from PetBnB.com...
             <a style="color:var(--link)" href="privacy.html">Privacy Statement</a>.
-          </p>
+          </p> -->
         </div>
 
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="footer-title head-text">Learn More</div>
           <ul class="footer-list">
-            <li><a href="blog.html">Read Our Blog</a></li>
+            <li><a href=" https://mypetbnb.in/blog/">Read Our Blog</a></li>
+            <!-- <li><a href="privacy.html">Your privacy choices</a></li> -->
           </ul>
-          <div class="mt-3">
-            <a class="privacy-pill" href="privacy.html"><i class="fa-solid fa-check"></i> Your privacy choices</a>
-          </div>
+
         </div>
 
         <div class="col-12 col-sm-6 col-lg-4">
@@ -1736,11 +1884,12 @@
         <div class="col-12">
           <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 mt-2 border-top">
             <div class="social my-2">
-              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.facebook.com/mypetbnbb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/my.petbnb/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.threads.com/@my.petbnb" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
             </div>
             <div class="smallprint text-center text-md-end mt-3">
-              © 2025 A Place for PetBnB, Inc. All Rights Reserved.
+              © 2026 A Place for PetBnB, Inc. All Rights Reserved.
             </div>
           </div>
         </div>
@@ -1767,8 +1916,8 @@
 
     // ---------------- Counters (unchanged) ----------------
     let boardingCount = 0, walkingCount = 0;
-    function updateBoardingDisplay() { const el = document.getElementById('boardingDogCount'); if (el) el.innerText = boardingCount; }
-    function updateWalkingDisplay() { const el = document.getElementById('walkingDogCount'); if (el) el.innerText = walkingCount; }
+    function updateBoardingDisplay() { const el = document.getElementById('boardingpetCount'); if (el) el.innerText = boardingCount; }
+    function updateWalkingDisplay() { const el = document.getElementById('walkingpetCount'); if (el) el.innerText = walkingCount; }
     function incrementBoarding() { boardingCount++; updateBoardingDisplay(); }
     function decrementBoarding() { if (boardingCount > 0) { boardingCount--; updateBoardingDisplay(); } }
     function incrementWalking() { walkingCount++; updateWalkingDisplay(); }
@@ -1791,8 +1940,8 @@
         if (el.type === 'checkbox' || el.type === 'radio') { el.checked = false; } else { el.value = ''; }
         if (window.jQuery && jQuery(el).hasClass('select2')) { jQuery(el).val(null).trigger('change'); }
       });
-      if (section.querySelector('#boardingDogCount')) { boardingCount = 0; updateBoardingDisplay(); }
-      if (section.querySelector('#walkingDogCount')) { walkingCount = 0; updateWalkingDisplay(); }
+      if (section.querySelector('#boardingpetCount')) { boardingCount = 0; updateBoardingDisplay(); }
+      if (section.querySelector('#walkingpetCount')) { walkingCount = 0; updateWalkingDisplay(); }
       const extra = section.querySelector('.progressive-extra'); if (extra) extra.classList.add('d-none');
       unlockAll();
     }
@@ -2173,8 +2322,8 @@
       const fromDate = document.getElementById('walkFromDate')?.value || '';
       const toDate = document.getElementById('walkToDate')?.value || '';
       const duration = document.getElementById('walkDuration')?.value || '';
-      if (!breed || !theLocation || !fromTime || !toTime || !fromDate || !toDate || !duration) { alert("Please fill in all the fields for Dog Walking."); return; }
-      const params = new URLSearchParams({ breed, location: theLocation, fromTime, toTime, fromDate, toDate, duration, dogs: String(walkingCount) });
+      if (!breed || !theLocation || !fromTime || !toTime || !fromDate || !toDate || !duration) { alert("Please fill in all the fields for pet Walking."); return; }
+      const params = new URLSearchParams({ breed, location: theLocation, fromTime, toTime, fromDate, toDate, duration, pets: String(walkingCount) });
       window.location.href = `search-walkers-page.html?${params.toString()}`;
     }
 
@@ -2551,190 +2700,249 @@
     });
   </script>
 
- 
+
+
+  <script>
+    // Small helper to safely get value
+    function getVal(pane, selector) {
+      const el = pane.querySelector(selector);
+      return el ? el.value.trim() : "";
+    }
+
+    // Generic POST helper
+    function submitFormData(url, data, submitBtn) {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+      }
+
+      fetch(url, {
+        method: "POST",
+        body: data
+      })
+        .then(() => {
+          // We redirect manually; fetch won't change page on its own
+          window.location.href = "thank-you.html";
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Something went wrong. Please try again.");
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Submit";
+          }
+        });
+    }
+
+    // =============== PET PARENT ===============
+    function handleParentSubmit(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const pane =
+        btn.closest('.role-pane[data-pane="parent"]') ||
+        document.querySelector('.role-pane[data-pane="parent"].active');
+
+      if (!pane) return;
+
+      const data = new FormData();
+      const name = getVal(pane, '[data-role="pp_name"]');
+      const email = getVal(pane, '[data-role="pp_email"]');
+      const location = getVal(pane, '[data-role="location"]');
+      const pets = getVal(pane, '[data-role="pets"]');
+      const petType = getVal(pane, '[data-role="pp_type"]');
+      const breed = getVal(pane, '[data-role="pp_breed"]');
+      const service = getVal(pane, '[data-role="service"]');
+      const fromDate = getVal(pane, '[data-role="from"]');
+      const toDate = getVal(pane, '[data-role="to"]');
+      const walkDate = getVal(pane, '[data-role="walkDate"]');
+      const walkTime = getVal(pane, '[data-role="walkTime"]');
+
+      // Simple front-end validation (mirrors PHP)
+      if (!name || !email || !location || !pets || !petType || !service) {
+        alert("Please fill all required fields in the Pet Parent form.");
+        return;
+      }
+
+      data.append("pp_name", name);
+      data.append("pp_email", email);
+      data.append("location", location);
+      data.append("pets", pets);
+      data.append("pp_type", petType);
+      data.append("pp_breed", breed);
+      data.append("service", service);
+      data.append("from", fromDate);
+      data.append("to", toDate);
+      data.append("walkDate", walkDate);
+      data.append("walkTime", walkTime);
+
+      submitFormData("pet-parent.php", data, btn);
+    }
+
+    // =============== PET HOST ===============
+    function handleHostSubmit(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const pane =
+        btn.closest('.role-pane[data-pane="host"]') ||
+        document.querySelector('.role-pane[data-pane="host"].active');
+
+      if (!pane) return;
+
+      const data = new FormData();
+      const name = getVal(pane, '[data-role="host_name"]');
+      const email = getVal(pane, '[data-role="host_email"]');
+      const location = getVal(pane, '[data-role="location"]');
+      const exp = getVal(pane, '[data-role="host_experience"]');
+      const rate = getVal(pane, '[data-role="host_rate"]');
+      const service = getVal(pane, '[data-role="service"]');
+      const petTypesEl = pane.querySelector('[data-role="host_pet_types"]');
+
+      if (!name || !email || !location || !exp || !rate || !service) {
+        alert("Please fill all required fields in the Pet Host form.");
+        return;
+      }
+
+      data.append("host_name", name);
+      data.append("host_email", email);
+      data.append("location", location);
+      data.append("host_experience", exp);
+      data.append("host_rate", rate);
+      data.append("service", service);
+
+      if (petTypesEl && petTypesEl.selectedOptions) {
+        for (const opt of petTypesEl.selectedOptions) {
+          data.append("host_pet_types[]", opt.value);
+        }
+      }
+
+      submitFormData("pet-host.php", data, btn);
+    }
+
+    // =============== SERVICE PROVIDER ===============
+    function handleProviderSubmit(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      const pane =
+        btn.closest('.role-pane[data-pane="provider"]') ||
+        document.querySelector('.role-pane[data-pane="provider"].active');
+
+      if (!pane) return;
+
+      const data = new FormData();
+      const name = getVal(pane, '[data-role="sp_name"]');
+      const email = getVal(pane, '[data-role="sp_email"]');
+      const location = getVal(pane, '[data-role="location"]');
+      const service = getVal(pane, '[data-role="service"]');
+      const experience = getVal(pane, '[data-role="sp_experience"]');
+      const radius = getVal(pane, '[data-role="sp_radius"]');
+      const availability = getVal(pane, '[data-role="sp_availability"]');
+      const rate = getVal(pane, '[data-role="sp_rate"]');
+      const reviews = getVal(pane, '[data-role="sp_reviews"]');
+
+      if (!name || !email || !location || !service || !experience || !rate) {
+        alert("Please fill all required fields in the Service Provider form.");
+        return;
+      }
+
+      data.append("sp_name", name);
+      data.append("sp_email", email);
+      data.append("location", location);
+      data.append("service", service);
+      data.append("sp_experience", experience);
+      data.append("sp_radius", radius);
+      data.append("sp_availability", availability);
+      data.append("sp_rate", rate);
+      data.append("sp_reviews", reviews);
+
+      // Files: Certification (single)
+      const certInput = pane.querySelector('[data-role="sp_cert_file"]');
+      if (certInput && certInput.files && certInput.files[0]) {
+        data.append("sp_cert_file", certInput.files[0]);
+      }
+
+      // Files: ID Proof (multiple)
+      const idInput = pane.querySelector('[data-role="sp_id_proof"]');
+      if (idInput && idInput.files && idInput.files.length > 0) {
+        Array.from(idInput.files).forEach(file => {
+          data.append("sp_id_proof[]", file);
+        });
+      }
+
+      submitFormData("service-provider.php", data, btn);
+    }
+
+    // =============== WIRE ALL BUTTONS ===============
+    document.addEventListener("DOMContentLoaded", () => {
+      const parentBtn = document.getElementById("parentSubmitBtn");
+      const hostBtn = document.getElementById("hostSubmitBtn");
+      const providerBtn = document.getElementById("providerSubmitBtn");
+
+      if (parentBtn) parentBtn.addEventListener("click", handleParentSubmit);
+      if (hostBtn) hostBtn.addEventListener("click", handleHostSubmit);
+      if (providerBtn) providerBtn.addEventListener("click", handleProviderSubmit);
+    });
+  </script>
+
+  <script>
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.unavailable-btn[data-unavailable="1"]');
+  if (!btn) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+
+  btn.style.display = 'none';
+
+  // Find the nearest message right after the button group
+  const msg = btn.closest('.nav-cta-wrap')?.nextElementSibling;
+  if (msg && msg.classList.contains('notAvailableMsg')) {
+    msg.style.display = 'block';
+  }
+}, true);
+</script>
 
 <script>
-// Small helper to safely get value
-function getVal(pane, selector) {
-  const el = pane.querySelector(selector);
-  return el ? el.value.trim() : "";
-}
+window.addEventListener('load', function () {
+  const el = document.getElementById('regPopup');
+  if (!el) return;
 
-// Generic POST helper
-function submitFormData(url, data, submitBtn) {
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
-  }
-
-  fetch(url, {
-    method: "POST",
-    body: data
-  })
-    .then(() => {
-      // We redirect manually; fetch won't change page on its own
-      window.location.href = "thank-you.html";
-    })
-    .catch((err) => {
-      console.error(err);
-      alert("Something went wrong. Please try again.");
-    })
-    .finally(() => {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Submit";
-      }
-    });
-}
-
-// =============== PET PARENT ===============
-function handleParentSubmit(e) {
-  e.preventDefault();
-  const btn = e.currentTarget;
-  const pane =
-    btn.closest('.role-pane[data-pane="parent"]') ||
-    document.querySelector('.role-pane[data-pane="parent"].active');
-
-  if (!pane) return;
-
-  const data = new FormData();
-  const name      = getVal(pane, '[data-role="pp_name"]');
-  const email     = getVal(pane, '[data-role="pp_email"]');
-  const location  = getVal(pane, '[data-role="location"]');
-  const pets      = getVal(pane, '[data-role="pets"]');
-  const petType   = getVal(pane, '[data-role="pp_type"]');
-  const breed     = getVal(pane, '[data-role="pp_breed"]');
-  const service   = getVal(pane, '[data-role="service"]');
-  const fromDate  = getVal(pane, '[data-role="from"]');
-  const toDate    = getVal(pane, '[data-role="to"]');
-  const walkDate  = getVal(pane, '[data-role="walkDate"]');
-  const walkTime  = getVal(pane, '[data-role="walkTime"]');
-
-  // Simple front-end validation (mirrors PHP)
-  if (!name || !email || !location || !pets || !petType || !service) {
-    alert("Please fill all required fields in the Pet Parent form.");
-    return;
-  }
-
-  data.append("pp_name", name);
-  data.append("pp_email", email);
-  data.append("location", location);
-  data.append("pets", pets);
-  data.append("pp_type", petType);
-  data.append("pp_breed", breed);
-  data.append("service", service);
-  data.append("from", fromDate);
-  data.append("to", toDate);
-  data.append("walkDate", walkDate);
-  data.append("walkTime", walkTime);
-
-  submitFormData("pet-parent.php", data, btn);
-}
-
-// =============== PET HOST ===============
-function handleHostSubmit(e) {
-  e.preventDefault();
-  const btn = e.currentTarget;
-  const pane =
-    btn.closest('.role-pane[data-pane="host"]') ||
-    document.querySelector('.role-pane[data-pane="host"].active');
-
-  if (!pane) return;
-
-  const data = new FormData();
-  const name      = getVal(pane, '[data-role="host_name"]');
-  const email     = getVal(pane, '[data-role="host_email"]');
-  const location  = getVal(pane, '[data-role="location"]');
-  const exp       = getVal(pane, '[data-role="host_experience"]');
-  const rate      = getVal(pane, '[data-role="host_rate"]');
-  const service   = getVal(pane, '[data-role="service"]');
-  const petTypesEl = pane.querySelector('[data-role="host_pet_types"]');
-
-  if (!name || !email || !location || !exp || !rate || !service) {
-    alert("Please fill all required fields in the Pet Host form.");
-    return;
-  }
-
-  data.append("host_name", name);
-  data.append("host_email", email);
-  data.append("location", location);
-  data.append("host_experience", exp);
-  data.append("host_rate", rate);
-  data.append("service", service);
-
-  if (petTypesEl && petTypesEl.selectedOptions) {
-    for (const opt of petTypesEl.selectedOptions) {
-      data.append("host_pet_types[]", opt.value);
+  function waitForBootstrap() {
+    if (typeof bootstrap === 'undefined') {
+      setTimeout(waitForBootstrap, 100);
+      return;
     }
-  }
 
-  submitFormData("pet-host.php", data, btn);
-}
+    const modal = bootstrap.Modal.getOrCreateInstance(el);
 
-// =============== SERVICE PROVIDER ===============
-function handleProviderSubmit(e) {
-  e.preventDefault();
-  const btn = e.currentTarget;
-  const pane =
-    btn.closest('.role-pane[data-pane="provider"]') ||
-    document.querySelector('.role-pane[data-pane="provider"].active');
+    // ---------- Auto popup after 5 sec ----------
+    setTimeout(() => {
+      modal.show();
+    }, 5000);
 
-  if (!pane) return;
+    // ---------- Header Register buttons ----------
+    function openPopup(e){
+      e.preventDefault();
+      modal.show();
+    }
 
-  const data = new FormData();
-  const name         = getVal(pane, '[data-role="sp_name"]');
-  const email        = getVal(pane, '[data-role="sp_email"]');
-  const location     = getVal(pane, '[data-role="location"]');
-  const service      = getVal(pane, '[data-role="service"]');
-  const experience   = getVal(pane, '[data-role="sp_experience"]');
-  const radius       = getVal(pane, '[data-role="sp_radius"]');
-  const availability = getVal(pane, '[data-role="sp_availability"]');
-  const rate         = getVal(pane, '[data-role="sp_rate"]');
-  const reviews      = getVal(pane, '[data-role="sp_reviews"]');
+    document.getElementById('openRegPopupBtn')?.addEventListener('click', openPopup);
+    document.getElementById('openRegPopupBtnMobile')?.addEventListener('click', openPopup);
 
-  if (!name || !email || !location || !service || !experience || !rate) {
-    alert("Please fill all required fields in the Service Provider form.");
-    return;
-  }
-
-  data.append("sp_name", name);
-  data.append("sp_email", email);
-  data.append("location", location);
-  data.append("service", service);
-  data.append("sp_experience", experience);
-  data.append("sp_radius", radius);
-  data.append("sp_availability", availability);
-  data.append("sp_rate", rate);
-  data.append("sp_reviews", reviews);
-
-  // Files: Certification (single)
-  const certInput = pane.querySelector('[data-role="sp_cert_file"]');
-  if (certInput && certInput.files && certInput.files[0]) {
-    data.append("sp_cert_file", certInput.files[0]);
-  }
-
-  // Files: ID Proof (multiple)
-  const idInput = pane.querySelector('[data-role="sp_id_proof"]');
-  if (idInput && idInput.files && idInput.files.length > 0) {
-    Array.from(idInput.files).forEach(file => {
-      data.append("sp_id_proof[]", file);
+    // ---------- Safety: never let body lock ----------
+    el.addEventListener('hidden.bs.modal', function () {
+      document.body.classList.remove('modal-open');
+      document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
     });
   }
 
-  submitFormData("service-provider.php", data, btn);
-}
-
-// =============== WIRE ALL BUTTONS ===============
-document.addEventListener("DOMContentLoaded", () => {
-  const parentBtn   = document.getElementById("parentSubmitBtn");
-  const hostBtn     = document.getElementById("hostSubmitBtn");
-  const providerBtn = document.getElementById("providerSubmitBtn");
-
-  if (parentBtn)   parentBtn.addEventListener("click", handleParentSubmit);
-  if (hostBtn)     hostBtn.addEventListener("click", handleHostSubmit);
-  if (providerBtn) providerBtn.addEventListener("click", handleProviderSubmit);
+  waitForBootstrap();
 });
 </script>
+
+
 
 
 

@@ -117,7 +117,10 @@ body{
 .walking-section , .Training-section{
   display: flex;
   flex-direction: row-reverse;
+  /* margin: 55px; */
 }
+
+
 
 /* sitters-profile.html css */
 
@@ -227,4 +230,59 @@ body{
 .navbar .nav-link[aria-current="page"] {
   color: #EA624E !important;
 }
+/* Make Select2 show Bootstrap invalid state */
+    .select2-container--default .select2-selection--single.is-invalid,
+    .select2-container--default .select2-selection--multiple.is-invalid {
+      border-color: #dc3545 !important;
+      padding-right: calc(1.5em + .75rem);
+      background-image: none;
+    }
 
+    @media (max-width:400px) {
+
+      .seg-tabs .btn,
+      .role-toggle .btn {
+        flex: 1 1 0;
+        border: none;
+        background: transparent;
+        color: #7a3a00;
+        border-radius: 999px;
+        font-weight: 200;
+        height: 56px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    .cta-wrap {
+      width: 100%;
+    }
+    
+    .notAvailableMsg {
+      font-size: 0.9rem;
+      color: red;
+      margin-top: 4px;
+    }
+
+  /* Popup modal styling to match your brand */
+.reg-modal{
+  border-radius: 18px;
+  border: 1px solid rgba(234, 98, 78, .18);
+  box-shadow: 0 18px 45px rgba(0,0,0,.18);
+}
+
+#regPopupLabel{
+  color: #EA624E;
+}
+
+#regPopup .form-control,
+#regPopup .form-select{
+  height: 46px;
+  border-radius: 12px;
+}
+
+#regPopup .form-control:focus,
+#regPopup .form-select:focus{
+  border-color: rgba(234, 98, 78, .6);
+  box-shadow: 0 0 0 .2rem rgba(234, 98, 78, .18);
+}
